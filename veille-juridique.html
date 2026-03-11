@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Juridique - Nassim Rachdi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #BD00FF; --secondary: #00d98e; --text-dark: #1a1f2e; --text-light: #6b7280; --border: #e8ebf0; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: linear-gradient(to bottom, #ffffff 0%, #f8f9fc 50%, #f0f3f9 100%); font-family: 'Rajdhani', sans-serif; color: var(--text-dark); min-height: 100vh; position: relative; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle, rgba(189, 0, 255, 0.02) 1px, transparent 1px); background-size: 40px 40px; z-index: 0; pointer-events: none; }
+        main { position: relative; z-index: 1; }
+        header { background: #ffffff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 70px; max-width: 1400px; margin: 0 auto; }
+        .logo { font-weight: 700; font-size: 1.2em; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 2px; font-family: 'Orbitron', monospace; }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; }
+        .nav-links a { display: block; padding: 10px 18px; color: var(--text-dark); text-decoration: none; font-size: 0.95em; font-weight: 500; border-radius: 8px; transition: all 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); background: rgba(189, 0, 255, 0.1); border-bottom: 2px solid var(--primary); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 24px; }
+        h1.page-title { font-family: 'Orbitron', monospace; font-size: 3em; font-weight: 900; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-align: center; margin: 0 0 60px 0; }
+        .veille-card, .veille-section { background: rgba(255, 255, 255, 0.8); border: 1px solid var(--border); border-radius: 16px; padding: 48px 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 0 20px rgba(189, 0, 255, 0.08); backdrop-filter: blur(10px); margin-bottom: 40px; position: relative; overflow: hidden; }
+        .veille-card::before, .veille-section::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--primary), transparent); opacity: 0.5; }
+        .veille-card h2, .veille-section h2 { font-family: 'Orbitron', monospace; font-size: 1.8em; color: var(--primary); margin: 0 0 24px 0; font-weight: 700; }
+        .veille-intro { color: var(--text-light); font-size: 1.05em; margin-bottom: 40px; line-height: 1.8; padding: 20px; background: rgba(189, 0, 255, 0.03); border-left: 3px solid var(--primary); border-radius: 6px; }
+        .gantt-wrapper { background: rgba(248, 249, 252, 0.5); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin: 40px 0; overflow-x: auto; }
+        .gantt-container { display: flex; gap: 0; min-width: 100%; }
+        .gantt-timeline { flex: 1; min-width: 600px; }
+        .gantt-event { display: flex; align-items: center; height: 60px; margin-bottom: 16px; }
+        .gantt-label { width: 200px; padding-right: 20px; text-align: right; font-weight: 600; font-size: 0.9em; color: var(--text-dark); border-right: 2px solid rgba(189, 0, 255, 0.2); flex: 0 0 200px; }
+        .gantt-bar { position: relative; height: 40px; background: rgba(189, 0, 255, 0.15); border: 2px solid var(--primary); border-radius: 6px; display: flex; align-items: center; padding: 0 12px; cursor: pointer; transition: all 0.3s; font-size: 0.85em; font-weight: 600; color: var(--primary); overflow: hidden; margin-left: 20px; }
+        .gantt-bar:hover { background: rgba(189, 0, 255, 0.25); box-shadow: 0 0 20px rgba(189, 0, 255, 0.3); transform: translateY(-2px); }
+        .gantt-tooltip { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-10px); background: rgba(26, 31, 46, 0.95); color: #fff; padding: 12px 16px; border-radius: 8px; font-size: 0.85em; white-space: nowrap; opacity: 0; transition: opacity 0.3s; border: 1px solid rgba(189, 0, 255, 0.3); backdrop-filter: blur(10px); z-index: 10; }
+        .gantt-bar:hover .gantt-tooltip { opacity: 1; }
+        .sources-section { margin-top: 60px; padding-top: 40px; border-top: 2px solid rgba(189, 0, 255, 0.2); }
+        .sources-section h3 { font-size: 1.3em; color: var(--text-dark); margin: 0 0 24px 0; font-weight: 700; }
+        .badges-container { display: flex; flex-wrap: wrap; gap: 12px; }
+        .badge { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: rgba(189, 0, 255, 0.1); border: 1px solid rgba(189, 0, 255, 0.3); border-radius: 20px; font-size: 0.85em; font-weight: 600; color: var(--primary); text-decoration: none; transition: all 0.3s; }
+        .badge:hover { background: rgba(189, 0, 255, 0.2); border-color: var(--primary); box-shadow: 0 0 12px rgba(189, 0, 255, 0.2); transform: translateY(-2px); }
+        footer { background: #ffffff; border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text-light); font-size: 0.9em; }
+        @media (max-width: 900px) { .navbar { padding: 0 24px; } .container { padding: 60px 16px; } h1.page-title { font-size: 2em; } .gantt-label { width: 120px; flex: 0 0 120px; font-size: 0.8em; } }
+        @media (max-width: 600px) { .container { padding: 40px 12px; } h1.page-title { font-size: 1.5em; } .veille-card, .veille-section { padding: 24px 16px; } .gantt-wrapper { padding: 16px; } .gantt-label { width: 80px; flex: 0 0 80px; font-size: 0.75em; padding-right: 8px; } .badges-container { flex-direction: column; } .badge { width: 100%; justify-content: center; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Mon Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html#accueil">Accueil</a></li>
+                <li><a href="index.html#apropos">À propos de moi</a></li>
+                <li><a href="index.html#entreprise">Entreprise</a></li>
+                <li><a href="index.html#projets">Mes Projets</a></li>
+                <li><a href="index.html#veilles">Veilles</a></li>
+                <li><a href="index.html#tcs">TCS</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h1 class="page-title">⚖️ Veille Juridique</h1>
+
+            <div class="veille-section">
+                <h2>Cybersécurité & Conformité (2023-2026)</h2>
+
+                <p class="veille-intro">
+                    Suivi stratégique des évolutions réglementaires européennes et françaises en matière de cybersécurité. 
+                    Focus sur la directive NIS 2, le règlement DORA et leurs impacts sur les infrastructures critiques comme SNCF.
+                </p>
+
+                <div class="gantt-wrapper">
+                    <div class="gantt-container">
+                        <div style="display: flex; flex-direction: column;">
+                            <div class="gantt-event" style="height: 60px;"></div>
+                            <div class="gantt-event"><div class="gantt-label">NIS 2</div></div>
+                            <div class="gantt-event"><div class="gantt-label">CNIL-ANSSI</div></div>
+                            <div class="gantt-event"><div class="gantt-label">DDoS Alert</div></div>
+                            <div class="gantt-event"><div class="gantt-label">+5600 violations</div></div>
+                            <div class="gantt-event"><div class="gantt-label">CNIL Plaq.</div></div>
+                            <div class="gantt-event"><div class="gantt-label">DORA</div></div>
+                            <div class="gantt-event"><div class="gantt-label">Kit Crise</div></div>
+                            <div class="gantt-event"><div class="gantt-label">Sanctions DMA</div></div>
+                        </div>
+
+                        <div class="gantt-timeline">
+                            <div style="display: flex; align-items: center; height: 60px; gap: 60px; margin-bottom: 16px; margin-left: 20px;">
+                                <div style="font-weight: 700; color: var(--text-dark); font-size: 0.9em;">2023</div>
+                                <div style="font-weight: 700; color: var(--text-dark); font-size: 0.9em;">2024</div>
+                                <div style="font-weight: 700; color: var(--text-dark); font-size: 0.9em;">2025</div>
+                                <div style="font-weight: 700; color: var(--text-dark); font-size: 0.9em;">2026</div>
+                            </div>
+                            <div class="gantt-event"><div class="gantt-bar" style="width: 120px;"><span style="position: relative; z-index: 1;">JAN</span><div class="gantt-tooltip">Entrée en vigueur NIS 2</div></div></div>
+                            <div class="gantt-event"><div class="gantt-bar" style="width: 140px; margin-left: 40px;"><span style="position: relative; z-index: 1;">AVR</span><div class="gantt-tooltip">Synergie renforcée CNIL-ANSSI</div></div></div>
+                            <div class="gantt-event"><div class="gantt-bar" style="width: 160px; margin-left: 100px;"><span style="position: relative; z-index: 1;">DÉC</span><div class="gantt-tooltip">Rapport cybermenace ANSSI</div></div></div>
+                            <div class="gantt-event"><div class="gantt-bar" style="width: 180px; margin-left: 180px;"><span style="position: relative; z-index: 1;">2024</span><div class="gantt-tooltip">+20% violations de données</div></div></div>
+                            <div class="gantt-event"><div class="gantt-bar" style="width: 160px; margin-left: 240px;"><span style="position: relative; z-index: 1;">MAR</span><div class="gantt-tooltip">Plaquette cybersécurité CNIL</div></div></div>
+                            <div class="gantt-event"><div class="gantt-bar" style="width: 140px; margin-left: 260px;"><span style="position: relative; z-index: 1;">JAN</span><div class="gantt-tooltip">Entrée application DORA</div></div></div>
+                            <div class="gantt-event"><div class="gantt-bar" style="width: 160px; margin-left: 320px;"><span style="position: relative; z-index: 1;">AVR</span><div class="gantt-tooltip">Kit gestion crise CNIL</div></div></div>
+                            <div class="gantt-event"><div class="gantt-bar" style="width: 120px; margin-left: 340px;"><span style="position: relative; z-index: 1;">AVR</span><div class="gantt-tooltip">Sanctions Meta & Apple DMA</div></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sources-section">
+                    <h3>📚 Sources & Références</h3>
+                    <div class="badges-container">
+                        <a href="https://www.cnil.fr" target="_blank" class="badge"><span style="font-size: 1.2em;">🔐</span><span>CNIL</span></a>
+                        <a href="https://www.ssi.gouv.fr" target="_blank" class="badge"><span style="font-size: 1.2em;">🛡️</span><span>ANSSI</span></a>
+                        <a href="https://eur-lex.europa.eu" target="_blank" class="badge"><span style="font-size: 1.2em;">⚖️</span><span>EUR-Lex</span></a>
+                        <a href="https://www.vie-publique.fr" target="_blank" class="badge"><span style="font-size: 1.2em;">📋</span><span>Vie-Publique</span></a>
+                        <a href="https://www.legifrance.gouv.fr" target="_blank" class="badge"><span style="font-size: 1.2em;">📜</span><span>Legifrance</span></a>
+                        <a href="https://zataz.com" target="_blank" class="badge"><span style="font-size: 1.2em;">📰</span><span>Zataz</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Mon Portfolio</p>
+    </footer>
+    <script>
+        // Highlight current menu item
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            if (link.href === window.location.origin + window.location.pathname ||
+                link.href === window.location.origin + window.location.pathname + window.location.hash) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

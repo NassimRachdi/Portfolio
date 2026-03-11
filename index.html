@@ -1,0 +1,2607 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      
+    <title>Portfolio BTS SIO - Option SISR</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- READING PROGRESS BAR -->
+    <div id="readingProgressBar" class="reading-progress-bar"></div>
+
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="logo">
+                    <span class="logo-icon">&lt;/&gt;</span> Mon Portfolio
+                </div>
+                
+                <!-- STATUS INDICATOR -->
+                <div class="status-indicator" id="statusIndicator">
+                    <span class="status-dot"></span>
+                    <span class="status-text">SYSTEM STATUS: ONLINE</span>
+                </div>
+                
+                <!-- DARK/LIGHT THEME SWITCH -->
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#accueil" class="nav-link" data-section="accueil"><span class="section-code">[00]</span>Accueil</a></li>
+                <li><a href="#apropos" class="nav-link" data-section="apropos"><span class="section-code">[01]</span>À propos</a></li>
+                <li><a href="#entreprise" class="nav-link" data-section="entreprise"><span class="section-code">[02]</span>Mon Entreprise</a></li>
+                <li><a href="#projets" class="nav-link" data-section="projets"><span class="section-code">[03]</span>Mes Projets</a></li>
+                <li><a href="#veilles" class="nav-link" data-section="veilles"><span class="section-code">[04]</span>Veilles</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact"><span class="section-code">[05]</span>Contact</a></li>
+            </ul>
+            
+            <!-- Menu Burger for Mobile -->
+            <div class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil" class="hero">
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="title">Portfolio-Nassim_Rachdi.exe</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="code-line">$ <span class="keyword">Bienvenue</span> sur mon portfolio</div>
+                    <div class="code-line">$ <span class="keyword">Nom</span>: <span class="string">"Nassim Rachdi"</span></div>
+                    <div class="code-line">$ <span class="keyword">Statut</span>: <span class="string">"Étudiant BTS SIO SISR"</span></div>
+                    <div class="code-line">$ <span class="keyword">Entreprise</span>: <span class="string">"SNCF TER SUD"</span></div>
+                </div>
+            </div>
+            <h1 class="animated-title">Nassim Rachdi</h1>
+            <p class="subtitle">Un rapide résumé de ma présentation et plus de détails en cliquant ci-dessous.</p>
+            <a href="#apropos" class="btn-savoir-plus">En savoir plus</a>       
+        </section>
+        <section id="resume-accueil" class="page-section" style="display: none;">
+            <div class="container">
+                <div class="resume-grid">
+                    <div class="resume-card">
+                        <h3>Explication parcours</h3>
+                        <p>Disponible dans la section "à propos de moi"</p>     
+                    </div>
+                    <div class="resume-card">
+                        <h3>Pourquoi ce BTS</h3>
+                        <p>C'est un domaine très vaste où l'on peut trouver beaucoup de métiers très passionnants</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+                <section id="apropos" class="about-section">
+            <style>
+                #apropos { position: relative; overflow: hidden; }
+                #apropos::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.03'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23BD00FF'/%3E%3Cline x1='0' y1='50' x2='100' y2='50' stroke='%2300F0FF' stroke-width='0.5'/%3E%3Cline x1='50' y1='0' x2='50' y2='100' stroke='%2300F0FF' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E"); z-index: 0; opacity: 0.03; pointer-events: none; }
+                .about-container { position: relative; z-index: 1; padding: 80px 24px; max-width: 1400px; margin: 0 auto; }
+                .about-title { font-family: 'Roboto Mono', monospace; font-size: 2.5em; font-weight: 700; text-align: center; margin-bottom: 60px; color: #1a1f2e; position: relative; display: inline-block; width: 100%; }
+                .typing-effect { display: inline-block; }
+                .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; margin-bottom: 60px; }
+                .bento-card { background: rgba(255, 255, 255, 0.85); border: 1px solid #e8ebf0; border-radius: 16px; padding: 32px 28px; backdrop-filter: blur(10px); position: relative; overflow: hidden; transition: all 0.3s ease; }
+                .bento-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--card-accent), transparent); opacity: 0.6; }
+                .bento-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px var(--card-glow); border-color: var(--card-accent); }
+                .bento-card.cyan { --card-accent: #00F0FF; --card-glow: rgba(0, 240, 255, 0.2); }
+                .bento-card.violet { --card-accent: #BD00FF; --card-glow: rgba(189, 0, 255, 0.2); }
+                .bento-card.green { --card-accent: #00FF41; --card-glow: rgba(0, 255, 65, 0.2); }
+                .bento-card h3 { font-family: 'Roboto Mono', monospace; font-size: 1.3em; font-weight: 700; margin: 0 0 16px 0; background: linear-gradient(135deg, var(--card-accent) 0%, #00d98e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                .bento-card p { color: #6b7280; font-family: 'Inter', sans-serif; line-height: 1.7; margin: 0 0 12px 0; font-size: 0.95em; }
+                .bento-card p:last-child { margin-bottom: 0; }
+                .skill-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+                .skill-badge { background: rgba(255, 255, 255, 0.6); border: 1px solid var(--card-accent); color: var(--card-accent); padding: 6px 12px; border-radius: 16px; font-size: 0.85em; font-weight: 600; font-family: 'Roboto Mono', monospace; transition: all 0.3s; }
+                .skill-badge:hover { background: var(--card-accent); color: white; box-shadow: 0 0 12px var(--card-accent); transform: scale(1.05); }
+                .passions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-top: 16px; }
+                .passion-item { background: rgba(255, 255, 255, 0.6); border: 1px solid var(--card-accent); border-radius: 10px; padding: 12px 8px; text-align: center; font-size: 0.9em; font-weight: 600; color: #1a1f2e; transition: all 0.3s; cursor: pointer; }
+                .passion-item:hover { background: rgba(0, 240, 255, 0.15); box-shadow: 0 0 12px var(--card-accent); }
+                .passion-icon { font-size: 1.5em; margin-bottom: 4px; }
+                .charts-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 60px; align-items: center; }
+                .chart-card { background: rgba(255, 255, 255, 0.85); border: 1px solid #e8ebf0; border-radius: 16px; padding: 32px; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
+                .chart-card h3 { font-family: 'Roboto Mono', monospace; font-size: 1.2em; font-weight: 700; color: #1a1f2e; margin: 0 0 24px 0; }
+                .chart-canvas-container { position: relative; height: 320px; }
+                @media (max-width: 768px) { .bento-grid { grid-template-columns: 1fr; } .about-title { font-size: 1.8em; } .charts-section { grid-template-columns: 1fr; } }
+            </style>
+            <div class="about-container">
+                <h2 class="about-title"><span class="typing-effect">Profil Professionnel</span></h2>
+
+                <!-- BENTO GRID CARDS -->
+                <div class="bento-grid">
+                    <!-- CARD 1: MON PROFIL -->
+                    <div class="bento-card cyan glow-card">
+                        <h3>💼 Mon Profil</h3>
+                        <p>En dernière année de BTS SIO (option SISR) en alternance chez SNCF TER PACA. Spécialisé dans l'administration système, les réseaux Cisco et la cybersécurité.</p>
+                        <p style="margin-top: 12px; font-size: 0.9em; color: #1a1f2e; font-weight: 600;"><strong>📍 Localisation :</strong> Marseille, France</p>
+                        <p style="font-size: 0.9em; color: #1a1f2e; font-weight: 600;"><strong>🎯 Objectif :</strong> Ingénieur d'infrastructure IT ou consultant cybersécurité</p>
+                    </div>
+
+                    <!-- CARD 2: SOFT-SKILLS -->
+                    <div class="bento-card violet glow-card violet">
+                        <h3>⚡ Soft-Skills</h3>
+                        <div class="skill-badges">
+                            <span class="skill-badge">Rigueur</span>
+                            <span class="skill-badge">Autonomie</span>
+                            <span class="skill-badge">Communication</span>
+                            <span class="skill-badge">Leadership</span>
+                            <span class="skill-badge">Adaptabilité</span>
+                            <span class="skill-badge">Créativité</span>
+                            <span class="skill-badge">Curiosité</span>
+                            <span class="skill-badge">Implication</span>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3: PASSIONS & INTÉRÊTS -->
+                    <div class="bento-card green glow-card green">
+                        <h3>🎮 Passions & Intérêts</h3>
+                        <div class="passions-grid">
+                            <div class="passion-item"><div class="passion-icon">🔐</div>Cybersécurité</div>
+                            <div class="passion-item"><div class="passion-icon">🚀</div>IA & ML</div>
+                            <div class="passion-item"><div class="passion-icon">⚙️</div>DevOps</div>
+                            <div class="passion-item"><div class="passion-icon">🎮</div>Gaming</div>
+                            <div class="passion-item"><div class="passion-icon">📡</div>Réseaux</div>
+                            <div class="passion-item"><div class="passion-icon">💻</div>Linux</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DATA VISUALIZATION SECTION -->
+                <div class="charts-section">
+                    <!-- RADAR CHART -->
+                    <div class="chart-card">
+                        <h3>📊 Compétences Techniques</h3>
+                        <div class="chart-canvas-container">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- DONUT CHART -->
+                    <div class="chart-card">
+                        <h3>🎓 Spécialisation BTS SIO</h3>
+                        <div class="chart-canvas-container">
+                            <canvas id="donutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MICRO-STATS ANIMÉES -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 60px; padding-top: 40px; border-top: 1px solid #e8ebf0;">
+                    <div style="text-align: center; padding: 20px; background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px;">
+                        <div style="font-family: 'Roboto Mono', monospace; font-size: 2.2em; font-weight: 700; color: #00F0FF; margin-bottom: 8px;">
+                            <span class="counter" data-target="8">0</span>
+                        </div>
+                        <div style="color: #6b7280; font-size: 0.95em; font-weight: 600;">Projets Validés</div>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 20px; background: rgba(189, 0, 255, 0.05); border: 1px solid rgba(189, 0, 255, 0.2); border-radius: 12px;">
+                        <div style="font-family: 'Roboto Mono', monospace; font-size: 2.2em; font-weight: 700; color: #BD00FF; margin-bottom: 8px;">
+                            <span class="counter" data-target="2">0</span>
+                        </div>
+                        <div style="color: #6b7280; font-size: 0.95em; font-weight: 600;">Veilles Actives</div>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 20px; background: rgba(0, 255, 65, 0.05); border: 1px solid rgba(0, 255, 65, 0.2); border-radius: 12px;">
+                        <div style="font-family: 'Roboto Mono', monospace; font-size: 2.2em; font-weight: 700; color: #00FF41; margin-bottom: 8px;">
+                            <span class="counter" data-target="100">0</span>%
+                        </div>
+                        <div style="color: #6b7280; font-size: 0.95em; font-weight: 600;">Option SISR</div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // Typing effect animation
+                window.addEventListener('load', function() {
+                    const textSpan = document.querySelector('.typing-effect');
+                    const text = textSpan.textContent;
+                    textSpan.textContent = '';
+                    let charIndex = 0;
+                    const typingSpeed = 30;
+
+                    function typeChar() {
+                        if (charIndex < text.length) {
+                            textSpan.textContent += text.charAt(charIndex);
+                            charIndex++;
+                            setTimeout(typeChar, typingSpeed);
+                        }
+                    }
+                    typeChar();
+
+                    // Initialize Radar Chart
+                    const radarCtx = document.getElementById('radarChart').getContext('2d');
+                    new Chart(radarCtx, {
+                        type: 'radar',
+                        data: {
+                            labels: ['Administration\nSystème', 'Réseaux\nCisco', 'Cybersécurité', 'Scripting\n(VBA/Bash)', 'Gestion de\nProjet', 'Support\nUtilisateurs'],
+                            datasets: [{
+                                label: 'Compétences Techniques',
+                                data: [85, 80, 75, 70, 65, 80],
+                                borderColor: '#00F0FF',
+                                backgroundColor: 'rgba(0, 240, 255, 0.1)',
+                                borderWidth: 2.5,
+                                pointRadius: 5,
+                                pointBackgroundColor: '#00F0FF',
+                                pointBorderColor: '#fff',
+                                pointBorderWidth: 2,
+                                fill: true,
+                                tension: 0.3
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: {
+                                    backgroundColor: 'rgba(26, 31, 46, 0.95)',
+                                    padding: 12,
+                                    titleFont: { family: "'Roboto Mono', monospace", size: 12, weight: '600' },
+                                    bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                                    borderColor: '#00F0FF',
+                                    borderWidth: 1
+                                }
+                            },
+                            scales: {
+                                r: {
+                                    min: 0,
+                                    max: 100,
+                                    ticks: {
+                                        color: '#6b7280',
+                                        font: { family: "'Roboto Mono', monospace", size: 10 },
+                                        stepSize: 20,
+                                        backdropColor: 'transparent'
+                                    },
+                                    grid: {
+                                        color: 'rgba(0, 240, 255, 0.1)'
+                                    },
+                                    pointLabels: {
+                                        color: '#1a1f2e',
+                                        font: { family: "'Roboto Mono', monospace", size: 11, weight: '600' }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Initialize Donut Chart
+                    const donutCtx = document.getElementById('donutChart').getContext('2d');
+                    new Chart(donutCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['SISR\n(Réseaux & Systèmes)', 'SLAM\n(Développement)', 'Tronc Commun\n(Culture générale)'],
+                            datasets: [{
+                                data: [40, 35, 25],
+                                backgroundColor: [
+                                    '#00F0FF',
+                                    '#6b7280',
+                                    '#BD00FF'
+                                ],
+                                borderColor: '#fff',
+                                borderWidth: 2,
+                                weight: [1.2, 1, 0.8]
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        font: { family: "'Inter', sans-serif", size: 12 },
+                                        color: '#1a1f2e',
+                                        padding: 16,
+                                        usePointStyle: true,
+                                        pointStyle: 'circle'
+                                    }
+                                },
+                                tooltip: {
+                                    backgroundColor: 'rgba(26, 31, 46, 0.95)',
+                                    padding: 12,
+                                    titleFont: { family: "'Roboto Mono', monospace", size: 12, weight: '600' },
+                                    bodyFont: { family: "'Inter', sans-serif", size: 11 },
+                                    callbacks: {
+                                        label: function(context) {
+                                            return context.label + ': ' + context.parsed + '%';
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        plugins: [{
+                            id: 'textCenter',
+                            beforeDatasetsDraw(chart) {
+                                const width = chart.width;
+                                const height = chart.height;
+                                const ctx = chart.ctx;
+                                ctx.restore();
+                                const fontSize = (height / 200).toFixed(2);
+                                ctx.font = `bold ${fontSize}em 'Roboto Mono', monospace`;
+                                ctx.textBaseline = 'middle';
+                                ctx.fillStyle = '#00F0FF';
+                                const text = 'SIO';
+                                const textX = Math.round((width - ctx.measureText(text).width) / 2);
+                                const textY = height / 2;
+                                ctx.fillText(text, textX, textY);
+                                ctx.save();
+                            }
+                        }]
+                    });
+                });
+            </script>
+        </section><section id="entreprise" class="page-section">
+            <div class="container">
+                <h2>L'entreprise</h2>
+                <!-- Conteneur principal avec trois étapes -->
+                <div style="display:flex;flex-direction:column;gap:40px;margin-top:40px;">
+                    
+                    <!-- ÉTAPE 1 : Présentation SNCF Générale -->
+                    <div style="display:flex;justify-content:center;align-items:center;">
+                        <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;color:#1a1f2e;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:28px 32px;max-width:500px;width:100%;backdrop-filter:blur(10px);" class="cyber-card-blue">
+                            <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+                                <img src="https://img.icons8.com/ios-filled/50/0066ff/train.png" alt="SNCF" style="width:50px;height:50px;">
+                                <h3 style="color:#0066ff;margin:0;font-size:1.4em;">SNCF</h3>
+                            </div>
+                            <p><strong style="color:#0066ff;">Société Nationale des Chemins de Fer</strong></p>
+                            <p style="color:#6b7280;">Entreprise ferroviaire publique française, créée officiellement en 1937. Pionnière du transport et de la mobilité en France et en Europe.</p>
+                            <ul style="list-style:none;padding:0;margin:16px 0 0 0;color:#1a1f2e;">
+                                <li style="margin-bottom:8px;">✓ Transport de voyageurs</li>
+                                <li style="margin-bottom:8px;">✓ Transport de marchandises</li>
+                                <li>✓ Gestion et maintenance du réseau national (28 000 km)</li>
+                            </ul>
+                            <p style="margin-top:16px;font-size:0.9em;color:#0066ff;"><strong>Statut :</strong> <span style="color:#6b7280;">Société anonyme à capitaux publics depuis 2020</span></p>
+                        </div>
+                    </div>
+
+                    <!-- FLÈCHE ANIMÉE vers le bas -->
+                    <div style="display:flex;justify-content:center;">
+                        <svg width="40" height="60" viewBox="0 0 40 60" style="animation: bounceArrow 2s ease-in-out infinite;">
+                            <defs>
+                                <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#1E90FF;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00b894;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <line x1="20" y1="0" x2="20" y2="45" stroke="url(#arrowGrad)" stroke-width="2"/>
+                            <polygon points="20,60 10,45 30,45" fill="url(#arrowGrad)"/>
+                        </svg>
+                    </div>
+
+                    <!-- ÉTAPE 2 : TER SUD -->
+                    <div style="display:flex;justify-content:center;align-items:center;">
+                        <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;color:#1a1f2e;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:28px 32px;max-width:500px;width:100%;backdrop-filter:blur(10px);" class="cyber-card-green">
+                            <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+                                <img src="https://img.icons8.com/ios-filled/50/00d98e/train-station.png" alt="TER SUD" style="width:50px;height:50px;">
+                                <h3 style="color:#00d98e;margin:0;font-size:1.4em;">TER SUD</h3>
+                            </div>
+                            <p><strong style="color:#00d98e;">Transport Express Régional - Région Sud</strong></p>
+                            <p style="color:#6b7280;">Service régional assurant les liaisons entre grandes villes et zones rurales de la région Sud.</p>
+                            <ul style="list-style:none;padding:0;margin:16px 0 0 0;color:#1a1f2e;">
+                                <li style="margin-bottom:8px;">🚂 Liaisons régulières entre grandes villes</li>
+                                <li style="margin-bottom:8px;">📍 Desserte complète des zones rurales</li>
+                                <li>🌱 Mobilité verte et développement régional</li>
+                            </ul>
+                            <p style="margin-top:16px;font-size:0.9em;color:#00d98e;"><strong>Mon alternance :</strong> <span style="color:#6b7280;">Participation à des projets IT concrets et dynamiques</span></p>
+                        </div>
+                    </div>
+
+                    <!-- FLÈCHE ANIMÉE vers le bas -->
+                    <div style="display:flex;justify-content:center;">
+                        <svg width="40" height="60" viewBox="0 0 40 60" style="animation: bounceArrow 2s ease-in-out infinite;">
+                            <defs>
+                                <linearGradient id="arrowGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00b894;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ff0080;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <line x1="20" y1="0" x2="20" y2="45" stroke="url(#arrowGrad2)" stroke-width="2"/>
+                            <polygon points="20,60 10,45 30,45" fill="url(#arrowGrad2)"/>
+                        </svg>
+                    </div>
+
+                    <!-- ÉTAPE 3 : Partenaires principaux -->
+                    <div>
+                        <h3 style="color:#0066ff;text-align:center;margin-bottom:32px;font-size:1.5em;text-transform:uppercase;letter-spacing:2px;">Écosystème SNCF</h3>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch;">
+                            <!-- Partenaire 1 -->
+                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-blue">
+                                <h4 style="color:#0066ff;margin-top:0;font-size:1.2em;">SNCF Réseau</h4>
+                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Gestionnaire d'infrastructure du réseau ferré national. Composé de 28 000 km de lignes couvrant tout le territoire français.</p>
+                                <p style="margin-top:12px;font-size:0.9em;color:#0066ff;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Infrastructure & Maintenance</span></p>
+                            </div>
+
+                            <!-- Partenaire 2 -->
+                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-green">
+                                <h4 style="color:#00d98e;margin-top:0;font-size:1.2em;">SNCF Voyageurs</h4>
+                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Chargée du transport de voyageurs en France et en Europe. Solutions de mobilité verte et gestion du matériel roulant.</p>
+                                <p style="margin-top:12px;font-size:0.9em;color:#00d98e;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Transport de Voyageurs</span></p>
+                            </div>
+
+                            <!-- Partenaire 3 -->
+                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-pink">
+                                <h4 style="color:#ff0080;margin-top:0;font-size:1.2em;">SNCF Gares</h4>
+                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Spécialiste de la conception, exploitation et commercialisation des gares. Service public de qualité non discriminatoire.</p>
+                                <p style="margin-top:12px;font-size:0.9em;color:#ff0080;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Gares & Connexions</span></p>
+                            </div>
+
+                            <!-- Partenaire 4 -->
+                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-blue">
+                                <h4 style="color:#0066ff;margin-top:0;font-size:1.2em;">Keolis</h4>
+                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Leader mondial des mobilités partagées. Conçoit des solutions de transport collectif sûres, performantes et durables.</p>
+                                <p style="margin-top:12px;font-size:0.9em;color:#0066ff;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Mobilités Partagées</span></p>
+                            </div>
+
+                            <!-- Partenaire 5 -->
+                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-green">
+                                <h4 style="color:#00d98e;margin-top:0;font-size:1.2em;">Rail Logistics</h4>
+                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Réunit les activités de transport ferroviaire de marchandises du groupe SNCF. 5 filiales spécialisées dans la logistique.</p>
+                                <p style="margin-top:12px;font-size:0.9em;color:#00d98e;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Fret & Logistique</span></p>
+                            </div>
+
+                            <!-- Partenaire 6 -->
+                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-pink">
+                                <h4 style="color:#ff0080;margin-top:0;font-size:1.2em;">GEODIS</h4>
+                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Leader mondial du transport et de la logistique. Garantit des acheminements efficaces, durables et fiables.</p>
+                                <p style="margin-top:12px;font-size:0.9em;color:#ff0080;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Transport & Logistique</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projets" class="page-section">
+            <div class="container">
+                <h2>Mes Projets</h2>
+                
+                <!-- Onglets de Navigation -->
+                <div class="projects-tabs">
+                    <button class="tab-button active" data-tab="entreprise">
+                        <span class="tab-icon">💼</span>
+                        <span>Projets en Entreprise</span>
+                    </button>
+                    <button class="tab-button" data-tab="scolaires">
+                        <span class="tab-icon">📚</span>
+                        <span>Projets Scolaires</span>
+                    </button>
+                </div>
+
+                <!-- PROJETS EN ENTREPRISE -->
+                <div class="tab-content active" id="tab-entreprise">
+                    <div class="projects-grid">
+                        
+                        <!-- Projet 1: Automatisation VBA -->
+                        <div class="project-card">
+                            <div class="card-header">
+                                <h3>AUTOMATISATION VBA EXCEL</h3>
+                                <span class="status-badge status-completed">Terminé</span>
+                            </div>
+                            
+                            <div class="card-content">
+                                <div class="project-section">
+                                    <div class="section-icon">⚙️</div>
+                                    <div class="section-text">
+                                        <strong>Problématique</strong>
+                                        <p>Traitement manuel répétitif de 500+ lignes de données Excel quotidiennement, consommant 2+ heures par jour.</p>
+                                    </div>
+                                </div>
+
+                                <div class="project-section">
+                                    <div class="section-icon">💡</div>
+                                    <div class="section-text">
+                                        <strong>Solution Technique</strong>
+                                        <p>Développement de macros VBA avec validation de données, génération automatique de rapports et intégration SharePoint.</p>
+                                    </div>
+                                </div>
+
+                                <div class="project-section">
+                                    <div class="section-icon">✓</div>
+                                    <div class="section-text">
+                                        <strong>Résultat</strong>
+                                        <p>Réduction du temps de traitement de 95% (2h → 6 min/jour). Zéro erreur manuelle. Économie annuelle de 432 heures.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="tech-tags">
+                                    <span class="tech-tag">VBA</span>
+                                    <span class="tech-tag">Excel</span>
+                                    <span class="tech-tag">Automation</span>
+                                    <span class="tech-tag">Data Processing</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projet 2: SharePoint Migration -->
+                        <div class="project-card">
+                            <div class="card-header">
+                                <h3>MIGRATION SHAREPOINT</h3>
+                                <span class="status-badge status-completed">Terminé</span>
+                            </div>
+                            
+                            <div class="card-content">
+                                <div class="project-section">
+                                    <div class="section-icon">⚙️</div>
+                                    <div class="section-text">
+                                        <strong>Problématique</strong>
+                                        <p>Migration de 10 000+ documents d'un serveur legacy vers SharePoint Online sans perte de données ni accès.</p>
+                                    </div>
+                                </div>
+
+                                <div class="project-section">
+                                    <div class="section-icon">💡</div>
+                                    <div class="section-text">
+                                        <strong>Solution Technique</strong>
+                                        <p>Configuration de SharePoint, création de structures hiérarchiques, synchronisation et migration en batch via PowerShell.</p>
+                                    </div>
+                                </div>
+
+                                <div class="project-section">
+                                    <div class="section-icon">✓</div>
+                                    <div class="section-text">
+                                        <strong>Résultat</strong>
+                                        <p>Migration sans downtime. Tous les utilisateurs (200+) formés. Accès centralisé amélioré de 40%.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="tech-tags">
+                                    <span class="tech-tag">SharePoint</span>
+                                    <span class="tech-tag">PowerShell</span>
+                                    <span class="tech-tag">Migration</span>
+                                    <span class="tech-tag">Microsoft 365</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PROJETS SCOLAIRES -->
+                <div class="tab-content" id="tab-scolaires">
+                    <style>
+                        .cyber-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+                        .doc-card { background: rgba(255, 255, 255, 0.85); border: 1px solid #e8ebf0; border-radius: 12px; overflow: hidden; backdrop-filter: blur(10px); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; height: 100%; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+                        .doc-card:hover { transform: translateY(-6px); box-shadow: 0 0 24px rgba(0, 240, 255, 0.15), 0 4px 16px rgba(0,0,0,0.08); border-color: #00F0FF; }
+                        .doc-thumbnail { width: 100%; height: 160px; background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; border-bottom: 1px solid #e8ebf0; }
+                        .doc-thumbnail::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, #00F0FF, transparent); opacity: 0; animation: scan-effect 0s ease-in-out; transform: translateY(0); }
+                        .doc-card:hover .doc-thumbnail::after { animation: scan-effect 0.8s ease-in-out forwards; }
+                        @keyframes scan-effect { 0% { transform: translateY(-4px); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(160px); opacity: 0; } }
+                        .doc-thumbnail svg { width: 120px; height: 120px; z-index: 1; position: relative; }
+                        .doc-info { padding: 16px 14px; flex: 1; display: flex; flex-direction: column; }
+                        .doc-title { font-family: 'Roboto Mono', monospace; font-size: 0.95em; font-weight: 700; color: #1a1f2e; margin: 0 0 4px 0; line-height: 1.3; }
+                        .doc-subtitle { font-family: 'Inter', sans-serif; font-size: 0.8em; color: #6b7280; margin: 0 0 8px 0; font-weight: 500; }
+                        .doc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+                        .doc-tag { background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); color: #00F0FF; font-size: 0.7em; padding: 3px 8px; border-radius: 12px; font-family: 'Roboto Mono', monospace; font-weight: 600; transition: all 0.3s; }
+                        .doc-tag:hover { background: rgba(0, 240, 255, 0.25); }
+                        .doc-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 12px; border-top: 1px solid #e8ebf0; }
+                        .doc-action-btn { flex: 1; padding: 8px 10px; border: 1px solid #e8ebf0; background: rgba(255, 255, 255, 0.6); color: #00F0FF; border-radius: 6px; font-size: 0.8em; font-family: 'Roboto Mono', monospace; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px; }
+                        .doc-action-btn:hover { background: #00F0FF; color: white; box-shadow: 0 0 12px rgba(0, 240, 255, 0.3); transform: scale(1.05); }
+                        .doc-action-btn.secondary { border-color: #BD00FF; color: #BD00FF; }
+                        .doc-action-btn.secondary:hover { background: #BD00FF; color: white; box-shadow: 0 0 12px rgba(189, 0, 255, 0.3); }
+                    </style>
+                    <div class="cyber-gallery">
+                        
+                        <!-- Card 1: Infrastructure Globale -->
+                        <div class="doc-card">
+                            <div class="doc-thumbnail">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
+                                    <!-- Background glow -->
+                                    <defs>
+                                        <radialGradient id="infra-glow" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:0.15" />
+                                            <stop offset="100%" style="stop-color:#00F0FF;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
+                                    <circle cx="80" cy="80" r="70" fill="url(#infra-glow)"/>
+                                    <!-- Network topology -->
+                                    <rect x="20" y="20" width="120" height="120" fill="none" stroke="#00F0FF" stroke-width="1" opacity="0.3" rx="8"/>
+                                    <circle cx="80" cy="40" r="8" fill="#00F0FF"/>
+                                    <circle cx="40" cy="80" r="6" fill="#BD00FF"/>
+                                    <circle cx="120" cy="80" r="6" fill="#BD00FF"/>
+                                    <circle cx="80" cy="120" r="6" fill="#00FF41"/>
+                                    <line x1="80" y1="48" x2="80" y2="72" stroke="#00F0FF" stroke-width="1.5"/>
+                                    <line x1="80" y1="48" x2="45" y2="75" stroke="#BD00FF" stroke-width="1.5"/>
+                                    <line x1="80" y1="48" x2="115" y2="75" stroke="#BD00FF" stroke-width="1.5"/>
+                                    <line x1="80" y1="48" x2="80" y2="114" stroke="#00FF41" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <div class="doc-info">
+                                <h3 class="doc-title">Schéma S3P3</h3>
+                                <p class="doc-subtitle">Infrastructure Globale</p>
+                                <div class="doc-tags">
+                                    <span class="doc-tag">Schéma</span>
+                                    <span class="doc-tag">Architecture</span>
+                                    <span class="doc-tag">Réseau</span>
+                                </div>
+                                <div class="doc-actions">
+                                    <button class="doc-action-btn" onclick="openDocModal('infra')">👁️ Specs</button>
+                                    <a href="https://1drv.ms/b/c/df1934ba8460870f/IQAK-veRz1meTb2vLr2SCDlKAW9_NeQoOsBv9f3kWhZVyRM?e=V8uH19" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Switch Cisco / Zyxel -->
+                        <div class="doc-card">
+                            <div class="doc-thumbnail">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
+                                    <defs>
+                                        <radialGradient id="switch-glow" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#BD00FF;stop-opacity:0.15" />
+                                            <stop offset="100%" style="stop-color:#BD00FF;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
+                                    <circle cx="80" cy="80" r="70" fill="url(#switch-glow)"/>
+                                    <!-- Switch representation -->
+                                    <rect x="25" y="35" width="110" height="90" fill="none" stroke="#BD00FF" stroke-width="2" rx="4"/>
+                                    <!-- Ports -->
+                                    <circle cx="35" cy="50" r="3" fill="#BD00FF"/><circle cx="55" cy="50" r="3" fill="#BD00FF"/><circle cx="75" cy="50" r="3" fill="#BD00FF"/><circle cx="95" cy="50" r="3" fill="#BD00FF"/><circle cx="115" cy="50" r="3" fill="#BD00FF"/>
+                                    <circle cx="35" cy="70" r="3" fill="#00F0FF"/><circle cx="55" cy="70" r="3" fill="#00F0FF"/><circle cx="75" cy="70" r="3" fill="#00F0FF"/><circle cx="95" cy="70" r="3" fill="#00F0FF"/><circle cx="115" cy="70" r="3" fill="#00F0FF"/>
+                                    <circle cx="35" cy="90" r="3" fill="#00FF41"/><circle cx="55" cy="90" r="3" fill="#00FF41"/><circle cx="75" cy="90" r="3" fill="#00FF41"/><circle cx="95" cy="90" r="3" fill="#00FF41"/><circle cx="115" cy="90" r="3" fill="#00FF41"/>
+                                    <circle cx="35" cy="110" r="3" fill="#00FF41"/><circle cx="55" cy="110" r="3" fill="#00FF41"/><circle cx="75" cy="110" r="3" fill="#00FF41"/><circle cx="95" cy="110" r="3" fill="#00FF41"/><circle cx="115" cy="110" r="3" fill="#00FF41"/>
+                                </svg>
+                            </div>
+                            <div class="doc-info">
+                                <h3 class="doc-title">Config Zyxel/Switch</h3>
+                                <p class="doc-subtitle">Configuration Réseau L2/L3</p>
+                                <div class="doc-tags">
+                                    <span class="doc-tag">Switching</span>
+                                    <span class="doc-tag">VLAN</span>
+                                    <span class="doc-tag">Cisco</span>
+                                </div>
+                                <div class="doc-actions">
+                                    <button class="doc-action-btn" onclick="openDocModal('switch')">👁️ Specs</button>
+                                    <a href="pdf/CONFIG_ZYXEL_SWITCH.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Point d'Accès WiFi -->
+                        <div class="doc-card">
+                            <div class="doc-thumbnail">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
+                                    <defs>
+                                        <radialGradient id="wifi-glow" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:0.15" />
+                                            <stop offset="100%" style="stop-color:#00F0FF;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
+                                    <circle cx="80" cy="80" r="70" fill="url(#wifi-glow)"/>
+                                    <!-- WiFi signal -->
+                                    <rect x="50" y="60" width="60" height="60" fill="none" stroke="#00F0FF" stroke-width="1.5" rx="4"/>
+                                    <circle cx="80" cy="95" r="4" fill="#00F0FF"/>
+                                    <!-- Signal waves -->
+                                    <path d="M 80 85 Q 85 80 90 85" fill="none" stroke="#00F0FF" stroke-width="1.5" opacity="0.8"/>
+                                    <path d="M 80 75 Q 88 67 96 75" fill="none" stroke="#00F0FF" stroke-width="1.5" opacity="0.6"/>
+                                    <path d="M 80 65 Q 92 57 104 65" fill="none" stroke="#00F0FF" stroke-width="1.5" opacity="0.4"/>
+                                    <!-- Device representation -->
+                                    <rect x="60" y="50" width="40" height="8" fill="#00F0FF" opacity="0.3" rx="2"/>
+                                </svg>
+                            </div>
+                            <div class="doc-info">
+                                <h3 class="doc-title">Point d'accès WIFI</h3>
+                                <p class="doc-subtitle">802.11ax D-Link</p>
+                                <div class="doc-tags">
+                                    <span class="doc-tag">Wireless</span>
+                                    <span class="doc-tag">WPA3</span>
+                                    <span class="doc-tag">AC/AX</span>
+                                </div>
+                                <div class="doc-actions">
+                                    <button class="doc-action-btn" onclick="openDocModal('wifi')">👁️ Specs</button>
+                                    <a href="pdf/WIFI_ACCESS_POINT.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Proxmox & Virtualisation -->
+                        <div class="doc-card">
+                            <div class="doc-thumbnail">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
+                                    <defs>
+                                        <radialGradient id="proxmox-glow" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#BD00FF;stop-opacity:0.15" />
+                                            <stop offset="100%" style="stop-color:#BD00FF;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
+                                    <circle cx="80" cy="80" r="70" fill="url(#proxmox-glow)"/>
+                                    <!-- Server stack -->
+                                    <rect x="35" y="30" width="90" height="20" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="2"/>
+                                    <text x="80" y="44" text-anchor="middle" font-size="10" fill="#BD00FF">Host</text>
+                                    <g opacity="0.7">
+                                        <rect x="35" y="55" width="90" height="18" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="2"/>
+                                        <text x="80" y="68" text-anchor="middle" font-size="9" fill="#BD00FF">VM 1</text>
+                                    </g>
+                                    <g opacity="0.7">
+                                        <rect x="35" y="78" width="90" height="18" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="2"/>
+                                        <text x="80" y="91" text-anchor="middle" font-size="9" fill="#BD00FF">VM 2</text>
+                                    </g>
+                                    <g opacity="0.7">
+                                        <rect x="35" y="101" width="90" height="18" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="2"/>
+                                        <text x="80" y="114" text-anchor="middle" font-size="9" fill="#BD00FF">VM 3</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="doc-info">
+                                <h3 class="doc-title">Proxmox & VM</h3>
+                                <p class="doc-subtitle">Infrastructure Virtuelle KVM</p>
+                                <div class="doc-tags">
+                                    <span class="doc-tag">Hypervisor</span>
+                                    <span class="doc-tag">Virtualisation</span>
+                                    <span class="doc-tag">HA</span>
+                                </div>
+                                <div class="doc-actions">
+                                    <button class="doc-action-btn" onclick="openDocModal('proxmox')">👁️ Specs</button>
+                                    <a href="pdf/PROXMOX_KVM.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Active Directory -->
+                        <div class="doc-card">
+                            <div class="doc-thumbnail">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
+                                    <defs>
+                                        <radialGradient id="ad-glow" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#00FF41;stop-opacity:0.15" />
+                                            <stop offset="100%" style="stop-color:#00FF41;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
+                                    <circle cx="80" cy="80" r="70" fill="url(#ad-glow)"/>
+                                    <!-- Directory tree -->
+                                    <circle cx="80" cy="40" r="6" fill="#00FF41"/>
+                                    <circle cx="50" cy="70" r="5" fill="#00FF41"/>
+                                    <circle cx="80" cy="70" r="5" fill="#00FF41"/>
+                                    <circle cx="110" cy="70" r="5" fill="#00FF41"/>
+                                    <circle cx="35" cy="100" r="4" fill="#00FF41"/>
+                                    <circle cx="50" cy="100" r="4" fill="#00FF41"/>
+                                    <circle cx="80" cy="100" r="4" fill="#00FF41"/>
+                                    <circle cx="110" cy="100" r="4" fill="#00FF41"/>
+                                    <circle cx="125" cy="100" r="4" fill="#00FF41"/>
+                                    <!-- Connections -->
+                                    <line x1="80" y1="46" x2="50" y2="65" stroke="#00FF41" stroke-width="1" opacity="0.5"/>
+                                    <line x1="80" y1="46" x2="80" y2="65" stroke="#00FF41" stroke-width="1" opacity="0.5"/>
+                                    <line x1="80" y1="46" x2="110" y2="65" stroke="#00FF41" stroke-width="1" opacity="0.5"/>
+                                </svg>
+                            </div>
+                            <div class="doc-info">
+                                <h3 class="doc-title">Active Directory</h3>
+                                <p class="doc-subtitle">Annuaire & IAM Services</p>
+                                <div class="doc-tags">
+                                    <span class="doc-tag">IAM</span>
+                                    <span class="doc-tag">LDAP</span>
+                                    <span class="doc-tag">Domaine</span>
+                                </div>
+                                <div class="doc-actions">
+                                    <button class="doc-action-btn" onclick="openDocModal('ad')">👁️ Specs</button>
+                                    <a href="pdf/ACTIVE_DIRECTORY.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 6: Exchange Server -->
+                        <div class="doc-card">
+                            <div class="doc-thumbnail">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
+                                    <defs>
+                                        <radialGradient id="exchange-glow" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:0.15" />
+                                            <stop offset="100%" style="stop-color:#00F0FF;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
+                                    <circle cx="80" cy="80" r="70" fill="url(#exchange-glow)"/>
+                                    <!-- Mail server -->
+                                    <rect x="30" y="45" width="100" height="70" fill="none" stroke="#00F0FF" stroke-width="2" rx="6"/>
+                                    <!-- Envelopes -->
+                                    <g>
+                                        <rect x="40" y="55" width="20" height="15" fill="none" stroke="#00F0FF" stroke-width="1" rx="1"/>
+                                        <line x1="40" y1="55" x2="50" y2="62.5" stroke="#00F0FF" stroke-width="1"/>
+                                    </g>
+                                    <g>
+                                        <rect x="70" y="55" width="20" height="15" fill="none" stroke="#00F0FF" stroke-width="1" rx="1"/>
+                                        <line x1="70" y1="55" x2="80" y2="62.5" stroke="#00F0FF" stroke-width="1"/>
+                                    </g>
+                                    <g>
+                                        <rect x="100" y="55" width="20" height="15" fill="none" stroke="#00F0FF" stroke-width="1" rx="1"/>
+                                        <line x1="100" y1="55" x2="110" y2="62.5" stroke="#00F0FF" stroke-width="1"/>
+                                    </g>
+                                    <!-- Mailboxes -->
+                                    <circle cx="45" cy="85" r="4" fill="#00F0FF"/>
+                                    <circle cx="75" cy="85" r="4" fill="#00F0FF"/>
+                                    <circle cx="105" cy="85" r="4" fill="#00F0FF"/>
+                                    <!-- Queue -->
+                                    <line x1="50" y1="105" x2="110" y2="105" stroke="#00F0FF" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <div class="doc-info">
+                                <h3 class="doc-title">Exchange</h3>
+                                <p class="doc-subtitle">Serveur de Messagerie</p>
+                                <div class="doc-tags">
+                                    <span class="doc-tag">Email</span>
+                                    <span class="doc-tag">Collaboration</span>
+                                    <span class="doc-tag">HA</span>
+                                </div>
+                                <div class="doc-actions">
+                                    <button class="doc-action-btn" onclick="openDocModal('exchange')">👁️ Specs</button>
+                                    <a href="pdf/EXCHANGE_SERVER.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 7: GLPI -->
+                        <div class="doc-card">
+                            <div class="doc-thumbnail">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
+                                    <defs>
+                                        <radialGradient id="glpi-glow" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#BD00FF;stop-opacity:0.15" />
+                                            <stop offset="100%" style="stop-color:#BD00FF;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
+                                    <circle cx="80" cy="80" r="70" fill="url(#glpi-glow)"/>
+                                    <!-- Dashboard grid -->
+                                    <rect x="30" y="40" width="100" height="80" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="4"/>
+                                    <!-- Bars/charts -->
+                                    <rect x="40" y="75" width="8" height="35" fill="#BD00FF" rx="1"/>
+                                    <rect x="53" y="65" width="8" height="45" fill="#BD00FF" rx="1" opacity="0.8"/>
+                                    <rect x="66" y="55" width="8" height="55" fill="#BD00FF" rx="1" opacity="0.6"/>
+                                    <rect x="79" y="70" width="8" height="40" fill="#BD00FF" rx="1" opacity="0.8"/>
+                                    <rect x="92" y="60" width="8" height="50" fill="#BD00FF" rx="1"/>
+                                    <!-- Indicators -->
+                                    <circle cx="45" cy="50" r="3" fill="#00FF41"/>
+                                    <circle cx="85" cy="48" r="3" fill="#00F0FF"/>
+                                </svg>
+                            </div>
+                            <div class="doc-info">
+                                <h3 class="doc-title">GLPI</h3>
+                                <p class="doc-subtitle">Gestion de Parc IT</p>
+                                <div class="doc-tags">
+                                    <span class="doc-tag">ITSM</span>
+                                    <span class="doc-tag">Assets</span>
+                                    <span class="doc-tag">Tickets</span>
+                                </div>
+                                <div class="doc-actions">
+                                    <button class="doc-action-btn" onclick="openDocModal('glpi')">👁️ Specs</button>
+                                    <a href="pdf/GLPI_ITSM.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 8: PfSense Firewall -->
+                        <div class="doc-card">
+                            <div class="doc-thumbnail">
+                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
+                                    <defs>
+                                        <radialGradient id="pfsense-glow" cx="50%" cy="50%">
+                                            <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:0.15" />
+                                            <stop offset="100%" style="stop-color:#FF6B6B;stop-opacity:0" />
+                                        </radialGradient>
+                                    </defs>
+                                    <circle cx="80" cy="80" r="70" fill="url(#pfsense-glow)"/>
+                                    <!-- Firewall shield -->
+                                    <path d="M80 30 L120 50 L120 90 Q120 120 80 135 Q40 120 40 90 L40 50 Z" fill="none" stroke="#FF6B6B" stroke-width="2" rx="4"/>
+                                    <!-- Lock -->
+                                    <rect x="60" y="75" width="40" height="25" fill="none" stroke="#FF6B6B" stroke-width="1.5" rx="2"/>
+                                    <path d="M70 75 Q70 65 80 65 Q90 65 90 75" fill="none" stroke="#FF6B6B" stroke-width="1.5" rx="2"/>
+                                    <!-- Check marks -->
+                                    <circle cx="75" cy="87" r="2" fill="#FF6B6B"/>
+                                    <circle cx="85" cy="87" r="2" fill="#FF6B6B"/>
+                                </svg>
+                            </div>
+                            <div class="doc-info">
+                                <h3 class="doc-title">PfSense</h3>
+                                <p class="doc-subtitle">Pare-feu Réseau</p>
+                                <div class="doc-tags">
+                                    <span class="doc-tag">Security</span>
+                                    <span class="doc-tag">Firewall</span>
+                                    <span class="doc-tag">NAT</span>
+                                </div>
+                                <div class="doc-actions">
+                                    <button class="doc-action-btn" onclick="openDocModal('pfsense')">👁️ Specs</button>
+                                    <a href="pdf/PFSENSE_FIREWALL.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section id="veilles" class="page-section">
+            <style>
+                #veilles { position: relative; overflow: hidden; }
+                #veilles::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.02'%3E%3Ccircle cx='50' cy='50' r='1' fill='%2300F0FF'/%3E%3Cline x1='0' y1='50' x2='100' y2='50' stroke='%23BD00FF' stroke-width='0.5'/%3E%3Cline x1='50' y1='0' x2='50' y2='100' stroke='%23BD00FF' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E"); z-index: 0; opacity: 0.02; pointer-events: none; }
+                #veilles .veille-container { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 80px 24px; }
+                
+                .veille-tabs { display: flex; gap: 16px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap; }
+                .veille-tab-btn { padding: 12px 28px; border: 2px solid #e8ebf0; border-radius: 8px; background: rgba(255, 255, 255, 0.6); cursor: pointer; font-weight: 600; font-family: 'Roboto Mono', monospace; transition: all 0.3s; color: #1a1f2e; }
+                .veille-tab-btn.active { border-color: #00F0FF; background: rgba(0, 240, 255, 0.1); color: #00F0FF; box-shadow: 0 0 16px rgba(0, 240, 255, 0.2); }
+                .veille-tab-btn.active.legal { border-color: #BD00FF; background: rgba(189, 0, 255, 0.1); color: #BD00FF; box-shadow: 0 0 16px rgba(189, 0, 255, 0.2); }
+                
+                .gantt-container { background: rgba(255, 255, 255, 0.85); border: 1px solid #e8ebf0; border-radius: 16px; padding: 32px 28px; backdrop-filter: blur(10px); margin-bottom: 32px; }
+                .gantt-title { font-family: 'Roboto Mono', monospace; font-size: 1.6em; font-weight: 700; margin: 0 0 12px 0; color: #1a1f2e; }
+                .gantt-subtitle { color: #6b7280; font-size: 0.95em; margin: 0 0 24px 0; }
+                
+                .gantt-timeline { position: relative; margin-top: 24px; }
+                .gantt-header { display: flex; margin-bottom: 16px; }
+                .gantt-label { width: 180px; font-weight: 600; color: #1a1f2e; font-size: 0.95em; }
+                .gantt-years { flex: 1; display: flex; text-align: center; color: #6b7280; font-size: 0.85em; }
+                .gantt-year { flex: 1; padding: 0 4px; border-left: 1px solid #e8ebf0; }
+                .gantt-year:first-child { border-left: none; }
+                
+                .gantt-row { display: flex; margin-bottom: 20px; align-items: center; }
+                .gantt-item-label { width: 180px; font-weight: 600; color: #1a1f2e; font-size: 0.95em; }
+                .gantt-bars { flex: 1; display: flex; height: 28px; gap: 4px; position: relative; }
+                .gantt-bar { height: 100%; border-radius: 4px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 0.75em; font-weight: 600; color: white; transition: all 0.3s; cursor: pointer; }
+                .gantt-bar:hover { transform: scaleY(1.3); filter: brightness(1.2); }
+                
+                .gantt-bar.nis2 { background: linear-gradient(90deg, #BD00FF 0%, #00F0FF 100%); }
+                .gantt-bar.dora { background: linear-gradient(90deg, #00F0FF 0%, #00FF41 100%); }
+                .gantt-bar.opentco { background: linear-gradient(90deg, #FF6B6B 0%, #FFB84D 100%); }
+                
+                .gantt-legend { display: flex; gap: 28px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
+                .gantt-legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.9em; }
+                .gantt-legend-color { width: 16px; height: 16px; border-radius: 3px; }
+            </style>
+            <div class="veille-container">
+                <h2>Veilles Stratégiques</h2>
+                
+                <!-- TAB BUTTONS -->
+                <div class="veille-tabs">
+                    <button class="veille-tab-btn legal active" onclick="switchVeilleTab('legal')">⚖️ Veille Juridique</button>
+                    <button class="veille-tab-btn tech" onclick="switchVeilleTab('tech')">🚀 Veille Technologique</button>
+                </div>
+                
+                <!-- TAB 1: VEILLE JURIDIQUE -->
+                <div id="veille-legal-content" class="veille-tab-content">
+                    <div class="gantt-container">
+                        <h3 class="gantt-title">📋 NIS 2 - Directive Européenne Sécurité Réseau</h3>
+                        <p class="gantt-subtitle">Évolution réglementaire et impacts SNCF | 2023 → 2026</p>
+                        
+                        <div class="gantt-timeline">
+                            <div class="gantt-header">
+                                <div class="gantt-label"></div>
+                                <div class="gantt-years">
+                                    <div class="gantt-year">2024</div>
+                                    <div class="gantt-year">2025</div>
+                                    <div class="gantt-year">2026</div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Publication</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar nis2" style="width: 20%; margin-left: 0%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Transposition</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar nis2" style="width: 85%; margin-left: 15%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Mise en conformité</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar nis2" style="width: 100%; margin-left: 25%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gantt-container">
+                        <h3 class="gantt-title">🏦 DORA - Digital Operational Resilience Act</h3>
+                        <p class="gantt-subtitle">Résilience opérationnelle numérique | 2023 → 2026</p>
+                        
+                        <div class="gantt-timeline">
+                            <div class="gantt-header">
+                                <div class="gantt-label"></div>
+                                <div class="gantt-years">
+                                    <div class="gantt-year">2024</div>
+                                    <div class="gantt-year">2025</div>
+                                    <div class="gantt-year">2026</div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Phase 1 - ICT Risk Mgmt</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar dora" style="width: 25%; margin-left: 0%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Phase 2 - Incident Reporting</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar dora" style="width: 60%; margin-left: 15%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Phase 3 - Tests & Reporting</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar dora" style="width: 90%; margin-left: 35%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB 2: VEILLE TECHNOLOGIQUE -->
+                <div id="veille-tech-content" class="veille-tab-content" style="display: none;">
+                    <div class="gantt-container">
+                        <h3 class="gantt-title">🤖 OpenTCO - Transport Collaborative Operations</h3>
+                        <p class="gantt-subtitle">Innovation ferroviaire et IA | 2014 → 2026</p>
+                        
+                        <div class="gantt-timeline">
+                            <div class="gantt-header">
+                                <div class="gantt-label"></div>
+                                <div class="gantt-years">
+                                    <div class="gantt-year">2020</div>
+                                    <div class="gantt-year">2023</div>
+                                    <div class="gantt-year">2026</div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">R&D Phase</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar opentco" style="width: 30%; margin-left: 0%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Pilot Deployment</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar opentco" style="width: 50%; margin-left: 25%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Production Rollout</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar opentco" style="width: 85%; margin-left: 45%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gantt-container">
+                        <h3 class="gantt-title">🎨 IA Générative & Computer Vision</h3>
+                        <p class="gantt-subtitle">Evolution des capacités technologiques | 2023 → 2026</p>
+                        
+                        <div class="gantt-timeline">
+                            <div class="gantt-header">
+                                <div class="gantt-label"></div>
+                                <div class="gantt-years">
+                                    <div class="gantt-year">2024</div>
+                                    <div class="gantt-year">2025</div>
+                                    <div class="gantt-year">2026</div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Modèles Foundation</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar opentco" style="width: 40%; margin-left: 0%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Fine-tuning & Deployment</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar opentco" style="width: 70%; margin-left: 20%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="gantt-row">
+                                <div class="gantt-item-label">Production Use Cases</div>
+                                <div class="gantt-bars">
+                                    <div class="gantt-bar opentco" style="width: 100%; margin-left: 30%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NAVIGATION LINKS -->
+                <div class="gantt-legend" style="margin-top: 48px; border-top: 1px solid #e8ebf0; padding-top: 32px;">
+                    <div style="display: flex; gap: 24px; width: 100%; justify-content: center; flex-wrap: wrap;">
+                        <a href="veille-juridique.html" style="background: rgba(189, 0, 255, 0.1); border: 1px solid #BD00FF; color: #BD00FF; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.boxShadow='0 0 16px rgba(189, 0, 255, 0.3)'" onmouseout="this.style.boxShadow='none'">📄 Voir détails juridiques</a>
+                        <a href="veille-technologique.html" style="background: rgba(0, 240, 255, 0.1); border: 1px solid #00F0FF; color: #00F0FF; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.boxShadow='0 0 16px rgba(0, 240, 255, 0.3)'" onmouseout="this.style.boxShadow='none'">🚀 Voir détails technos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="tcs" class="page-section">
+            <div class="container">
+                <h2>Tableau de compétences</h2>
+                <div class="content">
+                    <p>Tableau de compétences du parcours BTS SIO...</p>        
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="page-section">
+            <style>
+                #contact { position: relative; overflow: hidden; }
+                #contact::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.02'%3E%3Ccircle cx='50' cy='50' r='1' fill='%2300F0FF'/%3E%3Cline x1='0' y1='50' x2='100' y2='50' stroke='%2300F0FF' stroke-width='0.5'/%3E%3Cline x1='50' y1='0' x2='50' y2='100' stroke='%2300F0FF' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E"); z-index: 0; opacity: 0.02; pointer-events: none; }
+                
+                #contact .contact-container { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; padding: 80px 24px; }
+                #contact h2 { text-align: center; margin-bottom: 48px; }
+                
+                .contact-form { background: rgba(255, 255, 255, 0.85); border: 1px solid #e8ebf0; border-radius: 16px; padding: 40px 36px; backdrop-filter: blur(10px); }
+                
+                .form-group { margin-bottom: 28px; }
+                .form-group:last-of-type { margin-bottom: 32px; }
+                
+                .form-group label { display: block; margin-bottom: 10px; font-weight: 600; color: #1a1f2e; font-family: 'Roboto Mono', monospace; font-size: 0.95em; text-transform: uppercase; letter-spacing: 1px; }
+                
+                .form-group input,
+                .form-group textarea { width: 100%; padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 1em; border: 2px solid #e8ebf0; border-radius: 8px; background: rgba(255, 255, 255, 0.5); color: #1a1f2e; transition: all 0.3s ease; outline: none; }
+                
+                .form-group input::placeholder,
+                .form-group textarea::placeholder { color: #a0a9b8; }
+                
+                .form-group input:focus { border-color: #00F0FF; box-shadow: 0 0 12px rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.03); }
+                .form-group textarea:focus { border-color: #BD00FF; box-shadow: 0 0 12px rgba(189, 0, 255, 0.3); background: rgba(189, 0, 255, 0.03); }
+                
+                .contact-form .btn-submit { width: 100%; padding: 16px 28px; background: linear-gradient(135deg, #00F0FF 0%, #BD00FF 100%); color: white; border: none; border-radius: 8px; font-weight: 700; font-family: 'Roboto Mono', monospace; font-size: 1em; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2); }
+                
+                .contact-form .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0, 240, 255, 0.4); filter: brightness(1.1); }
+                
+                .contact-form .btn-submit:active { transform: translateY(-1px); }
+                
+                .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 48px; padding-top: 48px; border-top: 1px solid #e8ebf0; }
+                
+                .contact-info-item { background: rgba(255, 255, 255, 0.6); border: 1px solid #e8ebf0; border-radius: 12px; padding: 20px; text-align: center; }
+                
+                .contact-info-icon { font-size: 2em; margin-bottom: 12px; }
+                
+                .contact-info-label { font-weight: 600; color: #00F0FF; font-family: 'Roboto Mono', monospace; font-size: 0.9em; text-transform: uppercase; margin-bottom: 8px; }
+                
+                .contact-info-value { color: #6b7280; font-size: 0.95em; }
+            </style>
+            <div class="contact-container">
+                <h2>📬 Contact</h2>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">👤 Votre Nom</label>
+                        <input type="text" id="name" name="name" placeholder="Dupont Jean" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">✉️ Votre Email</label>
+                        <input type="email" id="email" name="email" placeholder="vous@domaine.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">📌 Sujet</label>
+                        <input type="text" id="subject" name="subject" placeholder="Collaboration / Alternance / Question" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">💬 Message</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Votre message détaillé..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">📤 Envoyer</button>
+                </form>
+                
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">📍</div>
+                        <div class="contact-info-label">Localisation</div>
+                        <div class="contact-info-value">Région Sud, France</div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">📧</div>
+                        <div class="contact-info-label">Email Direct</div>
+                        <div class="contact-info-value">contact@nassi.dev</div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">💼</div>
+                        <div class="contact-info-label">Disponibilité</div>
+                        <div class="contact-info-value">H24 / Réponse &lt;24h</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <footer>
+        <p>&copy; 2026 Mon Portfolio</p>
+    </footer>
+
+    <!-- MODAL RÉUTILISABLE POUR DOCUMENTATION -->
+    <div id="docModal" class="doc-modal" style="display: none;">
+        <div class="doc-modal-backdrop" onclick="closeDocModal()"></div>
+        <div class="doc-modal-content">
+            <div class="doc-modal-header">
+                <h2 id="docModalTitle">Documentation Technique</h2>
+                <button class="doc-modal-close" onclick="closeDocModal()">✕</button>
+            </div>
+            <div class="doc-modal-body" id="docModalBody">
+                <!-- Le contenu sera injecté ici par JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide sections based on menu clicks
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('main > section');
+
+        function showSection(targetId) {
+            sections.forEach(section => {
+                section.style.display = (section.id === targetId) ? 'block' : 'none';
+            });
+        }
+
+        function setActiveLink(targetId) {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#'+targetId);
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);        
+                showSection(targetId);
+                setActiveLink(targetId);
+            });
+        });
+
+        // Show only accueil by default
+        window.addEventListener('DOMContentLoaded', () => {
+            showSection('accueil');
+            setActiveLink('accueil');
+            
+            // Initialize project tabs
+            initializeProjectTabs();
+        });
+
+        // ===== PROJECTS TABS MANAGEMENT =====
+        function initializeProjectTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabName = button.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    const tabContent = document.getElementById(`tab-${tabName}`);
+                    if (tabContent) {
+                        tabContent.classList.add('active');
+                    }
+                });
+            });
+
+            // Set first tab as active by default
+            if (tabButtons.length > 0) {
+                tabButtons[0].classList.add('active');
+                const firstTabContent = document.querySelector('.tab-content');
+                if (firstTabContent) {
+                    firstTabContent.classList.add('active');
+                }
+            }
+        }
+
+        // ===== DOCUMENTATION MODAL MANAGEMENT =====
+        const docModalData = {
+            cisco: {
+                title: '📋 Configuration Réseau Cisco - Documentation',
+                content: `
+                    <div class="doc-section">
+                        <div class="doc-schema">
+                            <h3>Schéma Réseau Cisco</h3>
+                            <svg width="100%" height="400" viewBox="0 0 800 400" style="background: rgba(0,0,0,0.02); border-radius: 8px; border: 1px solid var(--light-gray);">
+                                <!-- Routeur principal -->
+                                <rect x="350" y="20" width="100" height="60" fill="rgba(0,102,255,0.1)" stroke="var(--neon-blue)" stroke-width="2" rx="4"/>
+                                <text x="400" y="55" text-anchor="middle" font-weight="bold" fill="var(--neon-blue)" font-size="12">Router</text>
+                                
+                                <!-- VLAN 1 -->
+                                <rect x="50" y="150" width="120" height="80" fill="rgba(0,217,142,0.1)" stroke="var(--neon-green)" stroke-width="2" rx="4"/>
+                                <text x="110" y="175" text-anchor="middle" font-weight="bold" fill="var(--neon-green)" font-size="12">VLAN 1</text>
+                                <text x="110" y="195" text-anchor="middle" font-size="10" fill="var(--text-dark)">Clients</text>
+                                <circle cx="75" cy="225" r="4" fill="var(--neon-green)"/>
+                                <circle cx="110" cy="225" r="4" fill="var(--neon-green)"/>
+                                <circle cx="145" cy="225" r="4" fill="var(--neon-green)"/>
+                                
+                                <!-- VLAN 2 -->
+                                <rect x="330" y="150" width="120" height="80" fill="rgba(0,102,255,0.1)" stroke="var(--neon-blue)" stroke-width="2" rx="4"/>
+                                <text x="390" y="175" text-anchor="middle" font-weight="bold" fill="var(--neon-blue)" font-size="12">VLAN 2</text>
+                                <text x="390" y="195" text-anchor="middle" font-size="10" fill="var(--text-dark)">Serveurs</text>
+                                <circle cx="355" cy="225" r="4" fill="var(--neon-blue)"/>
+                                <circle cx="390" cy="225" r="4" fill="var(--neon-blue)"/>
+                                <circle cx="425" cy="225" r="4" fill="var(--neon-blue)"/>
+                                
+                                <!-- VLAN 3 -->
+                                <rect x="610" y="150" width="120" height="80" fill="rgba(255,0,128,0.1)" stroke="var(--neon-pink)" stroke-width="2" rx="4"/>
+                                <text x="670" y="175" text-anchor="middle" font-weight="bold" fill="var(--neon-pink)" font-size="12">VLAN 3</text>
+                                <text x="670" y="195" text-anchor="middle" font-size="10" fill="var(--text-dark)">Admin</text>
+                                <circle cx="635" cy="225" r="4" fill="var(--neon-pink)"/>
+                                <circle cx="670" cy="225" r="4" fill="var(--neon-pink)"/>
+                                <circle cx="705" cy="225" r="4" fill="var(--neon-pink)"/>
+                                
+                                <!-- Connexions -->
+                                <line x1="400" y1="80" x2="110" y2="150" stroke="var(--light-gray)" stroke-width="2" stroke-dasharray="4"/>
+                                <line x1="400" y1="80" x2="390" y2="150" stroke="var(--light-gray)" stroke-width="2" stroke-dasharray="4"/>
+                                <line x1="400" y1="80" x2="670" y2="150" stroke="var(--light-gray)" stroke-width="2" stroke-dasharray="4"/>
+                            </svg>
+                        </div>
+
+                        <div class="doc-procedures" style="margin-top: 40px;">
+                            <h3>Procédures de Configuration</h3>
+                            <div class="doc-code-block">
+                                <p class="doc-code-label">1. Configuration des VLANs</p>
+                                <pre><code>Switch(config)# vlan 10
+Switch(config-vlan)# name Clients
+Switch(config)# vlan 20
+Switch(config-vlan)# name Servers
+Switch(config)# vlan 30
+Switch(config-vlan)# name Admin</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">2. Configuration des Interfaces</p>
+                                <pre><code>Switch(config)# interface ethernet 0/0
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10
+Switch(config)# interface range ethernet 0/1-2
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 20</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">3. Routes Statiques sur le Routeur</p>
+                                <pre><code>Router(config)# ip route 192.168.1.0 255.255.255.0 192.168.0.1
+Router(config)# ip route 192.168.2.0 255.255.255.0 192.168.0.1
+Router(config)# show ip route</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">4. Configuration des ACLs</p>
+                                <pre><code>Router(config)# access-list 101 permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+Router(config)# access-list 101 deny ip any any
+Router(config)# interface ethernet 0/0
+Router(config-if)# ip access-group 101 in</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            linux: {
+                title: '📋 Administration Serveurs Linux - Documentation',
+                content: `
+                    <div class="doc-section">
+                        <div class="doc-overview" style="background: rgba(0,102,255,0.05); padding: 20px; border-radius: 8px; border-left: 3px solid var(--neon-blue); margin-bottom: 30px;">
+                            <h3>Architecture Serveur Linux</h3>
+                            <p>Infrastructure multi-serveurs Ubuntu avec gestion des services, utilisateurs et sauvegardes.</p>
+                        </div>
+
+                        <div class="doc-procedures">
+                            <h3>Procédures d'Administration</h3>
+
+                            <div class="doc-code-block">
+                                <p class="doc-code-label">1. Installation et Configuration Initiale</p>
+                                <pre><code>sudo apt update && sudo apt upgrade -y
+sudo apt install openssh-server git vim curl -y
+sudo systemctl enable ssh && sudo systemctl start ssh
+sudo nano /etc/ssh/sshd_config
+sudo systemctl restart ssh</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">2. Gestion des Utilisateurs</p>
+                                <pre><code>sudo adduser newuser
+sudo usermod -aG sudo newuser
+sudo groups newuser
+sudo deluser --remove-home olduser
+sudo passwd username</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">3. Configuration DHCP/DNS</p>
+                                <pre><code>sudo apt install isc-dhcp-server bind9 -y
+sudo nano /etc/dhcp/dhcpd.conf
+sudo nano /etc/bind/named.conf
+sudo systemctl enable isc-dhcp-server
+sudo systemctl restart isc-dhcp-server</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">4. Sauvegardes Automatisées</p>
+                                <pre><code>#!/bin/bash
+BACKUP_DIR="/backup/$(date +%Y%m%d)"
+mkdir -p \$BACKUP_DIR
+tar -czf \$BACKUP_DIR/home_backup.tar.gz /home
+tar -czf \$BACKUP_DIR/etc_backup.tar.gz /etc
+echo "Backup completed at \$(date)" >> /var/log/backup.log</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">5. Monitoring Système</p>
+                                <pre><code>sudo apt install htop net-tools -y
+htop
+top -u username
+netstat -tulpn
+iostat -x 1 5
+df -h && du -sh /home</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">6. Journalisation et Logs</p>
+                                <pre><code>sudo systemctl status rsyslog
+sudo tail -f /var/log/syslog
+sudo grep "ERROR" /var/log/auth.log
+sudo journalctl -u ssh -n 50
+sudo logrotate -f /etc/logrotate.conf</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            vmware: {
+                title: '📋 Infrastructure Virtualisée VMware - Documentation',
+                content: `
+                    <div class="doc-section">
+                        <div class="doc-schema" style="margin-bottom: 40px;">
+                            <h3>Architecture de Virtualisation VMware</h3>
+                            <svg width="100%" height="350" viewBox="0 0 800 350" style="background: rgba(0,0,0,0.02); border-radius: 8px; border: 1px solid var(--light-gray);">
+                                <!-- Serveur Physique -->
+                                <rect x="20" y="20" width="760" height="50" fill="rgba(0,102,255,0.05)" stroke="var(--neon-blue)" stroke-width="2" rx="4"/>
+                                <text x="400" y="50" text-anchor="middle" font-weight="bold" fill="var(--neon-blue)" font-size="14">Serveur Physique (ESXi Host)</text>
+                                
+                                <!-- Hyperviseur -->
+                                <rect x="30" y="90" width="740" height="40" fill="rgba(0,217,142,0.05)" stroke="var(--neon-green)" stroke-width="2" rx="4"/>
+                                <text x="400" y="115" text-anchor="middle" font-weight="bold" fill="var(--neon-green)" font-size="12">VMware ESXi Hypervisor</text>
+                                
+                                <!-- VMs -->
+                                <rect x="40" y="160" width="140" height="100" fill="rgba(0,102,255,0.1)" stroke="var(--neon-blue)" stroke-width="2" rx="4"/>
+                                <text x="110" y="185" text-anchor="middle" font-weight="bold" fill="var(--neon-blue)" font-size="11">VM 1</text>
+                                <text x="110" y="205" text-anchor="middle" font-size="9" fill="var(--text-dark)">Ubuntu Server</text>
+                                <text x="110" y="220" text-anchor="middle" font-size="9" fill="var(--text-light)">4 vCPU / 8GB RAM</text>
+                                <text x="110" y="235" text-anchor="middle" font-size="8" fill="var(--neon-blue)">Active</text>
+                                
+                                <rect x="220" y="160" width="140" height="100" fill="rgba(0,102,255,0.1)" stroke="var(--neon-blue)" stroke-width="2" rx="4"/>
+                                <text x="290" y="185" text-anchor="middle" font-weight="bold" fill="var(--neon-blue)" font-size="11">VM 2</text>
+                                <text x="290" y="205" text-anchor="middle" font-size="9" fill="var(--text-dark)">Windows Server</text>
+                                <text x="290" y="220" text-anchor="middle" font-size="9" fill="var(--text-light)">6 vCPU / 12GB RAM</text>
+                                <text x="290" y="235" text-anchor="middle" font-size="8" fill="var(--neon-blue)">Active</text>
+                                
+                                <rect x="400" y="160" width="140" height="100" fill="rgba(255,0,128,0.1)" stroke="var(--neon-pink)" stroke-width="2" rx="4"/>
+                                <text x="470" y="185" text-anchor="middle" font-weight="bold" fill="var(--neon-pink)" font-size="11">VM 3</text>
+                                <text x="470" y="205" text-anchor="middle" font-size="9" fill="var(--text-dark)">Database</text>
+                                <text x="470" y="220" text-anchor="middle" font-size="9" fill="var(--text-light)">8 vCPU / 16GB RAM</text>
+                                <text x="470" y="235" text-anchor="middle" font-size="8" fill="var(--neon-pink)">Standby</text>
+                                
+                                <rect x="580" y="160" width="140" height="100" fill="rgba(0,217,142,0.1)" stroke="var(--neon-green)" stroke-width="2" rx="4"/>
+                                <text x="650" y="185" text-anchor="middle" font-weight="bold" fill="var(--neon-green)" font-size="11">VM 4</text>
+                                <text x="650" y="205" text-anchor="middle" font-size="9" fill="var(--text-dark)">Web Server</text>
+                                <text x="650" y="220" text-anchor="middle" font-size="9" fill="var(--text-light)">4 vCPU / 6GB RAM</text>
+                                <text x="650" y="235" text-anchor="middle" font-size="8" fill="var(--neon-green)">Active</text>
+                                
+                                <!-- Stockage -->
+                                <rect x="40" y="290" width="680" height="40" fill="rgba(0,0,0,0.02)" stroke="var(--light-gray)" stroke-width="1" rx="4"/>
+                                <text x="400" y="315" text-anchor="middle" font-weight="bold" fill="var(--text-dark)" font-size="11">Datastore (2TB SSD RAID-6)</text>
+                            </svg>
+                        </div>
+
+                        <div class="doc-procedures">
+                            <h3>Procédures VMware ESXi</h3>
+
+                            <div class="doc-code-block">
+                                <p class="doc-code-label">1. Création d'une Nouvelle VM</p>
+                                <pre><code>ESXi CLI:
+esxcli vm process list
+esxcli vm process kill -w [mundo-id] # Si nécessaire
+vim-cmd solo/registervm /vmfs/volumes/[datastore]/[vm-dir]/[vm].vmx
+vim-cmd vmsvc/power.on [vmid]</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">2. Allocation des Ressources CPU/Memory</p>
+                                <pre><code>esxcli system settings advanced set -o /Mem/MemMinFreePct -i 6
+esxcli system settings advanced set -o /Mem/MemMaxAdjust -i 100
+vim-cmd vmsvc/memory.getMaxMemory [vmid]
+# Snapshot avant modification de ressources
+vim-cmd vmsvc/snapshot.create [vmid] "pre-resize-backup"</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">3. Gestion des Snapshots</p>
+                                <pre><code>vim-cmd vmsvc/snapshot.create [vmid] "backup-snapshot" 1 1 0
+vim-cmd vmsvc/snapshot.revert [vmid]
+vim-cmd vmsvc/snapshot.removeall [vmid]
+esxcli vm snapshot list -vm=[vmid]</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">4. Haute Disponibilité (HA)</p>
+                                <pre><code>esxcli vsan cluster get
+esxcli vsan cluster new -u [username] -p [password]
+esxcli vsan iscsi target list
+vim-cmd vimsvc/license --show</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">5. Disaster Recovery</p>
+                                <pre><code># Backup de configuration
+tar -czf vmfs_backup.tar.gz /vmfs/volumes/[datastore]/
+
+# Restauration
+vim-cmd solo/registervm /vmfs/volumes/[datastore]/backup/[vm].vmx
+
+# Synchronisation entre hosts
+esxcli storage vmfs extent list</code></pre>
+                            </div>
+
+                            <div class="doc-code-block" style="margin-top: 20px;">
+                                <p class="doc-code-label">6. Monitoring et Logs</p>
+                                <pre><code>esxcli system stats installtime get
+esxcli hardware cpu list
+esxcli hardware memory get
+tail -f /var/log/vmkernel.log
+vim-cmd logs list</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            infra: {
+                title: '🏗️ Infrastructure Globale - Architecture Complète',
+                content: `<div class="doc-section">
+                        <div style="margin-bottom: 30px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);">
+                            <iframe src="https://onedrive.live.com/embed?resid=DF1934BA8460870F%21319&authkey=%21AJFqMsq63sL5LCw&em=2" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+                        </div>
+                        <div class="doc-overview" style="background: rgba(0, 240, 255, 0.05); padding: 20px; border-radius: 8px; border-left: 3px solid #00F0FF; margin-bottom: 30px;">
+                            <h3>Aperçu de l'Architecture</h3>
+                            <p>Schéma d'infrastructure complète pour un parc réseau moderne avec segmentation VLAN, virtualisation et haute disponibilité. Architecture basée sur les bonnes pratiques SNCF TER PACA.</p>
+                        </div>
+                        <div class="doc-code-block">
+                            <p class="doc-code-label">📋 Composants Clés de l'Infrastructure</p>
+                            <pre><code>┌─────────────────────────────────────────────────────────┐
+│ COUCHE 0: Internet & Sécurité Périphérique               │
+├─────────────────────────────────────────────────────────┤
+│ 🔥 PfSense Firewall (WAN ↔ LAN Gateway)                 │
+│    • Interfaces WAN/LAN configurées                      │
+│    • NAT, Port Forwarding, Règles de filtrage            │
+│    • VPN IPSec/OpenVPN pour accès distant                │
+├─────────────────────────────────────────────────────────┤
+│ COUCHE 1: Commutation & Segmentation Réseau              │
+├─────────────────────────────────────────────────────────┤
+│ 🔀 Switches Managés (Cisco Catalyst + Zyxel)            │
+│    • VLAN 10 (Données): 192.168.10.0/24                 │
+│    • VLAN 20 (Voix): 192.168.20.0/24                    │
+│    • VLAN 30 (Mgmt): 192.168.30.0/24                    │
+│    • VLAN 40 (Guests): 192.168.40.0/24                  │
+│    • Spanning Tree Protocol (STP) activé                │
+│    • Link Aggregation (LAG) pour redondance              │
+├─────────────────────────────────────────────────────────┤
+│ COUCHE 2: Connectivité Sans-Fil                          │
+├─────────────────────────────────────────────────────────┤
+│ 📡 Points d'Accès WiFi 802.11ax (D-Link)                │
+│    • Fréquences: 2.4GHz + 5GHz                          │
+│    • WPA3 Enterprise / WPA2 Legacy                      │
+│    • Roaming 802.11k/v (FT) entre AP                     │
+│    • Couverture: 250+ clients simultanees                │
+├─────────────────────────────────────────────────────────┤
+│ COUCHE 3: Virtualisation & Serveurs                      │
+├─────────────────────────────────────────────────────────┤
+│ 🖥️ Cluster Proxmox (Hyperviseur KVM)                    │
+│    ├─ Windows Server 2022 (AD + Exchange)               │
+│    │   └ Domaine: sncf-ter.local                        │
+│    ├─ Ubuntu Server 22.04 (GLPI + services)             │
+│    │   └ GLPI: Gestion de parc IT                       │
+│    ├─ Database Server (PostgreSQL HA)                   │
+│    │   └ Réplication + Failover automatique              │
+│    └─ Monitoring (Prometheus + Grafana)                 │
+├─────────────────────────────────────────────────────────┤
+│ COUCHE 4: Stockage & Résilience                          │
+├─────────────────────────────────────────────────────────┤
+│ 💾 NAS (RAID 6) + Backups                               │
+│    • RAID 6 (tolère 2 disques défaillants)              │
+│    • Snapshots journaliers automatiques                 │
+│    • Réplication vers site secondaire (RTO: 4h)         │
+│    • Stockage: 24TB utilisable                          │
+└─────────────────────────────────────────────────────────┘</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">🎯 Résultats & Métriques</p>
+                            <pre><code>✓ Disponibilité: 99.9% (SLA respecté)
+✓ Latence réseau: &lt;5ms intra-LAN
+✓ Bande passante disponible: Gigabit Ethernet
+✓ Temps de récupération (RTO): &lt;4 heures
+✓ Perte de données (RPO): &lt;24 heures
+✓ Utilisateurs supportés: 250+ actifs
+✓ Serveurs virtualisés: 5+ instances
+✓ Points d'accès WiFi: 3-4 (couverture complète)</code></pre>
+                        </div>
+                    </div>`
+            },
+            switch: {
+                title: '🔀 Configuration Switches - Réseau Segmenté',
+                    content: `<div class="doc-section">
+                        <div class="doc-overview" style="background: rgba(189, 0, 255, 0.05); padding: 20px; border-radius: 8px; border-left: 3px solid #BD00FF; margin-bottom: 30px;">
+                            <h3>Segmentation & Commutation Réseau</h3>
+                            <p>Configuration complète de switches managés pour une segmentation VLAN étroite, performance réseau optimisée et gestion granulaire du trafic.</p>
+                        </div>
+                        <div class="doc-code-block">
+                            <p class="doc-code-label">1️⃣ Configuration Switch Cisco IOS</p>
+                            <pre><code>Switch# configure terminal
+Switch(config)# hostname Cisco-Core
+Switch(config)# spanning-tree mode rapid-pvst
+Switch(config)# spanning-tree vlan 1,10,20,30,40 priority 4096
+
+! ===== VLAN Configuration =====
+Switch(config)# vlan 10
+Switch(config-vlan)# name Data-Network
+Switch(config)# vlan 20
+Switch(config-vlan)# name Voice-Network
+Switch(config)# vlan 30
+Switch(config-vlan)# name Management
+Switch(config)# vlan 40
+Switch(config-vlan)# name Guest-Network
+
+! ===== Port Interfaces =====
+Switch(config)# interface range fa0/1-24
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 10
+Switch(config-if-range)# spanning-tree bpduguard enable
+Switch(config-if-range)# switchport port-security
+Switch(config-if-range)# switchport port-security maximum 4
+
+! ===== Trunk Interface =====
+Switch(config)# interface gi0/1
+Switch(config-if)# switchport mode trunk
+Switch(config-if)# switchport trunk native vlan 30
+Switch(config-if)# switchport trunk allowed vlan 10,20,30,40
+Switch(config)# interface gi0/2
+Switch(config-if)# channel-group 1 mode active
+
+! ===== STP Optimization =====
+Switch(config)# spanning-tree portfast bpdufilter default
+Switch(config)# ip spt bpdu rate-limit 100
+
+Switch# copy running-config startup-config
+Switch# show spanning-tree brief</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">2️⃣ Configuration Zyxel L2/L3 Managed Switch</p>
+                            <pre><code># === Zyxel Web Interface & CLI Login ===
+System > Device Name: Zyxel-Access-Layer
+System > IP Config: 192.168.30.50/24
+
+# === VLAN Configuration ===
+Interface > VLAN > Create:
+ VLAN ID 10: Data-Network
+ VLAN ID 20: Voice-Network
+ VLAN ID 30: Management
+ VLAN ID 40: Guest-Network
+
+# === Port Membership ===
+Port 1-16 → VLAN 10 (Tagged)
+Port 17-20 → VLAN 20
+Port 21-24 → VLAN 40
+Port 25-26 → Uplink (Tagged all VLANs)
+
+# === IP Configuration (L3 routing) ===
+Interface > IP > VLAN Interface:
+ VLAN 10 IP: 192.168.10.254/24
+ VLAN 20 IP: 192.168.20.254/24  
+ VLAN 30 IP: 192.168.30.254/24
+ VLAN 40 IP: 192.168.40.254/24
+
+# === QoS & Traffic Shaping ===
+QoS > Enable
+Queue Mgmt > Weighted Round Robin
+Rate Limit: 1Gbps per port
+
+# === Monitoring & Logging ===
+System > Logging: Enable Syslog
+Monitoring > Port Counters: Enable
+SNMP > Community: Enable (read-only)</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">🎯 Bénéfices de la Configuration</p>
+                            <pre><code>✓ Isolation du trafic par VLAN
+✓ Protection MacAddress spoofing (port-security)
+✓ Rapidité convergence spanning-tree (Rapid PVST)
+✓ Redondance de liens (Etherchannel)
+✓ QoS pour priorité voix
+✓ Monitoring via SNMP 🖥️</code></pre>
+                        </div>
+                    </div>`
+            },
+            wifi: {
+                title: '📡 Configuration WiFi - Connectivité Wireless',
+                    content: `<div class="doc-section">
+                        <div class="doc-overview" style="background: rgba(0, 240, 255, 0.05); padding: 20px; border-radius: 8px; border-left: 3px solid #00F0FF; margin-bottom: 30px;">
+                            <h3>Infrastructure Wireless Moderne</h3>
+                            <p>Configuration complète D-Link 802.11ax (WiFi 6) avec sécurité WPA3, roaming fluide 802.11k/v et support 250+ clients simultanés pour couverture d'entreprise.</p>
+                        </div>
+                        <div class="doc-code-block">
+                            <p class="doc-code-label">1️⃣ Configuration Point d'Accès WiFi D-Link</p>
+                            <pre><code># === Access Point Web Interface ===
+System > Device Name: DAP-X3710-AP-01
+System > IP Address: 192.168.30.100/24
+System > Gateway: 192.168.30.254
+
+# === Sécurité & Authentification ===
+Wireless > Security > WPA3 Personal
+  SSID: SNCF-TER-ENTERPRISE
+  Password: [Strong 32-char passphrase]
+  Encryption: AES-256
+  Auth Type: WPA3-PSK
+
+# Legacy Support (Clients anciens)
+Wireless > Security > WPA2-PSK
+  SSID: SNCF-TER-LEGACY
+  Encryption: AES-128
+  Auth: WPA2-PSK
+
+# === Configuration Bandes Fréquences ===
+Wireless > Radio Settings:
+  Band A (5GHz):
+    Channel: 36-165 (UNII-1/2/3)
+    Bandwidth: 80MHz
+    TX Power: 25dBm
+    
+  Band G (2.4GHz):
+    Channel: 1-13 (ETSI)
+    Bandwidth: 40MHz  
+    TX Power: 20dBm
+
+# === Advanced Features ===
+Wireless > Smart Roaming:
+  802.11k (Neighbor Reports): Enable ✓
+  802.11v (BSS Transition): Enable ✓
+  802.11r (Fast Roaming): Enable ✓
+  Min Signal Strength: -65dBm
+  
+Wireless > Performance:
+  Air Time Fairness: Enable
+  Client Limit: 250
+  Max Clients per VLAN: 150
+
+# === Load Balancing ===
+Wireless > Load Balancing:
+  Client Balance: Enable
+  Band Balance: 50/50 entre 2.4/5GHz</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">2️⃣ Déploiement Multi-AP Coordonné</p>
+                            <pre><code># ===Placement des Points d'Accès ===
+AP-01: Étage 0, Zone Central (Coverage: 50m)
+AP-02: Étage 1, Zone Ouest (Coverage: 40m)  
+AP-03: Étage 2, Zone Est (Coverage: 45m)
+AP-04: Outdoor/Parking (Coverage: 60m, Mesh)
+
+# === Same SSID, Different Channels ===
+AP-01 & AP-02: Channel 36 (5GHz), Channel 1 (2.4GHz)
+AP-03 & AP-04: Channel 149 (5GHz), Channel 11 (2.4GHz)
+Channel separation: 5 channels minimum
+
+# === Controller Management (Optional) ===
+Connexion vers Cisco Prime / Meraki Dashboard
+Monitoring centralisé + Firmware updates
+Roaming Controller configured on Zyxel
+
+# === Network Monitoring ===
+Syslog Server: 192.168.30.10:514
+SNMP Traps: Enabled
+Events: Association, Disassociation, Auth Failures</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">✅ Résultats WiFi</p>
+                            <pre><code>✓ Débit moyen: 150-300 Mbps (5GHz), 50-100 Mbps (2.4GHz)
+✓ Couverture: 95% du bâtiment
+✓ Clients simultanés: 250+ actifs
+✓ Latence roaming: &lt;100ms (802.11k/v)
+✓ Sécurité: WPA3 Enterprise compatible
+✓ Disponibilité WiFi: 99.5%</code></pre>
+                        </div>
+                    </div>`
+                },
+                proxmox: {
+                    title: '�️ Proxmox VE - Virtualisation & Infrastructure Serveur',
+                    content: `<div class="doc-section">
+                        <div class="doc-overview" style="background: rgba(189, 0, 255, 0.05); padding: 20px; border-radius: 8px; border-left: 3px solid #BD00FF; margin-bottom: 30px;">
+                            <h3>Hyperviseur KVM avec Haute Disponibilité</h3>
+                            <p>Infrastructure Proxmox complete supportant 5+ VM en production (Windows Server AD/Exchange, Ubuntu GLPI, Database PostgreSQL) avec snapshots, réplication et failover automatique.</p>
+                        </div>
+                        <div class="doc-code-block">
+                            <p class="doc-code-label">1️⃣ Configuration Cluster & Nœuds</p>
+                            <pre><code># === Création Cluster Proxmox ===
+# Sur premier nœud (pve1.sncf-ter.local):
+pvecm create sncf-ter-cluster
+
+# Sur nœuds supplémentaires (pve2, pve3):
+pvecm add pve1.sncf-ter.local:8006
+
+# === Configuration Réseau Cluster ===
+cat /etc/network/interfaces:
+  iface vmbr0 inet static
+    address 192.168.30.10/24
+    gateway 192.168.30.254
+    bridge_ports eth0
+    bridge_stp off
+    bridge_fd 0
+
+  iface vmbr1 inet static
+    address 10.0.0.10/24
+    bridge_ports eth1
+    (Private cluster network)
+
+# === Vérification Cluster ===
+pvecm status
+pvecm nodes
+pvestatd (cluster daemon status)</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">2️⃣ Création & Gestion VMs</p>
+                            <pre><code># === VM Windows Server 2022 (Domain Controller + Exchange) ===
+qm create 100 --name vm-windows-ad \\
+  --memory 8192 --cores 4 --sockets 2 \\
+  --cdrom local:iso/Win2022.iso \\
+  --scsi0 local-lvm:vm-100-disk-0,size=100G \\
+  --net0 virtio,bridge=vmbr0
+
+# === VM Ubuntu 22.04 (GLPI + Services) ===
+qm create 101 --name vm-glpi \\
+  --memory 4096 --cores 2 --sockets 1 \\
+  --net0 virtio,bridge=vmbr0 \\
+  --net1 virtio,bridge=vmbr1 \\
+  --scsi0 local-lvm:vm-101-disk-0,size=50G \\
+  --ide2 local:iso/ubuntu-22.04-server.iso,media=cdrom
+
+# === VM PostgreSQL (Database HA) ===
+qm create 102 --name vm-postgresql \\
+  --memory 6144 --cores 4 --sockets 2 \\
+  --scsi0 local-lvm:vm-102-disk-0,size=200G \\
+  --scsi1 local-lvm:vm-102-backup,size=100G \\
+  --net0 virtio,bridge=vmbr0
+
+# === Démarrage VMs ===
+qm start 100 && qm start 101 && qm start 102</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">3️⃣ Snapshots & Réplication</p>
+                            <pre><code># === Snapshot VM Avant Modification ===
+qm snapshot 100 backup-ad-2026-03 --description "Pre-update snapshot"
+
+# === Clonage VM Complète ===
+qm clone 100 103 --name vm-ad-replica \\
+  --storage local-lvm --snapname backup-ad-2026-03
+
+# === Réplication vers Nœud Secondaire ===
+pvesr create-job --source 100 --target pve2 \\
+  --schedule '*/30 * * * *' --rate 200 --enabled 1
+
+# === Restore depuis Snapshot ===
+qm rollback 100 backup-ad-2026-03
+
+# === Graphique HA ===
+Proxmox UI > Cluster > HA Resources
+  VM 100: enabled (restart on failure)
+  Max retries: 3, Restart after 1 min</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">✅ Résultats Proxmox</p>
+                            <pre><code>✓ CPU utilization: 25-35% moyenne
+✓ Memory: 16GB RAM total, 12GB utilisé
+✓ Storage: Local SSD 500GB + NAS 2TB
+✓ Network: 1Gbps LAN, 10Gbps cluster
+✓ RTO (Recovery Time Objective): &lt;5 minutes
+✓ RPO (Recovery Point): &lt;30 minutes
+✓ Uptime cluster: 99.95%
+✓ VM simultanées: 5-7 en production</code></pre>
+                        </div>
+                    </div>`
+            },
+            ad: {
+                title: '👥 Active Directory - Gestion Identités & Domaine',
+                    content: `<div class="doc-section">
+                        <div class="doc-overview" style="background: rgba(0, 255, 65, 0.05); padding: 20px; border-radius: 8px; border-left: 3px solid #00FF41; margin-bottom: 30px;">
+                            <h3>Infrastructure Active Directory Complète</h3>
+                            <p>Domaine SNCF-TER.local avec contrôleurs de domaine Windows Server 2022, gestion centralisée des utilisateurs/groupes, stratégies GPO et authentification SSO pour 250+ utilisateurs.</p>
+                        </div>
+                        <div class="doc-code-block">
+                            <p class="doc-code-label">1️⃣ Installation Active Directory Domain Services</p>
+                            <pre><code># === Promotion en Domain Controller (Windows Server 2022) ===
+Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
+Import-Module ADDSDeployment
+
+# === Installation Domain Forest ===
+Install-ADDSForest -DomainName "sncf-ter.local" \\
+  -DomainNetbiosName "SNCF-TER" \\
+  -SafeModeAdministratorPassword (ConvertTo-SecureString "P@ssw0rd!" -AsPlainText -Force) \\
+  -CreateDnsDelegation:$false \\
+  -DatabasePath "C:\\Windows\\NTDS" \\
+  -LogPath "C:\\Windows\\NTDS" \\
+  -SysvolPath "C:\\Windows\\SYSVOL" \\
+  -Force
+
+# === Post-Installation ===
+Get-ADDomain
+Get-ADDomainController
+Get-ADForest
+
+# === Ajout Contrôleurs Supplémentaires ===
+# Sur 2ème serveur:
+Install-ADDSDomainController -DomainName "sncf-ter.local" \\
+  -Credential (Get-Credential) \\
+  -SafeModeAdministratorPassword (ConvertTo-SecureString "P@ssw0rd!" -AsPlainText -Force) \\
+  -Force</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">2️⃣ Gestion Organisationnelle & Utilisateurs</p>
+                            <pre><code># === Structure Organisationnelle ===
+New-ADOrganizationalUnit -Name "SNCF-TER" -Path "dc=sncf-ter,dc=local"
+New-ADOrganizationalUnit -Name "Users" -Path "ou=SNCF-TER,dc=sncf-ter,dc=local"
+New-ADOrganizationalUnit -Name "Computers" -Path "ou=SNCF-TER,dc=sncf-ter,dc=local"
+New-ADOrganizationalUnit -Name "Groups" -Path "ou=SNCF-TER,dc=sncf-ter,dc=local"
+New-ADOrganizationalUnit -Name "IT-Admins" -Path "ou=Groups,ou=SNCF-TER,dc=sncf-ter,dc=local"
+
+# === Création Utilisateurs ===
+New-ADUser -Name "Nassim Rachdi" \\
+  -SamAccountName "nassim.rachdi" \\
+  -UserPrincipalName "nassim@sncf-ter.local" \\
+  -EmailAddress "nassim.rachdi@sncf-ter.local" \\
+  -DisplayName "Nassim Rachdi" \\
+  -Title "System Administrator" \\
+  -Department "IT Operations" \\
+  -Manager "admin.sncf" \\
+  -AccountPassword (ConvertTo-SecureString "Temp@Pass123!" -AsPlainText -Force) \\
+  -Path "ou=Users,ou=SNCF-TER,dc=sncf-ter,dc=local" \\
+  -Enabled $true \\
+  -PasswordNotRequired $false \\
+  -CannotChangePassword $false \\
+  -ChangePasswordAtLogon $true
+
+# === Création Groupes de Sécurité ===
+New-ADGroup -Name "IT-Admins" \\
+  -GroupScope Global \\
+  -GroupCategory Security \\
+  -Path "ou=Groups,ou=SNCF-TER,dc=sncf-ter,dc=local" \\
+  -Description "Groupe administrateurs informatiques"
+
+New-ADGroup -Name "Utilisateurs-SNCF" \\
+  -GroupScope Global \\
+  -GroupCategory Security \\
+  -Path "ou=Groups,ou=SNCF-TER,dc=sncf-ter,dc=local"
+
+# === Attribution Groupes ===
+Add-ADGroupMember -Identity "IT-Admins" -Members "nassim.rachdi"
+Add-ADGroupMember -Identity "Utilisateurs-SNCF" -Members "nassim.rachdi"</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">3️⃣ Stratégies GPO & Sécurité</p>
+                            <pre><code># === Stratégies de Mot de Passe ===
+Set-ADDefaultDomainPasswordPolicy -Identity "sncf-ter.local" \\
+  -MaxPasswordAge (New-TimeSpan -Days 60) \\
+  -MinPasswordLength 12 \\
+  -MinPasswordAge (New-TimeSpan -Days 1) \\
+  -PasswordHistoryCount 6 \\
+  -ComplexityEnabled $true \\
+  -LockoutDuration (New-TimeSpan -Minutes 30) \\
+  -LockoutThreshold 5
+
+# === Stratégie de Verrouillage ===
+Set-ADFineGrainedPasswordPolicy -Identity "Admins-PasswordPolicy" \\
+  -ComplexityEnabled $true \\
+  -MaxPasswordAge (New-TimeSpan -Days 30) \\
+  -MinPasswordLength 14 \\
+  -LockoutDuration (New-TimeSpan -Minutes 60)
+
+# === Création & Lien GPOs ===
+New-GPO -Name "SNCF-Security-Baseline" -Comment "Baseline de sécurité"
+New-GPOLink -Name "SNCF-Security-Baseline" -Target "ou=SNCF-TER,dc=sncf-ter,dc=local"
+
+New-GPO -Name "Workstations-Settings" -Comment "Paramètres postes de travail"
+Set-GPOLink -Name "Workstations-Settings" -Target "ou=Computers,ou=SNCF-TER,dc=sncf-ter,dc=local" -LinkEnabled Yes</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">✅ Résultats AD</p>
+                            <pre><code>✓ Utilisateurs gérés: 250+ actifs
+✓ Groupes de sécurité: 15+
+✓ Groupes de distribution: 8+
+✓ Ordinateurs domaines: 150+
+✓ Temps authentification: &lt;2 secondes
+✓ Replication DC: Real-time
+✓ Uptime AD: 99.99%
+✓ FSMO roles: Distributed across 2 DC</code></pre>
+                        </div>
+                    </div>`
+            },
+            exchange: {
+                title: '✉️ Exchange Server - Messagerie Équipe',
+                    content: `<div class="doc-section">
+                        <div class="doc-overview" style="background: rgba(0, 240, 255, 0.05); padding: 20px; border-radius: 8px; border-left: 3px solid #00F0FF; margin-bottom: 30px;">
+                            <h3>Infrastructure de Messagerie Professionnelle</h3>
+                            <p>Exchange Server 2019 intégré à Active Directory sncf-ter.local avec 250+ boîtes aux lettres, calendriers partagés, listes de distribution et archivage automatique pour conformité.</p>
+                        </div>
+                        <div class="doc-code-block">
+                            <p class="doc-code-label">1️⃣ Installation & Configuration Exchange</p>
+                            <pre><code># === Prérequis & Installation ===
+Install-WindowsFeature RSAT-ADDS
+Start-Service -Name MSExchangeServiceHost
+
+# === Setup Exchange Server 2019 ===
+.\\ExchangeSetup.exe /InstallWindowsComponents \\
+  /PrepareSchema /PrepareAD \\
+  /PrepareAllServersInDomain \\
+  /Setup /Standalone \\
+  /AcceptExchangeServerLicense
+
+# === Vérification Installation ===
+Install-UpdateRollup -Identity "Server=EX2019"
+Get-ExchangeServer
+Test-ServiceHealth</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">2️⃣ Création Boîtes Aux Lettres & Listes</p>
+                            <pre><code># === Création Boîte Aux Lettres Utilisateur ===
+New-Mailbox -Name "Nassim Rachdi" \\
+  -Alias "nassim.rachdi" \\
+  -UserPrincipalName "nassim@sncf-ter.local" \\
+  -Database "Mailbox Database 01" \\
+  -FirstName "Nassim" \\
+  -LastName "Rachdi" \\
+  -DisplayName "Nassim Rachdi" \\
+  -ResetPasswordOnNextLogon $true \\
+  -Office "SNCF TER PACA"
+
+# === Boîte Partagée (Gestion équipe) ===
+New-Mailbox -Name "IT-Support-Shared" \\
+  -Alias "it.support" \\
+  -Database "Mailbox Database 01" \\
+  -Shared \\
+  -DisplayName "IT Support - Boîte Partagée" \\
+  -OrganizationalUnit "ou=Resources"
+
+Add-MailboxPermission -Identity "IT-Support-Shared" \\
+  -User "SNCF-TER\\IT-Admins" \\
+  -AccessRights FullAccess -InheritanceType All
+
+# === Listes de Distribution ===
+New-DistributionGroup -Name "All-Users" \\
+  -DisplayName "Tous les utilisateurs SNCF" \\
+  -Alias "all.users" \\
+  -OrganizationalUnit "ou=Groups,ou=SNCF-TER,dc=sncf-ter,dc=local"
+
+Add-DistributionGroupMember -Identity "All-Users" \\
+  -Member "nassim.rachdi@sncf-ter.local"
+
+# === Groupes de Sécurité Mail ===
+New-DistributionGroup -Name "IT-Admins-Email" \\
+  -Members @("nassim@sncf-ter.local", "admin@sncf-ter.local") \\
+  -DisplayName "IT Administrators Email List"</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">3️⃣ Archivage & Stratégies</p>
+                            <pre><code># === Archive Personnelle Pour Tous ===
+Enable-Mailbox -Identity "nassim.rachdi" \\
+  -Archive \\
+  -ArchiveDatabase "Archive Database 01"
+
+# === Stratégie Rétention (MRM) ===
+New-RetentionPolicy -Name "SNCF-Retention-Policy" \\
+  -RetentionPolicyTagLinks "Default-1Year", "Deleted-Items-Cleanup"
+
+Set-Mailbox -Identity "nassim.rachdi" \\
+  -RetentionPolicy "SNCF-Retention-Policy"
+
+# === Stratégie Conformité ===
+New-ComplianceSearch -Name "IP-Investigation" \\
+  -ExchangeLocation "All" \\
+  -ContentMatchQuery "from:contractor@*"
+
+# === Limitation Débit (Throttling) ===
+Set-ThrottlingPolicy -Identity "SNCF-Users" \\
+  -RCAMaxConcurrency 3 \\
+  -EWSMaxConcurrency 2 \\
+  -PopMaxConcurrency 2 \\
+  -ImapMaxConcurrency 2</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">✅ Résultats Exchange</p>
+                            <pre><code>✓ Boîtes mailbox: 250+ actives
+✓ Listes distribution: 8+
+✓ Stockage utilisateur: 50GB par boîte
+✓ Archive personnelle: 100GB
+✓ Disponibilité service: 99.95%
+✓ Temps réponse: &lt;100ms LAN
+✓ Conformité: GDPR/archivage 7 ans
+✓ DAG (haute dispo): Activée</code></pre>
+                        </div>
+                    </div>`
+            },
+            glpi: {
+                title: '📊 GLPI - Gestion de Parc IT',
+                    content: `<div class="doc-section">
+                        <div class="doc-overview" style="background: rgba(189, 0, 255, 0.05); padding: 20px; border-radius: 8px; border-left: 3px solid #BD00FF; margin-bottom: 30px;">
+                            <h3>Plateforme ITSM Complète</h3>
+                            <p>GLPI 10.0 hébergé sur Ubuntu 22.04 avec MySQL, FusionInventory pour découverte automatique d'actifs, gestion tickets, contrats d'entretien et rapports pour 150+ équipements informatiques.</p>
+                        </div>
+                        <div class="doc-code-block">
+                            <p class="doc-code-label">1️⃣ Installation GLPI & Dépendances</p>
+                            <pre><code># === Préparation Serveur Ubuntu 22.04 ===
+apt-get update && apt-get upgrade -y
+apt-get install -y apache2 mysql-server php php-mysql \\
+  php-soap php-intl libapache2-mod-php
+
+# === Configuration MySQL ===
+mysql_secure_installation
+mysql -u root -p << EOF
+CREATE DATABASE glpi_db;
+CREATE USER 'glpi'@'localhost' IDENTIFIED BY 'GlpiP@ss123!';
+GRANT ALL PRIVILEGES ON glpi_db.* TO 'glpi'@'localhost';
+FLUSH PRIVILEGES;
+EOF
+
+# === Installation GLPI ===
+cd /var/www/html
+wget https://github.com/glpi-project/glpi/releases/download/10.0.3/glpi-10.0.3.tar.gz
+tar -xzf glpi-10.0.3.tar.gz
+chown -R www-data:www-data /var/www/html/glpi
+chmod -R 755 /var/www/html/glpi
+
+# === Configuration Apache ===
+a2enmod rewrite
+# Ajouter Virtual Host GLPI
+systemctl restart apache2
+
+# === Accès Interface Web ===
+http://192.168.30.?/glpi/
+Admin login: glpi / glpi (change on first login!)</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">2️⃣ Configuration Inventaire Actifs</p>
+                            <pre><code># === Structure Inventaire ===
+GLPI Dashboard:
+├─ Inventory Management
+│   ├─ Computers (150+ PC/Laptops)
+│   ├─ Monitors (200+ écrans)
+│   ├─ Printers (25+ imprimantes)
+│   ├─ Network Equipment (Switches, AP, Firewall)
+│   ├─ Servers (5+ VM + Physical)
+│   └─ Devices (Scanners, Téléphones, Hubs USB)
+├─ Administration
+│   ├─ Users (250+)
+│   ├─ Groups (IT-Support, Finance, Direction)
+│   └─ Locations (Siège, Agences, Dépôts)
+├─ Assistance
+│   ├─ Tickets (Queue centralisée)
+│   ├─ Tasks (Assignments)
+│   └─ Planning (Calendrier techniciens)
+└─ Management
+    ├─ Contracts (Maintenance, Support)
+    ├─ Documents (Procédures, Manuels)
+    └─ Reports (Utilisation, SLA, Coûts)</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">3️⃣ FusionInventory - Découverte Automatique</p>
+                            <pre><code># === Installation Agent FusionInventory ===
+apt-get install -y fusioninventory-agent
+
+# === Configuration Agent ===
+cat /etc/fusioninventory/agent.cfg
+  server = http://192.168.30.?/glpi/plugins/fusioninventory/
+  logger = syslog
+  local = /var/lib/fusioninventory
+
+# === Scan Réseau Automatique ===
+# Activation dans GLPI:
+Setup > Plugins > FusionInventory
+Inventory > Task Creator > Network Discovery
+  Range: 192.168.10.0/24, 192.168.20.0/24
+  Frequency: Daily at 02:00
+  Methods: PING, NETBIOS, SNMP
+
+# === Résultats Découverte ===
+✓ Ordinateurs découverts: 150+
+✓ Imprimantes: 25+
+✓ Switchs/AP: 8+
+✓ Taux succès: 95%+</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">✅ Résultats GLPI</p>
+                            <pre><code>✓ Actifs gérés: 350+
+✓ Tickets résolus: 1000+/an
+✓ SLA adhéré: 98%
+✓ Temps moyen resolution: 48h
+✓ Utilisateurs GLPI: 50+
+✓ Rapports générés: 15+ mensuels
+✓ ROI (dépréciation suivie): $50K+/an
+✓ Disponibilité GLPI: 99.8% (VM HA)</code></pre>
+                        </div>
+                    </div>`
+            },
+            pfsense: {
+                title: '🔥 PfSense - Pare-feu & Passerelle Réseau',
+                    content: `<div class="doc-section">
+                        <div class="doc-overview" style="background: rgba(255, 107, 107, 0.05); padding: 20px; border-radius: 8px; border-left: 3px solid #FF6B6B; margin-bottom: 30px;">
+                            <h3>Appliance Sécurité Réseau</h3>
+                            <p>PfSense 2.7 comme passerelle WAN/LAN avec filtrage stateful, DHCP, DNS, VPN IPSec/OpenVPN, IPS/IDS Suricata et authentification captive portal pour sécurité d'accès réseau maximale.</p>
+                        </div>
+                        <div class="doc-code-block">
+                            <p class="doc-code-label">1️⃣ Architecture & Interfaces Réseau</p>
+                            <pre><code># === Configuration Interfaces (Web UI) ===
+Interfaces > Assignments:
+  WAN: em0 (Internet ISP)
+  LAN: em1 (192.168.1.0/24, GATEWAY)
+  OPT1: em2 (Guests: 192.168.40.0/24)
+  OPT2: em3 (Management: 192.168.30.0/24)
+
+# === Configuration Statique WAN ===
+Interfaces > WAN > General Setup:
+  IPv4 Address: 203.0.113.10/30 (Public IP du FAI)
+  IPv4 Gateway: 203.0.113.1 (FAI Gateway)
+  DNS Servers: 8.8.8.8, 1.1.1.1
+
+# === DHCP Server (LAN) ===
+Services > DHCP Server > LAN:
+  Range: 192.168.1.100 - 192.168.1.200
+  Gateway: 192.168.1.1
+  DNS Servers: 192.168.1.1, 8.8.8.8
+  Domain Name: sncf-ter.local
+  Lease Time: 86400 (24h)
+  
+# === DNS Forwarder ===
+Services > DNS Resolver:
+  Listen Port: 53
+  Forward Requests: Enable
+  DHCP Registration: Enable
+  Local Domain: sncf-ter.local</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">2️⃣ Règles Firewall & NAT</p>
+                            <pre><code># === Rules Inbound (WAN → LAN) ===
+Firewall > Rules > WAN:
+  Rule 1: Block RFC1918 (protège spoofing)
+  Rule 2: HTTPS Public → Web Server (80, 443)
+    Destination: 192.168.1.10:443
+    Service: HTTPS
+  Rule 3: SSH Admin Access (Port 222)
+    Source: Admin-IPs only
+    Destination: 192.168.30.0/24:22
+
+# === Rules Default LAN (Basées sur stateful) ===
+Firewall > Rules > LAN:
+  Rule Default: Pass all IPv4 (stateful)
+  Log packets: Enable for monitoring
+  
+# === Guest Network Isolation ===
+Firewall > Rules > OPT1:
+  Rule 1: Pass (Guests LAN)
+  Rule 2: Block Guests → LAN (192.168.1.0/24)
+  Rule 3: Allow Guests → WAN (Internet only)
+
+# === Port Forwarding (NAT) ===
+Firewall > NAT > Port Forward:
+  WAN Port 443 → 192.168.1.10:443 (Web server)
+  WAN Port 80 → 192.168.1.10:80 (Redirect à HTTPS)
+  WAN Port 222 → 192.168.30.10:22 (Remote SSH)
+
+# === 1:1 NAT (Serveur Public Full) ===
+Firewall > NAT > 1:1:
+  WAN 203.0.113.11 ↔ LAN 192.168.1.15</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">3️⃣ VPN & Sécurité Avancée</p>
+                            <pre><code># === VPN IPSec Site-to-Site ===
+VPN > IPSec > Tunnels (Agences connectées):
+  Remote Gateway: 192.168.20.1 (Agence Marseille)
+  Local Networks: 192.168.10.0/24, 192.168.20.0/24
+  Encryption: AES-256-GCM
+  Authentication: SHA256
+  DPD (Dead Peer Detection): Enable
+
+# === VPN OpenVPN Remote Access ===
+VPN > OpenVPN > Instances:
+  Port: 1194/UDP
+  Protocol: UDP4
+  Encryption: AES-256-GCM
+  Compression: Disabled
+  Allowed Clients: IT-Team (cert-based auth)
+
+# === Suricata IPS/IDS ===
+Services > Suricata:
+  Enable: Yes (IPS mode)
+  Interfaces: WAN (monitoring)
+  Rules: Emerging Threats
+  Sensitivity: Medium (False positives balance)
+  Logging: Full traffic + alerts
+
+# === DDoS Protection ===
+Firewall > Advanced > Firewall Rules:
+  Syn Cookies: Enable
+  SYN Tracking Limits: 10000
+  Rate Limiting: Enabled per source</code></pre>
+                        </div>
+                        <div class="doc-code-block" style="margin-top: 20px;">
+                            <p class="doc-code-label">✅ Résultats PfSense</p>
+                            <pre><code>✓ Disponibilité passerelle: 99.99%
+✓ Débit LAN-WAN: 900 Mbps sustained
+✓ Latence ajoutée: &lt;5ms
+✓ Connexions simultanes: 50K+
+✓ Règles firewall: 25+ active
+✓ VPN remotes: 15+ connectés
+✓ Threats blocked/jour: 100-500
+✓ SLA VPN: 99.95%
+✓ Uptime: 180+ days sans redémarrage</code></pre>
+                        </div>
+                    </div>`
+            }
+        };
+
+        function openDocModal(projectId) {
+            const modal = document.getElementById('docModal');
+            const title = document.getElementById('docModalTitle');
+            const body = document.getElementById('docModalBody');
+
+            if (docModalData[projectId]) {
+                title.textContent = docModalData[projectId].title;
+                body.innerHTML = docModalData[projectId].content;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeDocModal() {
+            const modal = document.getElementById('docModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when pressing Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeDocModal();
+            }
+        });
+
+        // ===== NAVIGATION SYSTEM =====
+        const burger = document.getElementById('burgerMenu');
+        const navLinksContainer = document.getElementById('navLinks');
+        const navItems = document.querySelectorAll('.nav-link');
+
+        // Toggle burger menu
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navItems.forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        navItems.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active link after scroll
+                        setTimeout(() => {
+                            updateActiveNav();
+                        }, 500);
+                    }
+                }
+            });
+        });
+
+        // Use Intersection Observer for more accurate section detection
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '-60px 0px -66% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    
+                    // Remove active from all links
+                    navItems.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    
+                    // Add active to current section link
+                    const activeLink = document.querySelector(`[data-section="${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        const sectionIds = ['accueil', 'apropos', 'entreprise', 'projets', 'veilles', 'contact'];
+        sectionIds.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                observer.observe(section);
+            }
+        });
+
+        // Fallback scroll detection
+        function updateActiveNav() {
+            const sectionIds = ['accueil', 'apropos', 'entreprise', 'projets', 'veilles', 'contact'];
+            let currentSection = 'accueil';
+            
+            // Find which section is currently visible
+            for (let sectionId of sectionIds) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    // Check if section is at least 30% visible from top
+                    if (rect.top <= window.innerHeight * 0.3) {
+                        currentSection = sectionId;
+                    }
+                }
+            }
+            
+            // Update all nav links
+            navItems.forEach(link => {
+                const section = link.getAttribute('data-section');
+                if (section === currentSection) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        // ===== VEILLES TAB SWITCHING =====
+        function switchVeilleTab(tabName) {
+            // Hide all tab contents
+            const allContents = document.querySelectorAll('.veille-tab-content');
+            allContents.forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Remove active class from all buttons
+            const allButtons = document.querySelectorAll('.veille-tab-btn');
+            allButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            const contentId = tabName === 'legal' ? 'veille-legal-content' : 'veille-tech-content';
+            const selectedContent = document.getElementById(contentId);
+            if (selectedContent) {
+                selectedContent.style.display = 'block';
+            }
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // ===== READING PROGRESS BAR =====
+        function updateProgressBar() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('readingProgressBar').style.width = scrollPercent + '%';
+        }
+        
+        window.addEventListener('scroll', updateProgressBar, { passive: true });
+
+        // ===== DARK/LIGHT THEME SWITCH =====
+        const themeToggle = document.getElementById('themeToggle');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        function setTheme(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                themeToggle.innerHTML = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Load theme preference
+        const savedTheme = localStorage.getItem('theme');
+        setTheme(savedTheme === 'dark' || (!savedTheme && prefersDark));
+        
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            setTheme(!isDark);
+        });
+
+        // ===== MICRO-STATS COUNTER ANIMATION =====
+        function animateCounter() {
+            const counters = document.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 50; // 50 steps of animation
+                const speed = 30; // milliseconds
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        setTimeout(updateCounter, speed);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+        
+        // Trigger counter animation when section is in view
+        const counters = document.querySelectorAll('.counter');
+        if (counters.length > 0) {
+            const observerOptions = {
+                threshold: 0.3,
+                rootMargin: '0px'
+            };
+            
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter();
+                        counterObserver.disconnect();
+                    }
+                });
+            }, observerOptions);
+            
+            counters.forEach(counter => {
+                counterObserver.observe(counter.parentElement.parentElement);
+            });
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && navLinksContainer.classList.contains('active')) {
+                burger.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

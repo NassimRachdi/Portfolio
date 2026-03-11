@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets scolaires - Nassim Rachdi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        #particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2a3a 50%, #0f1419 100%);
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        canvas#cyber-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        main {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-section {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .content h3 {
+            color: #00d9ff;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+            position: relative;
+            display: inline-block;
+            animation: glitch-in 0.6s ease-out;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        @keyframes glitch-in {
+            0% {
+                opacity: 0;
+                text-shadow: 
+                    -3px 0 #ff0080,
+                    3px 0 #00ffff;
+            }
+            50% {
+                text-shadow: 
+                    -3px 0 #ff0080,
+                    3px 0 #00ffff;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+            }
+        }
+        
+        .content p, .content ul {
+            animation: slideInContent 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes slideInContent {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .container {
+            border-left: 3px solid #00d9ff;
+            border-top: 1px solid rgba(0, 217, 255, 0.3);
+            padding-top: 30px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 30px;
+            background: linear-gradient(180deg, #00d9ff 0%, transparent 100%);
+            animation: scanLine 2s infinite;
+        }
+        
+        @keyframes scanLine {
+            0%, 100% { height: 30px; }
+            50% { height: 60px; }
+        }
+        
+        .page-section h2 {
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #00d9ff, #ff0080, #00d9ff);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+            margin-bottom: 30px;
+            text-shadow: none;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .content ul li {
+            position: relative;
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        .content ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #00d9ff;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        a {
+            color: #00d9ff;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d9ff, #ff0080);
+            transition: width 0.3s;
+        }
+        
+        a:hover {
+            color: #ff0080;
+        }
+        
+        a:hover::after {
+            width: 100%;
+        }
+
+        /* PDF & Schema display */
+        .project-item {
+            background: rgba(0, 30, 50, 0.6);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            animation: slideInContent 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .project-item:nth-of-type(1) { animation-delay: 0.2s; }
+        .project-item:nth-of-type(2) { animation-delay: 0.4s; }
+        .project-item:nth-of-type(3) { animation-delay: 0.6s; }
+
+        .project-item h4 {
+            color: #ff0080;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-shadow: 0 0 8px rgba(255, 0, 128, 0.4);
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #00d9ff;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+            background: rgba(0, 10, 20, 0.8);
+        }
+
+        .pdf-container embed,
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .schema-container {
+            background: rgba(0, 10, 20, 0.8);
+            border: 2px solid #00d9ff;
+            border-radius: 4px;
+            padding: 30px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .schema-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .pdf-info {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .pdf-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d9ff, #0099cc);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .pdf-button:hover {
+            background: linear-gradient(135deg, #00ffff, #00d9ff);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
+            color: #000;
+        }
+
+        .placeholder-text {
+            color: #999;
+            text-align: center;
+            font-style: italic;
+            padding: 40px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-bg"></div>
+    <canvas id="cyber-canvas"></canvas>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Mon Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html#accueil">Accueil</a></li>
+                <li><a href="index.html#apropos">À propos de moi</a></li>
+                <li><a href="index.html#entreprise">Entreprise</a></li>
+                <li><a href="index.html#projets">Mes Projets</a></li>
+                <li><a href="index.html#veilles">Veilles</a></li>
+                <li><a href="index.html#tcs">TCS</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <div class="container">
+                <h2>Projets scolaires</h2>
+                <div class="content">
+                    <p>Découvrez ci-dessous les procédures PDF associées à mes projets scolaires, ainsi qu'un schéma explicatif E6.</p>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-bottom: 2rem;">
+                        <div class="pdf-viewer">
+                            <h4>Procédure 1</h4>
+                            <embed src="pdf/procedure1.pdf" type="application/pdf">
+                            <a href="pdf/procedure1.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
+                        </div>
+                        <div class="pdf-viewer">
+                            <h4>Procédure 2</h4>
+                            <embed src="pdf/procedure2.pdf" type="application/pdf">
+                            <a href="pdf/procedure2.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
+                        </div>
+                        <div class="pdf-viewer">
+                            <h4>Procédure 3</h4>
+                            <embed src="pdf/procedure3.pdf" type="application/pdf">
+                            <a href="pdf/procedure3.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
+                        </div>
+                        <div class="pdf-viewer">
+                            <h4>Procédure 4</h4>
+                            <embed src="pdf/procedure4.pdf" type="application/pdf">
+                            <a href="pdf/procedure4.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
+                        </div>
+                        <div class="pdf-viewer">
+                            <h4>Procédure 5</h4>
+                            <embed src="pdf/procedure5.pdf" type="application/pdf">
+                            <a href="pdf/procedure5.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
+                        </div>
+                        <div class="pdf-viewer">
+                            <h4>Procédure 6</h4>
+                            <embed src="pdf/procedure6.pdf" type="application/pdf">
+                            <a href="pdf/procedure6.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
+                        </div>
+                        <div class="pdf-viewer">
+                            <h4>Procédure 7</h4>
+                            <embed src="pdf/procedure7.pdf" type="application/pdf">
+                            <a href="pdf/procedure7.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
+                        </div>
+                    </div>
+
+                    <div class="schema-block">
+                        <h3>Schéma explicatif E6</h3>
+                        <embed src="schema/schema_e6.pdf" type="application/pdf">
+                        <a href="schema/schema_e6.pdf" target="_blank" class="pdf-button">Ouvrir le schéma en grand</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Mon Portfolio</p>
+    </footer>
+
+    <script>
+        // Particle network animation
+        const canvas = document.getElementById('cyber-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        const particleCount = 50;
+        const connectionDistance = 150;
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+                this.size = Math.random() * 2 + 1;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                
+                this.x = Math.max(0, Math.min(canvas.width, this.x));
+                this.y = Math.max(0, Math.min(canvas.height, this.y));
+            }
+            
+            draw() {
+                ctx.fillStyle = `rgba(0, 217, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.shadowColor = 'rgba(0, 217, 255, 0.5)';
+                ctx.shadowBlur = 10;
+            }
+        }
+        
+        function initParticles() {
+            particles.length = 0;
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function drawConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < connectionDistance) {
+                        const opacity = (1 - distance / connectionDistance) * 0.3;
+                        ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.shadowColor = 'transparent';
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            drawConnections();
+            requestAnimationFrame(animate);
+        }
+        
+        initParticles();
+        animate();
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Highlight current menu item
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            if (link.href === window.location.origin + window.location.pathname ||
+                link.href === window.location.origin + window.location.pathname + window.location.hash) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

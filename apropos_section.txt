@@ -1,0 +1,82 @@
+        <section id="apropos" class="about-section">
+            <div class="about-container">
+                <!-- floating icons -->
+                <img src="https://img.icons8.com/ios-filled/50/ff8c00/console.png" class="icon-float" />
+                <img src="https://img.icons8.com/ios-filled/50/ff8c00/code.png" class="icon-float" />
+                <img src="https://img.icons8.com/ios-filled/50/ff8c00/network.png" class="icon-float" />
+                <h2>À propos de moi</h2>
+                <div style="display:flex;flex-wrap:wrap;gap:32px;justify-content:center;align-items:stretch;margin-top:32px;">
+                    <!-- CASE 1 : CV/Formation -->
+                    <div style="background:#232b3b;border:2px solid #1E90FF;color:white;border-radius:14px;box-shadow:0 2px 16px #1E90FF22;padding:28px 22px;min-width:270px;max-width:350px;flex:1 1 300px;" class="cyber-card-blue">
+                        <h3 style="color:#1E90FF;margin-top:0;">Mon CV</h3>
+                        <h4 style="color:#1E90FF;">Formation</h4>
+                        <div class="cv-item">
+                            <strong>2023-2026</strong>
+                            <p><strong>BTS SIO</strong> - IFC Marseille</p>
+                            <p>Actuellement en dernière année de BTS SIO option (SISR) en alternance chez SNCF TER PACA</p>
+                        </div>
+                        <div class="cv-item">
+                            <strong>2022-2023</strong>
+                            <p><strong>BTS Banque</strong> - St Charles à Athis-Mons</p>
+                            <p>J'y ai passé qu'une seule année, car je n'avais pas réussi à trouver de stage, cette situation ne m'était pas agréable, et de plus, cette formation ne me correspondait pas.</p>
+                        </div>
+                        <div class="cv-item">
+                            <strong>2021-2022</strong>
+                            <p><strong>Bac STI2D</strong> - Lycée Georges Brassens à Evry</p>
+                            <p>Année de terminale en STI2D option (SIN).</p>
+                        </div>
+                    </div>
+                    <!-- CASE 2 : BTS SIO et options (camembert) -->
+                    <div style="background:#232b3b;border:2px solid #00b894;color:white;border-radius:14px;box-shadow:0 2px 16px #00b89422;padding:28px 22px;min-width:270px;max-width:380px;flex:1 1 320px;display:flex;flex-direction:column;align-items:center;" class="cyber-card-green">
+                        <h3 style="color:#00b894;margin-top:0;">Le BTS SIO et ses options</h3>
+                        <p style="margin-bottom:18px;text-align:center;">Le <strong>BTS SIO</strong> (Services Informatiques aux Organisations) propose deux spécialités : <strong>SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux) et <strong>SLAM</strong> (Solutions Logicielles et Applications Métiers). Voici la répartition typique :</p>
+                        <div style="display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;">
+                            <svg width="180" height="180" viewBox="0 0 220 220">
+                                <circle r="100" cx="110" cy="110" fill="#eaf6fb" />
+                                <path d="M110,110 L110,10 A100,100 0 0,1 204.1,58.8 Z" fill="#1E90FF" /> <!-- SISR 40% -->
+                                <path d="M110,110 L204.1,58.8 A100,100 0 1,1 110,210 Z" fill="#00b894" /> <!-- SLAM 35% -->
+                                <path d="M110,110 L110,210 A100,100 0 0,1 110,10 Z" fill="#ff0080" /> <!-- Tronc commun 25% -->
+                            </svg>
+                            <ul style="list-style:none;padding:0;margin:0 0 0 12px;font-size:1.05em;">
+                                <li><span style="display:inline-block;width:16px;height:16px;background:#1E90FF;border-radius:3px;margin-right:8px;"></span> <b>SISR</b> (40%) : Réseaux, systèmes, cybersécurité</li>
+                                <li><span style="display:inline-block;width:16px;height:16px;background:#00b894;border-radius:3px;margin-right:8px;"></span> <b>SLAM</b> (35%) : Développement, applications</li>
+                                <li><span style="display:inline-block;width:16px;height:16px;background:#ff0080;border-radius:3px;margin-right:8px;"></span> <b>Tronc commun</b> (25%) : Culture générale, économie, anglais, maths</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- CASE 3 : Détail SISR/SLAM/Tronc commun -->
+                    <div style="background:#232b3b;border:2px solid #ff0080;color:white;border-radius:14px;box-shadow:0 2px 16px #ff008022;padding:28px 22px;min-width:270px;max-width:420px;flex:1 1 320px;" class="cyber-card-pink">
+                        <h3 style="color:#ff0080;margin-top:0;">Détail des options</h3>
+                        <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;">
+                            <div style="background:#1E90FF22;border:2px solid #1E90FF;border-radius:10px;padding:16px 12px;min-width:140px;max-width:160px;box-shadow:0 2px 8px #1E90FF22;">
+                                <h4 style="color:#1E90FF;margin-top:0;font-size:1em;">SISR</h4>
+                                <ul style="padding-left:16px;text-align:left;font-size:0.98em;margin:8px 0 0 0;">
+                                    <li>Administration réseaux et systèmes</li>
+                                    <li>Cybersécurité et virtualisation</li>
+                                    <li>Gestion de parc informatique</li>
+                                    <li>Support utilisateurs</li>
+                                </ul>
+                            </div>
+                            <div style="background:#00b89422;border:2px solid #00b894;border-radius:10px;padding:16px 12px;min-width:140px;max-width:160px;box-shadow:0 2px 8px #00b89422;">
+                                <h4 style="color:#00b894;margin-top:0;font-size:1em;">SLAM</h4>
+                                <ul style="padding-left:16px;text-align:left;font-size:0.98em;margin:8px 0 0 0;">
+                                    <li>Développement d'applications</li>
+                                    <li>Programmation web et mobile</li>
+                                    <li>Gestion de bases de données</li>
+                                    <li>Tests et documentation</li>
+                                </ul>
+                            </div>
+                            <div style="background:#ff008022;border:2px solid #ff0080;border-radius:10px;padding:16px 12px;min-width:140px;max-width:160px;box-shadow:0 2px 8px #ff008022;">
+                                <h4 style="color:#ff0080;margin-top:0;font-size:1em;">Tronc commun</h4>
+                                <ul style="padding-left:16px;text-align:left;font-size:0.98em;margin:8px 0 0 0;">
+                                    <li>Culture générale et expression</li>
+                                    <li>Anglais</li>
+                                    <li>Mathématiques</li>
+                                    <li>Économie, droit, management</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
