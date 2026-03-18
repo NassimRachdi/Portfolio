@@ -62,6 +62,41 @@ main {
     z-index: 1;
 }
 
+/* ===== TYPOGRAPHY OPTIMIZATION ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+h1 { font-size: clamp(2em, 5vw, 3.5em); line-height: 1.2; }
+h2 { font-size: clamp(1.8em, 4vw, 2.8em); line-height: 1.3; margin: 60px 0 32px 0; color: #1a1f2e; }
+h3 { font-size: clamp(1.2em, 3vw, 1.8em); line-height: 1.4; }
+
+p {
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    line-height: 1.8;
+    letter-spacing: 0.2px;
+    color: #6b7280;
+}
+
+strong {
+    font-weight: 700;
+    color: #1a1f2e;
+}
+
+code {
+    font-family: 'Roboto Mono', monospace;
+    background: rgba(0, 240, 255, 0.08);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    font-size: 0.9em;
+    color: #00F0FF;
+    letter-spacing: 0.3px;
+}
+
 /* ===== 5 BOOSTEURS D'IMMERSION ===== */
 
 /* 1. READING PROGRESS BAR */
@@ -102,13 +137,26 @@ main {
     background: #00FF41;
     border-radius: 50%;
     display: inline-block;
-    animation: pulse-green 2s ease-in-out infinite;
-    box-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+    animation: pulse-neon 1.5s ease-in-out infinite, glow-pulse 1.5s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.8);
 }
 
-@keyframes pulse-green {
-    0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(0, 255, 65, 0.6); }
-    50% { opacity: 0.5; box-shadow: 0 0 4px rgba(0, 255, 65, 0.3); }
+@keyframes pulse-neon {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(0, 255, 65, 0.8), 0 0 24px rgba(0, 255, 65, 0.4);
+    }
+    50% { 
+        opacity: 0.7;
+        transform: scale(1.15);
+        box-shadow: 0 0 20px rgba(0, 255, 65, 1), 0 0 40px rgba(0, 255, 65, 0.6);
+    }
+}
+
+@keyframes glow-pulse {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
 }
 
 .status-text {
@@ -140,11 +188,16 @@ main {
 }
 
 .theme-toggle .theme-icon {
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: inline-block;
 }
 
 .theme-toggle:hover .theme-icon {
-    transform: rotate(20deg);
+    transform: rotate(-20deg) scale(1.2);
+}
+
+.theme-toggle:active .theme-icon {
+    transform: rotate(-20deg) scale(0.95);
 }
 
 /* Dark Mode Override (optionnel - structure prête) */
@@ -158,7 +211,83 @@ body.dark-mode .status-indicator {
     border-color: #3f4651;
 }
 
-/* ===== GLOW EFFECTS FOR CARDS & SECTIONS ===== */
+/* ===== BENTO GRID ANIMATIONS ===== */
+@keyframes slideInLeft {
+    from { 
+        opacity: 0; 
+        transform: translateX(-40px) scale(0.9);
+        filter: blur(8px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes slideInRight {
+    from { 
+        opacity: 0; 
+        transform: translateX(40px) scale(0.9);
+        filter: blur(8px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes popIn {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.8);
+        filter: blur(10px);
+    }
+    70% { 
+        transform: scale(1.05);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+.cyber-gallery .doc-card {
+    animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+.cyber-gallery .doc-card:nth-child(1) { animation-delay: 0.1s; }
+.cyber-gallery .doc-card:nth-child(2) { animation-delay: 0.2s; }
+.cyber-gallery .doc-card:nth-child(3) { animation-delay: 0.3s; }
+.cyber-gallery .doc-card:nth-child(4) { animation-delay: 0.4s; }
+.cyber-gallery .doc-card:nth-child(5) { animation-delay: 0.5s; }
+.cyber-gallery .doc-card:nth-child(6) { animation-delay: 0.6s; }
+.cyber-gallery .doc-card:nth-child(7) { animation-delay: 0.7s; }
+.cyber-gallery .doc-card:nth-child(8) { animation-delay: 0.8s; }
+
+/* Blueprint Background Effect */
+.cyber-gallery .doc-thumbnail {
+    background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 50%, rgba(0, 240, 255, 0.02) 100%);
+    position: relative;
+}
+
+.cyber-gallery .doc-thumbnail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(0, 240, 255, 0.05) 25%, rgba(0, 240, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 240, 255, 0.05) 75%, rgba(0, 240, 255, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(0, 240, 255, 0.05) 25%, rgba(0, 240, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 240, 255, 0.05) 75%, rgba(0, 240, 255, 0.05) 76%, transparent 77%, transparent);
+    background-size: 60px 60px;
+    opacity: 0.3;
+    z-index: 0;
+    border-radius: 0 0 0 0;
+}
 .glow-card {
     border: 0.5px solid #e8ebf0;
     transition: all 0.3s ease;
