@@ -85,260 +85,139 @@
         </section>
                 <section id="apropos" class="about-section">
             <style>
-                #apropos { position: relative; overflow: hidden; }
-                #apropos::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.03'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23BD00FF'/%3E%3Cline x1='0' y1='50' x2='100' y2='50' stroke='%2300F0FF' stroke-width='0.5'/%3E%3Cline x1='50' y1='0' x2='50' y2='100' stroke='%2300F0FF' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E"); z-index: 0; opacity: 0.03; pointer-events: none; }
-                .about-container { position: relative; z-index: 1; padding: 80px 24px; max-width: 1400px; margin: 0 auto; }
-                .about-title { font-family: 'Roboto Mono', monospace; font-size: 2.5em; font-weight: 700; text-align: center; margin-bottom: 60px; color: #1a1f2e; position: relative; display: inline-block; width: 100%; }
-                .typing-effect { display: inline-block; }
-                .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; margin-bottom: 60px; }
-                .bento-card { background: rgba(255, 255, 255, 0.85); border: 1px solid #e8ebf0; border-radius: 16px; padding: 32px 28px; backdrop-filter: blur(10px); position: relative; overflow: hidden; transition: all 0.3s ease; }
-                .bento-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--card-accent), transparent); opacity: 0.6; }
-                .bento-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px var(--card-glow); border-color: var(--card-accent); }
-                .bento-card.cyan { --card-accent: #00F0FF; --card-glow: rgba(0, 240, 255, 0.2); }
-                .bento-card.violet { --card-accent: #BD00FF; --card-glow: rgba(189, 0, 255, 0.2); }
-                .bento-card.green { --card-accent: #00FF41; --card-glow: rgba(0, 255, 65, 0.2); }
-                .bento-card h3 { font-family: 'Roboto Mono', monospace; font-size: 1.3em; font-weight: 700; margin: 0 0 16px 0; background: linear-gradient(135deg, var(--card-accent) 0%, #00d98e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-                .bento-card p { color: #6b7280; font-family: 'Inter', sans-serif; line-height: 1.7; margin: 0 0 12px 0; font-size: 0.95em; }
-                .bento-card p:last-child { margin-bottom: 0; }
-                .skill-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-                .skill-badge { background: rgba(255, 255, 255, 0.6); border: 1px solid var(--card-accent); color: var(--card-accent); padding: 6px 12px; border-radius: 16px; font-size: 0.85em; font-weight: 600; font-family: 'Roboto Mono', monospace; transition: all 0.3s; }
-                .skill-badge:hover { background: var(--card-accent); color: white; box-shadow: 0 0 12px var(--card-accent); transform: scale(1.05); }
-                .passions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-top: 16px; }
-                .passion-item { background: rgba(255, 255, 255, 0.6); border: 1px solid var(--card-accent); border-radius: 10px; padding: 12px 8px; text-align: center; font-size: 0.9em; font-weight: 600; color: #1a1f2e; transition: all 0.3s; cursor: pointer; }
-                .passion-item:hover { background: rgba(0, 240, 255, 0.15); box-shadow: 0 0 12px var(--card-accent); }
-                .passion-icon { font-size: 1.5em; margin-bottom: 4px; }
-                .charts-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 60px; align-items: center; }
-                .chart-card { background: rgba(255, 255, 255, 0.85); border: 1px solid #e8ebf0; border-radius: 16px; padding: 32px; backdrop-filter: blur(10px); position: relative; overflow: hidden; }
-                .chart-card h3 { font-family: 'Roboto Mono', monospace; font-size: 1.2em; font-weight: 700; color: #1a1f2e; margin: 0 0 24px 0; }
-                .chart-canvas-container { position: relative; height: 320px; }
-                @media (max-width: 768px) { .bento-grid { grid-template-columns: 1fr; } .about-title { font-size: 1.8em; } .charts-section { grid-template-columns: 1fr; } }
+                #apropos { background: #ffffff; position: relative; }
+                #apropos::before { display: none; }
+                .about-container { max-width: 1000px; margin: 0 auto; padding: 80px 40px; }
+                .about-title { font-family: 'Roboto Mono', monospace; font-size: 2.2em; font-weight: 700; color: #1a1f2e; margin: 0 0 60px 0; border-bottom: 1px solid #d0d5db; padding-bottom: 20px; }
+                
+                .about-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+                .about-block { background: #ffffff; border: 1px solid #d0d5db; padding: 32px; }
+                .about-block h3 { font-family: 'Roboto Mono', monospace; font-size: 1.2em; font-weight: 700; color: #1a1f2e; margin: 0 0 16px 0; letter-spacing: 0.5px; }
+                .about-block p { font-family: 'Inter', sans-serif; font-size: 0.95em; line-height: 1.8; color: #6b7280; margin: 0 0 12px 0; }
+                .about-block p:last-child { margin-bottom: 0; }
+                .about-block strong { color: #1a1f2e; font-weight: 600; }
+                
+                .skill-bars { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+                .skill-bar { display: flex; align-items: center; gap: 12px; }
+                .skill-bar-label { font-family: 'Roboto Mono', monospace; font-size: 0.85em; font-weight: 600; color: #1a1f2e; min-width: 100px; }
+                .skill-bar-track { flex: 1; height: 4px; background: #e8ebf0; border: 1px solid #d0d5db; }
+                .skill-bar-fill { height: 100%; background: #808080; }
+                .skill-bar-value { font-family: 'Roboto Mono', monospace; font-size: 0.75em; font-weight: 700; color: #6b7280; min-width: 30px; text-align: right; }
+                
+                .spec-badges { display: flex; gap: 12px; margin-top: 16px; }
+                .spec-badge { font-family: 'Roboto Mono', monospace; font-size: 0.75em; font-weight: 600; color: #1a1f2e; background: #f0f3f9; border: 1px solid #d0d5db; padding: 6px 12px; }
+                
+                .about-flex { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 60px; }
+                .stat-card { background: #ffffff; border: 1px solid #d0d5db; padding: 24px; text-align: center; }
+                .stat-number { font-family: 'Roboto Mono', monospace; font-size: 1.8em; font-weight: 700; color: #1a1f2e; margin-bottom: 8px; }
+                .stat-label { font-family: 'Inter', sans-serif; font-size: 0.9em; font-weight: 600; color: #6b7280; }
+                
+                @media (max-width: 768px) { 
+                    .about-blocks { grid-template-columns: 1fr; }
+                    .about-flex { grid-template-columns: 1fr; }
+                    .about-title { font-size: 1.6em; }
+                }
             </style>
             <div class="about-container">
-                <h2 class="about-title"><span class="typing-effect">Profil Professionnel</span></h2>
+                <h2 class="about-title">À Propos de Moi</h2>
 
-                <!-- BENTO GRID CARDS -->
-                <div class="bento-grid">
-                    <!-- CARD 1: MON PROFIL -->
-                    <div class="bento-card cyan glow-card">
+                <!-- SECTION 1: PROFIL + COMPÉTENCES -->
+                <div class="about-blocks">
+                    <!-- BLOC 1: MON PROFIL -->
+                    <div class="about-block">
                         <h3>💼 Mon Profil</h3>
-                        <p>En dernière année de BTS SIO (option SISR) en alternance chez SNCF TER PACA. Spécialisé dans l'administration système, les réseaux Cisco et la cybersécurité.</p>
-                        <p style="margin-top: 12px; font-size: 0.9em; color: #1a1f2e; font-weight: 600;"><strong>📍 Localisation :</strong> Marseille, France</p>
-                        <p style="font-size: 0.9em; color: #1a1f2e; font-weight: 600;"><strong>🎯 Objectif :</strong> Ingénieur d'infrastructure IT ou consultant cybersécurité</p>
+                        <p>Étudiant en dernière année de <strong>BTS SIO option SISR</strong> en alternance chez <strong>SNCF TER</strong>, région Provence-Alpes-Côte d'Azur.</p>
+                        <p>Spécialisé dans l'<strong>administration système</strong>, les <strong>réseaux Cisco</strong> et la <strong>cybersécurité</strong>.</p>
+                        <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #d0d5db;"><strong>📍 Localisation:</strong><br>Marseille, France</p>
+                        <p><strong>🎯 Objectif:</strong><br>Ingénieur Infrastructure IT ou Consultant Cybersécurité</p>
                     </div>
 
-                    <!-- CARD 2: SOFT-SKILLS -->
-                    <div class="bento-card violet glow-card violet">
+                    <!-- BLOC 2: COMPÉTENCES TECHNIQUES -->
+                    <div class="about-block">
+                        <h3>⚙️ Compétences Techniques</h3>
+                        <div class="skill-bars">
+                            <div class="skill-bar">
+                                <div class="skill-bar-label">Admin Sys</div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+                                <div class="skill-bar-value">85%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-label">Cisco</div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+                                <div class="skill-bar-value">80%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-label">Cybersec</div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 75%;"></div></div>
+                                <div class="skill-bar-value">75%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-label">Scripting</div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 70%;"></div></div>
+                                <div class="skill-bar-value">70%</div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-label">Gestion Proj</div>
+                                <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 65%;"></div></div>
+                                <div class="skill-bar-value">65%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: SOFT-SKILLS + FORMATION -->
+                <div class="about-blocks">
+                    <!-- BLOC 3: SOFT-SKILLS -->
+                    <div class="about-block">
                         <h3>⚡ Soft-Skills</h3>
-                        <div class="skill-badges">
-                            <span class="skill-badge">Rigueur</span>
-                            <span class="skill-badge">Autonomie</span>
-                            <span class="skill-badge">Communication</span>
-                            <span class="skill-badge">Leadership</span>
-                            <span class="skill-badge">Adaptabilité</span>
-                            <span class="skill-badge">Créativité</span>
-                            <span class="skill-badge">Curiosité</span>
-                            <span class="skill-badge">Implication</span>
+                        <div class="spec-badges">
+                            <span class="spec-badge">Rigueur</span>
+                            <span class="spec-badge">Autonomie</span>
+                        </div>
+                        <div class="spec-badges">
+                            <span class="spec-badge">Communication</span>
+                            <span class="spec-badge">Leadership</span>
+                        </div>
+                        <div class="spec-badges">
+                            <span class="spec-badge">Adaptabilité</span>
+                            <span class="spec-badge">Créativité</span>
+                        </div>
+                        <div class="spec-badges">
+                            <span class="spec-badge">Curiosité</span>
+                            <span class="spec-badge">Implication</span>
                         </div>
                     </div>
 
-                    <!-- CARD 3: PASSIONS & INTÉRÊTS -->
-                    <div class="bento-card green glow-card green">
-                        <h3>🎮 Passions & Intérêts</h3>
-                        <div class="passions-grid">
-                            <div class="passion-item"><div class="passion-icon">🔐</div>Cybersécurité</div>
-                            <div class="passion-item"><div class="passion-icon">🚀</div>IA & ML</div>
-                            <div class="passion-item"><div class="passion-icon">⚙️</div>DevOps</div>
-                            <div class="passion-item"><div class="passion-icon">🎮</div>Gaming</div>
-                            <div class="passion-item"><div class="passion-icon">📡</div>Réseaux</div>
-                            <div class="passion-item"><div class="passion-icon">💻</div>Linux</div>
+                    <!-- BLOC 4: SPÉCIALISATION BTS -->
+                    <div class="about-block">
+                        <h3>🎓 Formation BTS SIO</h3>
+                        <div style="margin-top: 16px;">
+                            <p style="font-weight: 600; color: #1a1f2e; margin-bottom: 8px;">Option SISR (Ma spécialité)</p>
+                            <p><strong>Systèmes, Réseaux & Infrastructures</strong><br>Administration système, gestion réseau, virtualisation, cybersécurité appliquée.</p>
+                        </div>
+                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #d0d5db;">
+                            <p style="font-weight: 600; color: #6b7280; margin-bottom: 8px;">Option SLAM (Tronc commun)</p>
+                            <p style="color: #a0a8b0;">Développement logiciel, programmation orientée objet.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- DATA VISUALIZATION SECTION -->
-                <div class="charts-section">
-                    <!-- RADAR CHART -->
-                    <div class="chart-card">
-                        <h3>📊 Compétences Techniques</h3>
-                        <div class="chart-canvas-container">
-                            <canvas id="radarChart"></canvas>
-                        </div>
+                <!-- SECTION 3: STATS -->
+                <div class="about-flex">
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Projets Scolaires</div>
                     </div>
-
-                    <!-- DONUT CHART -->
-                    <div class="chart-card">
-                        <h3>🎓 Spécialisation BTS SIO</h3>
-                        <div class="chart-canvas-container">
-                            <canvas id="donutChart"></canvas>
-                        </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Projets Entreprise</div>
                     </div>
-                </div>
-                
-                <!-- MICRO-STATS ANIMÉES -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 60px; padding-top: 40px; border-top: 1px solid #e8ebf0;">
-                    <div style="text-align: center; padding: 20px; background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px;">
-                        <div style="font-family: 'Roboto Mono', monospace; font-size: 2.2em; font-weight: 700; color: #00F0FF; margin-bottom: 8px;">
-                            <span class="counter" data-target="8">0</span>
-                        </div>
-                        <div style="color: #6b7280; font-size: 0.95em; font-weight: 600;">Projets Validés</div>
-                    </div>
-                    
-                    <div style="text-align: center; padding: 20px; background: rgba(189, 0, 255, 0.05); border: 1px solid rgba(189, 0, 255, 0.2); border-radius: 12px;">
-                        <div style="font-family: 'Roboto Mono', monospace; font-size: 2.2em; font-weight: 700; color: #BD00FF; margin-bottom: 8px;">
-                            <span class="counter" data-target="2">0</span>
-                        </div>
-                        <div style="color: #6b7280; font-size: 0.95em; font-weight: 600;">Veilles Actives</div>
-                    </div>
-                    
-                    <div style="text-align: center; padding: 20px; background: rgba(0, 255, 65, 0.05); border: 1px solid rgba(0, 255, 65, 0.2); border-radius: 12px;">
-                        <div style="font-family: 'Roboto Mono', monospace; font-size: 2.2em; font-weight: 700; color: #00FF41; margin-bottom: 8px;">
-                            <span class="counter" data-target="100">0</span>%
-                        </div>
-                        <div style="color: #6b7280; font-size: 0.95em; font-weight: 600;">Option SISR</div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Investissement</div>
                     </div>
                 </div>
             </div>
-
-            <script>
-                // Typing effect animation
-                window.addEventListener('load', function() {
-                    const textSpan = document.querySelector('.typing-effect');
-                    const text = textSpan.textContent;
-                    textSpan.textContent = '';
-                    let charIndex = 0;
-                    const typingSpeed = 30;
-
-                    function typeChar() {
-                        if (charIndex < text.length) {
-                            textSpan.textContent += text.charAt(charIndex);
-                            charIndex++;
-                            setTimeout(typeChar, typingSpeed);
-                        }
-                    }
-                    typeChar();
-
-                    // Initialize Radar Chart
-                    const radarCtx = document.getElementById('radarChart').getContext('2d');
-                    new Chart(radarCtx, {
-                        type: 'radar',
-                        data: {
-                            labels: ['Administration\nSystème', 'Réseaux\nCisco', 'Cybersécurité', 'Scripting\n(VBA/Bash)', 'Gestion de\nProjet', 'Support\nUtilisateurs'],
-                            datasets: [{
-                                label: 'Compétences Techniques',
-                                data: [85, 80, 75, 70, 65, 80],
-                                borderColor: '#00F0FF',
-                                backgroundColor: 'rgba(0, 240, 255, 0.1)',
-                                borderWidth: 2.5,
-                                pointRadius: 5,
-                                pointBackgroundColor: '#00F0FF',
-                                pointBorderColor: '#fff',
-                                pointBorderWidth: 2,
-                                fill: true,
-                                tension: 0.3
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: { display: false },
-                                tooltip: {
-                                    backgroundColor: 'rgba(26, 31, 46, 0.95)',
-                                    padding: 12,
-                                    titleFont: { family: "'Roboto Mono', monospace", size: 12, weight: '600' },
-                                    bodyFont: { family: "'Inter', sans-serif", size: 11 },
-                                    borderColor: '#00F0FF',
-                                    borderWidth: 1
-                                }
-                            },
-                            scales: {
-                                r: {
-                                    min: 0,
-                                    max: 100,
-                                    ticks: {
-                                        color: '#6b7280',
-                                        font: { family: "'Roboto Mono', monospace", size: 10 },
-                                        stepSize: 20,
-                                        backdropColor: 'transparent'
-                                    },
-                                    grid: {
-                                        color: 'rgba(0, 240, 255, 0.1)'
-                                    },
-                                    pointLabels: {
-                                        color: '#1a1f2e',
-                                        font: { family: "'Roboto Mono', monospace", size: 11, weight: '600' }
-                                    }
-                                }
-                            }
-                        }
-                    });
-
-                    // Initialize Donut Chart
-                    const donutCtx = document.getElementById('donutChart').getContext('2d');
-                    new Chart(donutCtx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['SISR\n(Réseaux & Systèmes)', 'SLAM\n(Développement)', 'Tronc Commun\n(Culture générale)'],
-                            datasets: [{
-                                data: [40, 35, 25],
-                                backgroundColor: [
-                                    '#00F0FF',
-                                    '#6b7280',
-                                    '#BD00FF'
-                                ],
-                                borderColor: '#fff',
-                                borderWidth: 2,
-                                weight: [1.2, 1, 0.8]
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                    labels: {
-                                        font: { family: "'Inter', sans-serif", size: 12 },
-                                        color: '#1a1f2e',
-                                        padding: 16,
-                                        usePointStyle: true,
-                                        pointStyle: 'circle'
-                                    }
-                                },
-                                tooltip: {
-                                    backgroundColor: 'rgba(26, 31, 46, 0.95)',
-                                    padding: 12,
-                                    titleFont: { family: "'Roboto Mono', monospace", size: 12, weight: '600' },
-                                    bodyFont: { family: "'Inter', sans-serif", size: 11 },
-                                    callbacks: {
-                                        label: function(context) {
-                                            return context.label + ': ' + context.parsed + '%';
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        plugins: [{
-                            id: 'textCenter',
-                            beforeDatasetsDraw(chart) {
-                                const width = chart.width;
-                                const height = chart.height;
-                                const ctx = chart.ctx;
-                                ctx.restore();
-                                const fontSize = (height / 200).toFixed(2);
-                                ctx.font = `bold ${fontSize}em 'Roboto Mono', monospace`;
-                                ctx.textBaseline = 'middle';
-                                ctx.fillStyle = '#00F0FF';
-                                const text = 'SIO';
-                                const textX = Math.round((width - ctx.measureText(text).width) / 2);
-                                const textY = height / 2;
-                                ctx.fillText(text, textX, textY);
-                                ctx.save();
-                            }
-                        }]
-                    });
-                });
-            </script>
         </section><section id="entreprise" class="page-section">
             <div class="container">
                 <h2>L'entreprise</h2>
