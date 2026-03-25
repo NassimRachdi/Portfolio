@@ -275,6 +275,318 @@
             font-style: italic;
             padding: 40px 20px;
         }
+
+        /* ========== SCHOOL PROJECTS GRID & CARDS ========== */
+        .school-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+            animation: slideInContent 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .school-project-card {
+            background: rgba(0, 30, 50, 0.6);
+            border: 1.5px solid #00d9ff;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .school-project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 0, 128, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .school-project-card:hover {
+            border-color: #ff0080;
+            border-width: 2px;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3), inset 0 0 10px rgba(0, 217, 255, 0.1);
+        }
+
+        .school-project-card:hover::before {
+            opacity: 1;
+        }
+
+        .school-project-card:hover .school-project-visual {
+            transform: scale(1.08) rotate(-1deg);
+            filter: drop-shadow(0 10px 20px rgba(0, 217, 255, 0.4));
+        }
+
+        .school-project-visual {
+            width: 100%;
+            aspect-ratio: 1;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 4px;
+            background: rgba(0, 10, 20, 0.5);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .school-project-placeholder {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .school-project-card h4 {
+            color: #ff0080;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            text-shadow: 0 0 8px rgba(255, 0, 128, 0.4);
+            transition: color 0.3s ease;
+        }
+
+        .school-project-card:hover h4 {
+            color: #00d9ff;
+            text-shadow: 0 0 12px rgba(0, 217, 255, 0.6);
+        }
+
+        .school-project-card p {
+            color: #aaa;
+            font-size: 0.85em;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .school-project-card:hover p {
+            color: #00d9ff;
+        }
+
+        /* ========== SCHOOL LIGHTBOX MODAL ========== */
+        .school-lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .school-lightbox.active {
+            pointer-events: auto;
+        }
+
+        .school-lightbox-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .school-lightbox.active .school-lightbox-overlay {
+            opacity: 1;
+        }
+
+        .school-lightbox-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            max-width: 600px;
+            width: 90%;
+            background: rgba(10, 25, 50, 0.95);
+            border: 2px solid #00d9ff;
+            border-radius: 8px;
+            backdrop-filter: blur(20px);
+            padding: 0;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: auto;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 0 40px rgba(0, 217, 255, 0.4), inset 0 0 20px rgba(0, 217, 255, 0.1);
+        }
+
+        .school-lightbox.active .school-lightbox-content {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .school-lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 0, 128, 0.1);
+            border: 1.5px solid #ff0080;
+            color: #ff0080;
+            font-size: 28px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .school-lightbox-close:hover {
+            background: rgba(255, 0, 128, 0.2);
+            box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+        }
+
+        .school-lightbox-header {
+            padding: 25px 25px 15px;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .school-lightbox-header h2 {
+            color: #00d9ff;
+            font-size: 1.6em;
+            margin: 0 0 10px 0;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.4);
+        }
+
+        .school-lightbox-description {
+            color: #aaa;
+            font-size: 0.95em;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .school-lightbox-body {
+            padding: 20px 25px;
+            text-align: center;
+        }
+
+        .school-lightbox-image-container {
+            width: 100%;
+            max-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 10, 20, 0.6);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .school-lightbox-image-container svg {
+            max-width: 100%;
+            max-height: 100%;
+            width: 280px;
+            height: 280px;
+        }
+
+        .school-lightbox-footer {
+            padding: 15px 25px 25px;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .school-pdf-button {
+            padding: 12px 24px;
+            font-size: 0.95em;
+            background: linear-gradient(135deg, #00d9ff 0%, #0099cc 100%);
+            border: none;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+        .school-pdf-button:hover {
+            background: linear-gradient(135deg, #00ffff, #00d9ff);
+            box-shadow: 0 8px 20px rgba(0, 217, 255, 0.6);
+            color: #000;
+        }
+
+        /* Scrollbar styling for lightbox */
+        .school-lightbox-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .school-lightbox-content::-webkit-scrollbar-track {
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .school-lightbox-content::-webkit-scrollbar-thumb {
+            background: rgba(0, 217, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .school-lightbox-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 217, 255, 0.5);
+        }
+
+        /* Responsive Grid */
+        @media (max-width: 768px) {
+            .school-projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 15px;
+            }
+
+            .school-lightbox-content {
+                max-width: 95%;
+                width: 95%;
+            }
+
+            .school-lightbox-image-container svg {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .school-projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 12px;
+            }
+
+            .school-project-card {
+                padding: 15px;
+            }
+
+            .school-lightbox-header {
+                padding: 15px 15px 10px;
+            }
+
+            .school-lightbox-header h2 {
+                font-size: 1.3em;
+            }
+
+            .school-lightbox-body {
+                padding: 15px;
+            }
+
+            .school-lightbox-footer {
+                padding: 10px 15px 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -296,55 +608,189 @@
         </nav>
     </header>
 
+    <!-- LIGHTBOX MODAL -->
+    <div id="schoolLightbox" class="school-lightbox">
+        <div class="school-lightbox-overlay" id="schoolLightboxOverlay"></div>
+        <div class="school-lightbox-content">
+            <button class="school-lightbox-close" id="schoolLightboxClose">&times;</button>
+            <div class="school-lightbox-header">
+                <h2 id="schoolLightboxTitle">Titre de la procédure</h2>
+                <p id="schoolLightboxDescription" class="school-lightbox-description">Description technique</p>
+            </div>
+            <div class="school-lightbox-body">
+                <div id="schoolLightboxImageContainer" class="school-lightbox-image-container">
+                    <!-- SVG Placeholder sera ajouté ici -->
+                </div>
+            </div>
+            <div class="school-lightbox-footer">
+                <a id="schoolLightboxPdfButton" href="#" target="_blank" class="pdf-button school-pdf-button">Ouvrir la Procédure Complète (PDF)</a>
+            </div>
+        </div>
+    </div>
+
     <main>
         <section class="page-section">
             <div class="container">
                 <h2>Projets scolaires</h2>
                 <div class="content">
-                    <p>Découvrez ci-dessous les procédures PDF associées à mes projets scolaires, ainsi qu'un schéma explicatif E6.</p>
+                    <p>Découvrez ci-dessous les 8 procédures techniques de mes projets scolaires. Cliquez sur une image pour ouvrir la visionneuse interactive.</p>
 
-                    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-bottom: 2rem;">
-                        <div class="pdf-viewer">
-                            <h4>Procédure 1</h4>
-                            <embed src="pdf/procedure1.pdf" type="application/pdf">
-                            <a href="pdf/procedure1.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
+                    <!-- TECHNICAL PROCEDURES GRID -->
+                    <div class="school-projects-grid">
+                        <!-- GLPI -->
+                        <div class="school-project-card" data-procedure="glpi" data-title="GLPI - Gestion des actifs IT" data-description="Gestion des inventaires informatiques, des tickets d'assistance et des contrats de maintenance." data-pdf="pdf/glpi.pdf" data-color="#2D9C5E">
+                            <div class="school-project-visual">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="school-project-placeholder">
+                                    <defs>
+                                        <linearGradient id="glpi-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#2D9C5E;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#1a5a36;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="url(#glpi-grad)" />
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="none" stroke="#00F0FF" stroke-width="2" />
+                                    <text x="100" y="120" font-size="48" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">GLPI</text>
+                                </svg>
+                            </div>
+                            <h4>GLPI</h4>
+                            <p>Inventaire & Support</p>
                         </div>
-                        <div class="pdf-viewer">
-                            <h4>Procédure 2</h4>
-                            <embed src="pdf/procedure2.pdf" type="application/pdf">
-                            <a href="pdf/procedure2.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
-                        </div>
-                        <div class="pdf-viewer">
-                            <h4>Procédure 3</h4>
-                            <embed src="pdf/procedure3.pdf" type="application/pdf">
-                            <a href="pdf/procedure3.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
-                        </div>
-                        <div class="pdf-viewer">
-                            <h4>Procédure 4</h4>
-                            <embed src="pdf/procedure4.pdf" type="application/pdf">
-                            <a href="pdf/procedure4.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
-                        </div>
-                        <div class="pdf-viewer">
-                            <h4>Procédure 5</h4>
-                            <embed src="pdf/procedure5.pdf" type="application/pdf">
-                            <a href="pdf/procedure5.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
-                        </div>
-                        <div class="pdf-viewer">
-                            <h4>Procédure 6</h4>
-                            <embed src="pdf/procedure6.pdf" type="application/pdf">
-                            <a href="pdf/procedure6.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
-                        </div>
-                        <div class="pdf-viewer">
-                            <h4>Procédure 7</h4>
-                            <embed src="pdf/procedure7.pdf" type="application/pdf">
-                            <a href="pdf/procedure7.pdf" target="_blank" class="pdf-button">Ouvrir dans un nouvel onglet</a>
-                        </div>
-                    </div>
 
-                    <div class="schema-block">
-                        <h3>Schéma explicatif E6</h3>
-                        <embed src="schema/schema_e6.pdf" type="application/pdf">
-                        <a href="schema/schema_e6.pdf" target="_blank" class="pdf-button">Ouvrir le schéma en grand</a>
+                        <!-- PfSense -->
+                        <div class="school-project-card" data-procedure="pfsense" data-title="PfSense - Pare-feu et routeur" data-description="Configuration d'un pare-feu haute performance avec règles de filtrage réseau et gestion VPN." data-pdf="pdf/pfsense.pdf" data-color="#E30613">
+                            <div class="school-project-visual">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="school-project-placeholder">
+                                    <defs>
+                                        <linearGradient id="pfsense-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#E30613;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#8a0309;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="url(#pfsense-grad)" />
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="none" stroke="#00F0FF" stroke-width="2" />
+                                    <text x="100" y="120" font-size="42" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">PfSense</text>
+                                </svg>
+                            </div>
+                            <h4>PfSense</h4>
+                            <p>Pare-feu & Routeur</p>
+                        </div>
+
+                        <!-- Proxmox -->
+                        <div class="school-project-card" data-procedure="proxmox" data-title="Proxmox VE - Virtualisation" data-description="Plateforme de virtualisation open-source pour machines virtuelles et conteneurs LXC." data-pdf="pdf/proxmox.pdf" data-color="#E47911">
+                            <div class="school-project-visual">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="school-project-placeholder">
+                                    <defs>
+                                        <linearGradient id="proxmox-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#E47911;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#8a440a;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="url(#proxmox-grad)" />
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="none" stroke="#00F0FF" stroke-width="2" />
+                                    <text x="100" y="120" font-size="36" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">Proxmox</text>
+                                </svg>
+                            </div>
+                            <h4>Proxmox</h4>
+                            <p>Virtualisation</p>
+                        </div>
+
+                        <!-- Active Directory -->
+                        <div class="school-project-card" data-procedure="ad" data-title="Active Directory - Gestion identités" data-description="Configuration de l'annuaire centralisé pour authentication, autorisation et gestion des utilisateurs." data-pdf="pdf/active-directory.pdf" data-color="#0078D4">
+                            <div class="school-project-visual">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="school-project-placeholder">
+                                    <defs>
+                                        <linearGradient id="ad-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#0078D4;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#003d7a;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="url(#ad-grad)" />
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="none" stroke="#00F0FF" stroke-width="2" />
+                                    <text x="100" y="115" font-size="32" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">Active</text>
+                                    <text x="100" y="145" font-size="32" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">Directory</text>
+                                </svg>
+                            </div>
+                            <h4>Active Directory</h4>
+                            <p>Identités & Annuaire</p>
+                        </div>
+
+                        <!-- Exchange -->
+                        <div class="school-project-card" data-procedure="exchange" data-title="Exchange Server - Messagerie" data-description="Serveur de messagerie collaborative avec gestion des calendriers, contacts et salles de réunion." data-pdf="pdf/exchange.pdf" data-color="#7B2591">
+                            <div class="school-project-visual">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="school-project-placeholder">
+                                    <defs>
+                                        <linearGradient id="exchange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#7B2591;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#47164a;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="url(#exchange-grad)" />
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="none" stroke="#00F0FF" stroke-width="2" />
+                                    <text x="100" y="120" font-size="42" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">Exchange</text>
+                                </svg>
+                            </div>
+                            <h4>Exchange</h4>
+                            <p>Messagerie d'Entreprise</p>
+                        </div>
+
+                        <!-- Zyxel -->
+                        <div class="school-project-card" data-procedure="zyxel" data-title="Zyxel - Équipement réseau" data-description="Commutateurs et pare-feu Zyxel pour la segmentation du réseau et la gestion du trafic." data-pdf="pdf/zyxel.pdf" data-color="#0033CC">
+                            <div class="school-project-visual">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="school-project-placeholder">
+                                    <defs>
+                                        <linearGradient id="zyxel-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#0033CC;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#001966;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="url(#zyxel-grad)" />
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="none" stroke="#00F0FF" stroke-width="2" />
+                                    <text x="100" y="120" font-size="48" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">Zyxel</text>
+                                </svg>
+                            </div>
+                            <h4>Zyxel</h4>
+                            <p>Équipements Réseau</p>
+                        </div>
+
+                        <!-- D-Link WiFi -->
+                        <div class="school-project-card" data-procedure="dlink" data-title="D-Link WiFi - Accès sans fil" data-description="Configuration des points d'accès D-Link pour fournir une couverture WiFi sécurisée et performante." data-pdf="pdf/dlink-wifi.pdf" data-color="#0066CC">
+                            <div class="school-project-visual">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="school-project-placeholder">
+                                    <defs>
+                                        <linearGradient id="dlink-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#0066CC;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#003366;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="url(#dlink-grad)" />
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="none" stroke="#00F0FF" stroke-width="2" />
+                                    <text x="100" y="115" font-size="32" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">D-Link</text>
+                                    <text x="100" y="145" font-size="32" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">WiFi</text>
+                                </svg>
+                            </div>
+                            <h4>D-Link WiFi</h4>
+                            <p>Accès Sans Fil</p>
+                        </div>
+
+                        <!-- Schéma E63 -->
+                        <div class="school-project-card" data-procedure="schema" data-title="Schéma E63 - Architecture réseau" data-description="Représentation complète de l'infrastructure réseau BTS, incluant tous les équipements et interconnexions." data-pdf="schema/schema_e6.pdf" data-color="#00A4EF">
+                            <div class="school-project-visual">
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="school-project-placeholder">
+                                    <defs>
+                                        <linearGradient id="schema-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#00A4EF;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#005077;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="url(#schema-grad)" />
+                                    <polygon points="20,20 180,20 180,180 20,180" fill="none" stroke="#00F0FF" stroke-width="2" />
+                                    <text x="100" y="115" font-size="36" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">Schéma</text>
+                                    <text x="100" y="145" font-size="32" font-weight="bold" fill="#fff" text-anchor="middle" dominant-baseline="middle">E63</text>
+                                </svg>
+                            </div>
+                            <h4>Schéma E63</h4>
+                            <p>Architecture Réseau</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -446,7 +892,78 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
-        
+
+        // ========== SCHOOL LIGHTBOX SYSTEM ==========
+        const lightbox = document.getElementById('schoolLightbox');
+        const lightboxOverlay = document.getElementById('schoolLightboxOverlay');
+        const lightboxClose = document.getElementById('schoolLightboxClose');
+        const lightboxTitle = document.getElementById('schoolLightboxTitle');
+        const lightboxDescription = document.getElementById('schoolLightboxDescription');
+        const lightboxImageContainer = document.getElementById('schoolLightboxImageContainer');
+        const lightboxPdfButton = document.getElementById('schoolLightboxPdfButton');
+        const projectCards = document.querySelectorAll('.school-project-card');
+
+        // Open Lightbox
+        function openLightbox(card) {
+            const title = card.dataset.title;
+            const description = card.dataset.description;
+            const procedure = card.dataset.procedure;
+            const pdfLink = card.dataset.pdf;
+            const color = card.dataset.color;
+
+            // Update Lightbox content
+            lightboxTitle.textContent = title;
+            lightboxDescription.textContent = description;
+            lightboxPdfButton.href = pdfLink;
+
+            // Extract and clone SVG from card
+            const cardSvg = card.querySelector('.school-project-placeholder');
+            const svgClone = cardSvg.cloneNode(true);
+            lightboxImageContainer.innerHTML = '';
+            lightboxImageContainer.appendChild(svgClone);
+
+            // Show Lightbox
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Event Listeners: Click on cards
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                openLightbox(card);
+            });
+
+            // Click on SVG directly
+            card.querySelector('.school-project-visual').addEventListener('click', (e) => {
+                e.stopPropagation();
+                openLightbox(card);
+            });
+        });
+
+        // Close button
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Close on overlay click
+        lightboxOverlay.addEventListener('click', closeLightbox);
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+        // Prevent closing when clicking inside content
+        document.querySelector('.school-lightbox-content').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
         // Highlight current menu item
         const navLinks = document.querySelectorAll('.nav-links a');
         navLinks.forEach(link => {
