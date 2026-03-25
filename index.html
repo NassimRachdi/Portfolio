@@ -338,125 +338,158 @@
                     }
                 });
             </script>
-        </section><section id="entreprise" class="page-section">
-            <div class="container">
-                <h2>L'entreprise</h2>
-                <!-- Conteneur principal avec trois étapes -->
-                <div style="display:flex;flex-direction:column;gap:40px;margin-top:40px;">
-                    
-                    <!-- ÉTAPE 1 : Présentation SNCF Générale -->
-                    <div style="display:flex;justify-content:center;align-items:center;">
-                        <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;color:#1a1f2e;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:28px 32px;max-width:500px;width:100%;backdrop-filter:blur(10px);" class="cyber-card-blue">
-                            <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
-                                <img src="https://img.icons8.com/ios-filled/50/0066ff/train.png" alt="SNCF" style="width:50px;height:50px;">
-                                <h3 style="color:#0066ff;margin:0;font-size:1.4em;">SNCF</h3>
-                            </div>
-                            <p><strong style="color:#0066ff;">Société Nationale des Chemins de Fer</strong></p>
-                            <p style="color:#6b7280;">Entreprise ferroviaire publique française, créée officiellement en 1937. Pionnière du transport et de la mobilité en France et en Europe.</p>
-                            <ul style="list-style:none;padding:0;margin:16px 0 0 0;color:#1a1f2e;">
-                                <li style="margin-bottom:8px;">✓ Transport de voyageurs</li>
-                                <li style="margin-bottom:8px;">✓ Transport de marchandises</li>
-                                <li>✓ Gestion et maintenance du réseau national (28 000 km)</li>
+        </section><section id="entreprise" class="page-section" style="background: #ffffff url('data:image/svg+xml,%3Csvg width=%22120%22 height=%22120%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg opacity=%220.03%22%3E%3Cpath d=%22M20 40 L20 80 M40 60 L40 60 M60 30 L60 90 M80 50 L80 70 M100 35 L100 85%22 stroke=%22%230019a8%22 stroke-width=%221.5%22/%3E%3Ccircle cx=%2220%22 cy=%2240%22 r=%222%22 fill=%22%230019a8%22/%3E%3Ccircle cx=%2240%22 cy=%2260%22 r=%222%22 fill=%22%230019a8%22/%3E%3Ccircle cx=%2260%22 cy=%2230%22 r=%222%22 fill=%22%230019a8%22/%3E%3Ccircle cx=%2280%22 cy=%2250%22 r=%222%22 fill=%22%230019a8%22/%3E%3Ccircle cx=%22100%22 cy=%2235%22 r=%222%22 fill=%22%230019a8%22/%3E%3C/g%3E%3C/svg%3E') repeat; position: relative; overflow: hidden;">
+        <style>
+            #entreprise::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url('data:image/svg+xml,%3Csvg width=%22120%22 height=%22120%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg opacity=%220.03%22%3E%3Cpath d=%22M20 40 L20 80 M40 60 L40 60 M60 30 L60 90 M80 50 L80 70 M100 35 L100 85%22 stroke=%22%230019a8%22 stroke-width=%221.5%22/%3E%3Ccircle cx=%2220%22 cy=%2240%22 r=%222%22 fill=%22%230019a8%22/%3E%3Ccircle cx=%2240%22 cy=%2260%22 r=%222%22 fill=%22%230019a8%22/%3E%3Ccircle cx=%2260%22 cy=%2230%22 r=%222%22 fill=%22%230019a8%22/%3E%3Ccircle cx=%2280%22 cy=%2250%22 r=%222%22 fill=%22%230019a8%22/%3E%3Ccircle cx=%22100%22 cy=%2235%22 r=%222%22 fill=%22%230019a8%22/%3E%3C/g%3E%3C/svg%3E') repeat;
+                pointer-events: none;
+                z-index: 0;
+            }
+            #entreprise > * {
+                position: relative;
+                z-index: 1;
+            }
+            @keyframes trainFlow {
+                0% { transform: translateY(-40px); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translateY(100%); opacity: 0; }
+            }
+            .railroad-line::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: -40px;
+                bottom: 0;
+                width: 2px;
+                background: #0019a8;
+                transform: translateX(-50%);
+            }
+            .railroad-line::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                background: #0019a8;
+                border-radius: 50%;
+                transform: translateX(-50%);
+                top: -40px;
+                animation: trainFlow 6s linear infinite;
+                box-shadow: 0 0 12px #0019a8;
+            }
+        </style>
+        <div class="railroad-container" style="max-width: 1100px; padding: 100px 40px; margin: 0 auto;">
+            <h2 class="section-title-sncf" style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; font-size: 2.6em; color: #0019a8; text-transform: uppercase; text-align: center; margin: 0 0 80px 0; letter-spacing: 2px;">Ligne de Réseau SNCF</h2>
+            
+            <div class="railroad-line" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 120px; margin-bottom: 80px;">
+                
+                <!-- STATION 1: SNCF -->
+                <div class="railroad-station" style="position: relative; width: 100%; display: flex; justify-content: center;">
+                    <div style="position: relative; width: 100%; max-width: 600px;">
+                        <div class="station-node" style="width: 120px; height: 120px; border: 3px solid #0019a8; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.9); cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 0 20px rgba(0, 25, 168, 0.3); font-size: 3em;" onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 0 40px rgba(0, 25, 168, 0.8), inset 0 0 20px rgba(0, 25, 168, 0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 20px rgba(0, 25, 168, 0.3)'">🚂</div>
+                        
+                        <div class="station-content" style="position: absolute; top: -240px; left: 50%; transform: translateX(-50%); width: 320px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); border: 1px solid rgba(0, 25, 168, 0.2); border-radius: 16px; padding: 24px; opacity: 0; pointer-events: none; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.pointerEvents='auto'" onmouseout="this.style.opacity='0'; this.style.pointerEvents='none'">
+                            <h3 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; font-size: 1.4em; color: #0019a8; margin: 0 0 12px 0; font-weight: 600;">🚂 SNCF</h3>
+                            <p style="font-family: 'Inter', sans-serif; font-weight: 600; color: #0019a8; margin: 0 0 8px 0; font-size: 0.95em;">Société Nationale des Chemins de Fer</p>
+                            <p style="font-family: 'Inter', sans-serif; color: #6b7280; margin: 0 0 12px 0; font-size: 0.9em; line-height: 1.5;">Entreprise ferroviaire publique française, créée officiellement en 1937. Pionnière du transport et de la mobilité en France et en Europe.</p>
+                            <ul style="font-family: 'Inter', sans-serif; list-style: none; padding: 0; margin: 0; font-size: 0.85em; color: #1a1f2e;">
+                                <li style="margin-bottom: 4px;">✓ Transport de voyageurs</li>
+                                <li style="margin-bottom: 4px;">✓ Transport de marchandises</li>
+                                <li>✓ Gestion du réseau (28 000 km)</li>
                             </ul>
-                            <p style="margin-top:16px;font-size:0.9em;color:#0066ff;"><strong>Statut :</strong> <span style="color:#6b7280;">Société anonyme à capitaux publics depuis 2020</span></p>
+                            <p style="font-family: 'Inter', sans-serif; font-size: 0.85em; color: #0019a8; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(0, 25, 168, 0.2);"><strong>Statut :</strong> <span style="color: #6b7280;">Société anonyme publique depuis 2020</span></p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- FLÈCHE ANIMÉE vers le bas -->
-                    <div style="display:flex;justify-content:center;">
-                        <svg width="40" height="60" viewBox="0 0 40 60" style="animation: bounceArrow 2s ease-in-out infinite;">
-                            <defs>
-                                <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#1E90FF;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#00b894;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <line x1="20" y1="0" x2="20" y2="45" stroke="url(#arrowGrad)" stroke-width="2"/>
-                            <polygon points="20,60 10,45 30,45" fill="url(#arrowGrad)"/>
-                        </svg>
-                    </div>
-
-                    <!-- ÉTAPE 2 : TER SUD -->
-                    <div style="display:flex;justify-content:center;align-items:center;">
-                        <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;color:#1a1f2e;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,0.06);padding:28px 32px;max-width:500px;width:100%;backdrop-filter:blur(10px);" class="cyber-card-green">
-                            <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
-                                <img src="https://img.icons8.com/ios-filled/50/00d98e/train-station.png" alt="TER SUD" style="width:50px;height:50px;">
-                                <h3 style="color:#00d98e;margin:0;font-size:1.4em;">TER SUD</h3>
-                            </div>
-                            <p><strong style="color:#00d98e;">Transport Express Régional - Région Sud</strong></p>
-                            <p style="color:#6b7280;">Service régional assurant les liaisons entre grandes villes et zones rurales de la région Sud.</p>
-                            <ul style="list-style:none;padding:0;margin:16px 0 0 0;color:#1a1f2e;">
-                                <li style="margin-bottom:8px;">🚂 Liaisons régulières entre grandes villes</li>
-                                <li style="margin-bottom:8px;">📍 Desserte complète des zones rurales</li>
-                                <li>🌱 Mobilité verte et développement régional</li>
+                <!-- STATION 2: TER SUD -->
+                <div class="railroad-station" style="position: relative; width: 100%; display: flex; justify-content: center;">
+                    <div style="position: relative; width: 100%; max-width: 600px;">
+                        <div class="station-node" style="width: 120px; height: 120px; border: 3px solid #0019a8; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.9); cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 0 20px rgba(0, 25, 168, 0.3); font-size: 3em;" onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 0 40px rgba(0, 25, 168, 0.8), inset 0 0 20px rgba(0, 25, 168, 0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 20px rgba(0, 25, 168, 0.3)'">🚄</div>
+                        
+                        <div class="station-content" style="position: absolute; top: -280px; left: 50%; transform: translateX(-50%); width: 320px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); border: 1px solid rgba(0, 25, 168, 0.2); border-radius: 16px; padding: 24px; opacity: 0; pointer-events: none; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.pointerEvents='auto'" onmouseout="this.style.opacity='0'; this.style.pointerEvents='none'">
+                            <h3 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; font-size: 1.4em; color: #0019a8; margin: 0 0 12px 0; font-weight: 600;">🚄 TER SUD</h3>
+                            <p style="font-family: 'Inter', sans-serif; font-weight: 600; color: #0019a8; margin: 0 0 8px 0; font-size: 0.95em;">Transport Express Régional - Région Sud</p>
+                            <p style="font-family: 'Inter', sans-serif; color: #6b7280; margin: 0 0 12px 0; font-size: 0.9em; line-height: 1.5;">Service régional assurant les liaisons entre grandes villes et zones rurales de la région Sud.</p>
+                            <ul style="font-family: 'Inter', sans-serif; list-style: none; padding: 0; margin: 0; font-size: 0.85em; color: #1a1f2e;">
+                                <li style="margin-bottom: 4px;">🚂 Liaisons régulières</li>
+                                <li style="margin-bottom: 4px;">📍 Desserte zones rurales</li>
+                                <li>🌱 Mobilité verte</li>
                             </ul>
-                            <p style="margin-top:16px;font-size:0.9em;color:#00d98e;"><strong>Mon alternance :</strong> <span style="color:#6b7280;">Participation à des projets IT concrets et dynamiques</span></p>
+                            <p style="font-family: 'Inter', sans-serif; font-size: 0.85em; color: #0019a8; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(0, 25, 168, 0.2);"><strong>Mon alternance :</strong> <span style="color: #6b7280;">Projets IT concrets et dynamiques</span></p>
                         </div>
                     </div>
+                </div>
 
-                    <!-- FLÈCHE ANIMÉE vers le bas -->
-                    <div style="display:flex;justify-content:center;">
-                        <svg width="40" height="60" viewBox="0 0 40 60" style="animation: bounceArrow 2s ease-in-out infinite;">
-                            <defs>
-                                <linearGradient id="arrowGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#00b894;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#ff0080;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <line x1="20" y1="0" x2="20" y2="45" stroke="url(#arrowGrad2)" stroke-width="2"/>
-                            <polygon points="20,60 10,45 30,45" fill="url(#arrowGrad2)"/>
-                        </svg>
-                    </div>
-
-                    <!-- ÉTAPE 3 : Partenaires principaux -->
-                    <div>
-                        <h3 style="color:#0066ff;text-align:center;margin-bottom:32px;font-size:1.5em;text-transform:uppercase;letter-spacing:2px;">Écosystème SNCF</h3>
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch;">
-                            <!-- Partenaire 1 -->
-                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-blue">
-                                <h4 style="color:#0066ff;margin-top:0;font-size:1.2em;">SNCF Réseau</h4>
-                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Gestionnaire d'infrastructure du réseau ferré national. Composé de 28 000 km de lignes couvrant tout le territoire français.</p>
-                                <p style="margin-top:12px;font-size:0.9em;color:#0066ff;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Infrastructure & Maintenance</span></p>
-                            </div>
-
-                            <!-- Partenaire 2 -->
-                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-green">
-                                <h4 style="color:#00d98e;margin-top:0;font-size:1.2em;">SNCF Voyageurs</h4>
-                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Chargée du transport de voyageurs en France et en Europe. Solutions de mobilité verte et gestion du matériel roulant.</p>
-                                <p style="margin-top:12px;font-size:0.9em;color:#00d98e;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Transport de Voyageurs</span></p>
-                            </div>
-
-                            <!-- Partenaire 3 -->
-                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-pink">
-                                <h4 style="color:#ff0080;margin-top:0;font-size:1.2em;">SNCF Gares</h4>
-                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Spécialiste de la conception, exploitation et commercialisation des gares. Service public de qualité non discriminatoire.</p>
-                                <p style="margin-top:12px;font-size:0.9em;color:#ff0080;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Gares & Connexions</span></p>
-                            </div>
-
-                            <!-- Partenaire 4 -->
-                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-blue">
-                                <h4 style="color:#0066ff;margin-top:0;font-size:1.2em;">Keolis</h4>
-                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Leader mondial des mobilités partagées. Conçoit des solutions de transport collectif sûres, performantes et durables.</p>
-                                <p style="margin-top:12px;font-size:0.9em;color:#0066ff;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Mobilités Partagées</span></p>
-                            </div>
-
-                            <!-- Partenaire 5 -->
-                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-green">
-                                <h4 style="color:#00d98e;margin-top:0;font-size:1.2em;">Rail Logistics</h4>
-                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Réunit les activités de transport ferroviaire de marchandises du groupe SNCF. 5 filiales spécialisées dans la logistique.</p>
-                                <p style="margin-top:12px;font-size:0.9em;color:#00d98e;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Fret & Logistique</span></p>
-                            </div>
-
-                            <!-- Partenaire 6 -->
-                            <div style="background:rgba(255,255,255,0.7);border:1px solid #e8ebf0;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);color:#1a1f2e;transition:all 0.3s ease;backdrop-filter:blur(10px);" class="cyber-card-pink">
-                                <h4 style="color:#ff0080;margin-top:0;font-size:1.2em;">GEODIS</h4>
-                                <p style="font-size:0.95em;line-height:1.6;color:#6b7280;">Leader mondial du transport et de la logistique. Garantit des acheminements efficaces, durables et fiables.</p>
-                                <p style="margin-top:12px;font-size:0.9em;color:#ff0080;border-top:1px solid #e8ebf0;padding-top:12px;"><strong>Rôle :</strong> <span style="color:#6b7280;">Transport & Logistique</span></p>
-                            </div>
+                <!-- STATION 3: ÉCOSYSTÈME -->
+                <div class="railroad-station" style="position: relative; width: 100%; display: flex; justify-content: center;">
+                    <div style="position: relative; width: 100%; max-width: 600px;">
+                        <div class="station-node" style="width: 120px; height: 120px; border: 3px solid #0019a8; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.9); cursor: pointer; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 0 20px rgba(0, 25, 168, 0.3); font-size: 3em;" onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 0 40px rgba(0, 25, 168, 0.8), inset 0 0 20px rgba(0, 25, 168, 0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 20px rgba(0, 25, 168, 0.3)'">🌐</div>
+                        
+                        <div class="station-content" style="position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 320px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); border: 1px solid rgba(0, 25, 168, 0.2); border-radius: 16px; padding: 24px; opacity: 0; pointer-events: none; transition: all 0.3s ease; text-align: center;" onmouseover="this.style.opacity='1'; this.style.pointerEvents='auto'" onmouseout="this.style.opacity='0'; this.style.pointerEvents='none'">
+                            <h3 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; font-size: 1.3em; color: #0019a8; margin: 0; font-weight: 600;">Écosystème SNCF</h3>
+                            <p style="font-family: 'Inter', sans-serif; color: #6b7280; font-size: 0.85em; margin: 8px 0 0 0;">Découvrez le réseau de partenaires ci-dessous</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- ECOSYSTEM GRID -->
+            <div style="margin-top: 60px;">
+                <h3 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; text-align: center; color: #0019a8; font-size: 1.8em; text-transform: uppercase; margin: 0 0 48px 0; letter-spacing: 1.5px;">Réseau de Partenaires</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch;">
+                    
+                    <!-- Partner 1: SNCF Réseau -->
+                    <div class="ecosystem-card" style="background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(0, 25, 168, 0.2); border-radius: 14px; padding: 28px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); color: #1a1f2e; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px);" onmouseover="this.style.borderColor='#0019a8'; this.style.boxShadow='0 0 30px rgba(0, 25, 168, 0.25), inset 0 0 16px rgba(0, 25, 168, 0.08)'" onmouseout="this.style.borderColor='rgba(0, 25, 168, 0.2)'; this.style.boxShadow='0 2px 12px rgba(0, 0, 0, 0.05)'">
+                        <h4 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; color: #0019a8; margin: 0 0 12px 0; font-size: 1.2em; font-weight: 600;">SNCF Réseau</h4>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 0.95em; line-height: 1.6; color: #6b7280; margin: 0 0 14px 0;">Gestionnaire d'infrastructure du réseau ferré national. Composé de 28 000 km de lignes couvrant tout le territoire français.</p>
+                        <p style="font-family: 'Inter', sans-serif; margin: 0; font-size: 0.9em; color: #0019a8; border-top: 1px solid rgba(0, 25, 168, 0.15); padding-top: 14px;"><strong>Rôle :</strong> <span style="color: #6b7280;">Infrastructure & Maintenance</span></p>
+                    </div>
+
+                    <!-- Partner 2: SNCF Voyageurs -->
+                    <div class="ecosystem-card" style="background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(0, 25, 168, 0.2); border-radius: 14px; padding: 28px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); color: #1a1f2e; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px);" onmouseover="this.style.borderColor='#0019a8'; this.style.boxShadow='0 0 30px rgba(0, 25, 168, 0.25), inset 0 0 16px rgba(0, 25, 168, 0.08)'" onmouseout="this.style.borderColor='rgba(0, 25, 168, 0.2)'; this.style.boxShadow='0 2px 12px rgba(0, 0, 0, 0.05)'">
+                        <h4 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; color: #0019a8; margin: 0 0 12px 0; font-size: 1.2em; font-weight: 600;">SNCF Voyageurs</h4>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 0.95em; line-height: 1.6; color: #6b7280; margin: 0 0 14px 0;">Chargée du transport de voyageurs en France et en Europe. Solutions de mobilité verte et gestion du matériel roulant.</p>
+                        <p style="font-family: 'Inter', sans-serif; margin: 0; font-size: 0.9em; color: #0019a8; border-top: 1px solid rgba(0, 25, 168, 0.15); padding-top: 14px;"><strong>Rôle :</strong> <span style="color: #6b7280;">Transport de Voyageurs</span></p>
+                    </div>
+
+                    <!-- Partner 3: SNCF Gares -->
+                    <div class="ecosystem-card" style="background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(0, 25, 168, 0.2); border-radius: 14px; padding: 28px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); color: #1a1f2e; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px);" onmouseover="this.style.borderColor='#0019a8'; this.style.boxShadow='0 0 30px rgba(0, 25, 168, 0.25), inset 0 0 16px rgba(0, 25, 168, 0.08)'" onmouseout="this.style.borderColor='rgba(0, 25, 168, 0.2)'; this.style.boxShadow='0 2px 12px rgba(0, 0, 0, 0.05)'">
+                        <h4 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; color: #0019a8; margin: 0 0 12px 0; font-size: 1.2em; font-weight: 600;">SNCF Gares</h4>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 0.95em; line-height: 1.6; color: #6b7280; margin: 0 0 14px 0;">Spécialiste de la conception, exploitation et commercialisation des gares. Service public de qualité non discriminatoire.</p>
+                        <p style="font-family: 'Inter', sans-serif; margin: 0; font-size: 0.9em; color: #0019a8; border-top: 1px solid rgba(0, 25, 168, 0.15); padding-top: 14px;"><strong>Rôle :</strong> <span style="color: #6b7280;">Gares & Connexions</span></p>
+                    </div>
+
+                    <!-- Partner 4: Keolis -->
+                    <div class="ecosystem-card" style="background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(0, 25, 168, 0.2); border-radius: 14px; padding: 28px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); color: #1a1f2e; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px);" onmouseover="this.style.borderColor='#0019a8'; this.style.boxShadow='0 0 30px rgba(0, 25, 168, 0.25), inset 0 0 16px rgba(0, 25, 168, 0.08)'" onmouseout="this.style.borderColor='rgba(0, 25, 168, 0.2)'; this.style.boxShadow='0 2px 12px rgba(0, 0, 0, 0.05)'">
+                        <h4 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; color: #0019a8; margin: 0 0 12px 0; font-size: 1.2em; font-weight: 600;">Keolis</h4>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 0.95em; line-height: 1.6; color: #6b7280; margin: 0 0 14px 0;">Leader mondial des mobilités partagées. Conçoit des solutions de transport collectif sûres, performantes et durables.</p>
+                        <p style="font-family: 'Inter', sans-serif; margin: 0; font-size: 0.9em; color: #0019a8; border-top: 1px solid rgba(0, 25, 168, 0.15); padding-top: 14px;"><strong>Rôle :</strong> <span style="color: #6b7280;">Mobilités Partagées</span></p>
+                    </div>
+
+                    <!-- Partner 5: Rail Logistics -->
+                    <div class="ecosystem-card" style="background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(0, 25, 168, 0.2); border-radius: 14px; padding: 28px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); color: #1a1f2e; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px);" onmouseover="this.style.borderColor='#0019a8'; this.style.boxShadow='0 0 30px rgba(0, 25, 168, 0.25), inset 0 0 16px rgba(0, 25, 168, 0.08)'" onmouseout="this.style.borderColor='rgba(0, 25, 168, 0.2)'; this.style.boxShadow='0 2px 12px rgba(0, 0, 0, 0.05)'">
+                        <h4 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; color: #0019a8; margin: 0 0 12px 0; font-size: 1.2em; font-weight: 600;">Rail Logistics</h4>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 0.95em; line-height: 1.6; color: #6b7280; margin: 0 0 14px 0;">Réunit les activités de transport ferroviaire de marchandises du groupe SNCF. 5 filiales spécialisées dans la logistique.</p>
+                        <p style="font-family: 'Inter', sans-serif; margin: 0; font-size: 0.9em; color: #0019a8; border-top: 1px solid rgba(0, 25, 168, 0.15); padding-top: 14px;"><strong>Rôle :</strong> <span style="color: #6b7280;">Fret & Logistique</span></p>
+                    </div>
+
+                    <!-- Partner 6: GEODIS -->
+                    <div class="ecosystem-card" style="background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(0, 25, 168, 0.2); border-radius: 14px; padding: 28px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); color: #1a1f2e; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px);" onmouseover="this.style.borderColor='#0019a8'; this.style.boxShadow='0 0 30px rgba(0, 25, 168, 0.25), inset 0 0 16px rgba(0, 25, 168, 0.08)'" onmouseout="this.style.borderColor='rgba(0, 25, 168, 0.2)'; this.style.boxShadow='0 2px 12px rgba(0, 0, 0, 0.05)'">
+                        <h4 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; color: #0019a8; margin: 0 0 12px 0; font-size: 1.2em; font-weight: 600;">GEODIS</h4>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 0.95em; line-height: 1.6; color: #6b7280; margin: 0 0 14px 0;">Leader mondial du transport et de la logistique. Garantit des acheminements efficaces, durables et fiables.</p>
+                        <p style="font-family: 'Inter', sans-serif; margin: 0; font-size: 0.9em; color: #0019a8; border-top: 1px solid rgba(0, 25, 168, 0.15); padding-top: 14px;"><strong>Rôle :</strong> <span style="color: #6b7280;">Transport & Logistique</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
         </section>
         <section id="projets" class="page-section">
             <div class="container">
