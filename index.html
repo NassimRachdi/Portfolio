@@ -746,42 +746,291 @@
 
                 <!-- PROJETS EN ENTREPRISE -->
                 <div class="tab-content active" id="tab-entreprise">
-                    <div class="projects-grid">
+                    <style>
+                        .mission-grid {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+                            gap: 32px;
+                            margin-top: 20px;
+                        }
+
+                        .mission-card {
+                            background: linear-gradient(135deg, #ffffff 0%, rgba(0, 25, 168, 0.01) 100%);
+                            border: 1.5px solid #0019a8;
+                            border-left: 5px solid #E2001A;
+                            clip-path: polygon(0 0, 100% 0, 98% 2%, 100% 4%, 100% 100%, 0 100%, 0 4%, 2% 2%);
+                            padding: 28px;
+                            position: relative;
+                            overflow: hidden;
+                            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+                        }
+
+                        .mission-card::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg opacity="0.03"%3E%3Ctext x="5" y="15" font-size="10" font-family="monospace"%3E01010101%3C/text%3E%3Ctext x="5" y="30" font-size="10" font-family="monospace"%3E10101010%3C/text%3E%3Ctext x="5" y="45" font-size="10" font-family="monospace"%3E11001100%3C/text%3E%3C/g%3E%3C/svg%3E') repeat;
+                            pointer-events: none;
+                            z-index: 0;
+                        }
+
+                        .mission-card:hover {
+                            transform: scale(1.02) translateY(-8px);
+                            box-shadow: 0 16px 40px rgba(0, 25, 168, 0.2), 0 0 30px rgba(0, 25, 168, 0.15), inset 0 0 20px rgba(0, 25, 168, 0.05);
+                            border-color: #0019a8;
+                        }
+
+                        .mission-card:hover .mission-text {
+                            color: #1a1f2e;
+                        }
+
+                        .mission-content {
+                            position: relative;
+                            z-index: 1;
+                        }
+
+                        .mission-header {
+                            display: flex;
+                            align-items: flex-start;
+                            gap: 12px;
+                            margin-bottom: 24px;
+                            justify-content: space-between;
+                        }
+
+                        .mission-title-group {
+                            flex: 1;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                        }
+
+                        .mission-icon {
+                            font-size: 1.8em;
+                            flex-shrink: 0;
+                            animation: float 3s ease-in-out infinite;
+                        }
+
+                        @keyframes float {
+                            0%, 100% { transform: translateY(0); }
+                            50% { transform: translateY(-4px); }
+                        }
+
+                        .mission-title {
+                            font-family: 'Avenir', 'Helvetica Neue', sans-serif;
+                            font-size: 1.2em;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            color: #0019a8;
+                            margin: 0;
+                        }
+
+                        .mission-id {
+                            font-family: 'Roboto Mono', monospace;
+                            font-size: 0.7em;
+                            font-weight: 700;
+                            color: #E2001A;
+                            background: rgba(226, 0, 26, 0.08);
+                            padding: 4px 10px;
+                            border-radius: 2px;
+                            border: 1px solid rgba(226, 0, 26, 0.3);
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .mission-sections {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 16px;
+                            margin-bottom: 24px;
+                        }
+
+                        .mission-section {
+                            display: flex;
+                            gap: 12px;
+                        }
+
+                        .section-icon-small {
+                            font-size: 1.3em;
+                            flex-shrink: 0;
+                            opacity: 0.7;
+                        }
+
+                        .section-text {
+                            flex: 1;
+                        }
+
+                        .section-text strong {
+                            font-family: 'Avenir', 'Helvetica Neue', sans-serif;
+                            font-size: 0.95em;
+                            color: #0019a8;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            display: block;
+                            margin-bottom: 4px;
+                        }
+
+                        .section-text p {
+                            font-family: 'Inter', sans-serif;
+                            font-size: 0.9em;
+                            line-height: 1.6;
+                            color: #6b7280;
+                            margin: 0;
+                        }
+
+                        .mission-card:hover .section-text p {
+                            color: #4b5563;
+                        }
+
+                        .mission-tech-stack {
+                            display: flex;
+                            align-items: center;
+                            gap: 16px;
+                            padding-top: 20px;
+                            border-top: 1px solid rgba(0, 25, 168, 0.1);
+                            flex-wrap: wrap;
+                        }
+
+                        .tech-item {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 40px;
+                            height: 40px;
+                            background: rgba(0, 25, 168, 0.08);
+                            border: 1px solid rgba(0, 25, 168, 0.2);
+                            border-radius: 4px;
+                            font-size: 1.4em;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        }
+
+                        .tech-item:hover {
+                            background: rgba(0, 25, 168, 0.15);
+                            border-color: #0019a8;
+                            transform: scale(1.15) rotate(-5deg);
+                            box-shadow: 0 4px 12px rgba(0, 25, 168, 0.25);
+                        }
+
+                        .tech-tooltip {
+                            position: absolute;
+                            bottom: 100%;
+                            left: 50%;
+                            transform: translateX(-50%) translateY(-8px);
+                            background: #1a1f2e;
+                            color: #ffffff;
+                            padding: 6px 12px;
+                            border-radius: 3px;
+                            font-family: 'Roboto Mono', monospace;
+                            font-size: 0.75em;
+                            font-weight: 600;
+                            white-space: nowrap;
+                            opacity: 0;
+                            pointer-events: none;
+                            transition: all 0.2s ease;
+                            z-index: 10;
+                        }
+
+                        .tech-item:hover .tech-tooltip {
+                            opacity: 1;
+                            transform: translateX(-50%) translateY(-12px);
+                        }
+
+                        .tech-tags {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 8px;
+                            margin-top: 16px;
+                        }
+
+                        .tech-tag {
+                            font-family: 'Roboto Mono', monospace;
+                            font-size: 0.75em;
+                            font-weight: 600;
+                            background: rgba(0, 25, 168, 0.1);
+                            color: #0019a8;
+                            border: 1px solid rgba(0, 25, 168, 0.25);
+                            padding: 4px 10px;
+                            border-radius: 2px;
+                            transition: all 0.3s ease;
+                        }
+
+                        .tech-tag:hover {
+                            background: rgba(0, 25, 168, 0.2);
+                            border-color: #0019a8;
+                        }
+
+                        @media (max-width: 768px) {
+                            .mission-grid { grid-template-columns: 1fr; gap: 20px; }
+                            .mission-card { padding: 20px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+                            .mission-title { font-size: 1.05em; }
+                            .mission-tech-stack { gap: 12px; }
+                        }
+                    </style>
+
+                    <div class="mission-grid">
                         
-                        <!-- Projet 1: Automatisation VBA -->
-                        <div class="project-card">
-                            <div class="card-header">
-                                <h3>AUTOMATISATION VBA EXCEL</h3>
-                                <span class="status-badge status-completed">Terminé</span>
-                            </div>
-                            
-                            <div class="card-content">
-                                <div class="project-section">
-                                    <div class="section-icon">⚙️</div>
-                                    <div class="section-text">
-                                        <strong>Problématique</strong>
-                                        <p>Traitement manuel répétitif de 500+ lignes de données Excel quotidiennement, consommant 2+ heures par jour.</p>
+                        <!-- MISSION 1: AUTOMATISATION VBA -->
+                        <div class="mission-card">
+                            <div class="mission-content">
+                                <div class="mission-header">
+                                    <div class="mission-title-group">
+                                        <div class="mission-icon">⚙️</div>
+                                        <h3 class="mission-title">VBA Excel</h3>
+                                    </div>
+                                    <span class="mission-id">[MISSION_01]</span>
+                                </div>
+
+                                <div class="mission-sections">
+                                    <div class="mission-section">
+                                        <div class="section-icon-small">🔧</div>
+                                        <div class="section-text">
+                                            <strong>Problématique</strong>
+                                            <p>Traitement manuel répétitif de 500+ lignes de données Excel quotidiennement, consommant 2+ heures par jour.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mission-section">
+                                        <div class="section-icon-small">⚡</div>
+                                        <div class="section-text">
+                                            <strong>Solution</strong>
+                                            <p>Développement de macros VBA avec validation de données, génération automatique de rapports et intégration SharePoint.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mission-section">
+                                        <div class="section-icon-small">✨</div>
+                                        <div class="section-text">
+                                            <strong>Résultat</strong>
+                                            <p>Réduction du temps de traitement de 95% (2h → 6 min/jour). Zéro erreur manuelle. Économie annuelle de 432 heures.</p>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="project-section">
-                                    <div class="section-icon">💡</div>
-                                    <div class="section-text">
-                                        <strong>Solution Technique</strong>
-                                        <p>Développement de macros VBA avec validation de données, génération automatique de rapports et intégration SharePoint.</p>
+                                <div class="mission-tech-stack">
+                                    <div class="tech-item">
+                                        📊
+                                        <span class="tech-tooltip">Excel VBA</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        📋
+                                        <span class="tech-tooltip">Data Validation</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        ☁️
+                                        <span class="tech-tooltip">SharePoint</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        🔄
+                                        <span class="tech-tooltip">Automation</span>
                                     </div>
                                 </div>
 
-                                <div class="project-section">
-                                    <div class="section-icon">✓</div>
-                                    <div class="section-text">
-                                        <strong>Résultat</strong>
-                                        <p>Réduction du temps de traitement de 95% (2h → 6 min/jour). Zéro erreur manuelle. Économie annuelle de 432 heures.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-footer">
                                 <div class="tech-tags">
                                     <span class="tech-tag">VBA</span>
                                     <span class="tech-tag">Excel</span>
@@ -791,40 +1040,62 @@
                             </div>
                         </div>
 
-                        <!-- Projet 2: SharePoint Migration -->
-                        <div class="project-card">
-                            <div class="card-header">
-                                <h3>MIGRATION SHAREPOINT</h3>
-                                <span class="status-badge status-completed">Terminé</span>
-                            </div>
-                            
-                            <div class="card-content">
-                                <div class="project-section">
-                                    <div class="section-icon">⚙️</div>
-                                    <div class="section-text">
-                                        <strong>Problématique</strong>
-                                        <p>Migration de 10 000+ documents d'un serveur legacy vers SharePoint Online sans perte de données ni accès.</p>
+                        <!-- MISSION 2: MIGRATION SHAREPOINT -->
+                        <div class="mission-card">
+                            <div class="mission-content">
+                                <div class="mission-header">
+                                    <div class="mission-title-group">
+                                        <div class="mission-icon">☁️</div>
+                                        <h3 class="mission-title">SharePoint</h3>
+                                    </div>
+                                    <span class="mission-id">[MISSION_02]</span>
+                                </div>
+
+                                <div class="mission-sections">
+                                    <div class="mission-section">
+                                        <div class="section-icon-small">🔧</div>
+                                        <div class="section-text">
+                                            <strong>Problématique</strong>
+                                            <p>Migration de 10 000+ documents d'un serveur legacy vers SharePoint Online sans perte de données ni accès.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mission-section">
+                                        <div class="section-icon-small">⚡</div>
+                                        <div class="section-text">
+                                            <strong>Solution</strong>
+                                            <p>Configuration de SharePoint, création de structures hiérarchiques, synchronisation et migration en batch via PowerShell.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mission-section">
+                                        <div class="section-icon-small">✨</div>
+                                        <div class="section-text">
+                                            <strong>Résultat</strong>
+                                            <p>Migration sans downtime. Tous les utilisateurs (200+) formés. Accès centralisé amélioré de 40%.</p>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="project-section">
-                                    <div class="section-icon">💡</div>
-                                    <div class="section-text">
-                                        <strong>Solution Technique</strong>
-                                        <p>Configuration de SharePoint, création de structures hiérarchiques, synchronisation et migration en batch via PowerShell.</p>
+                                <div class="mission-tech-stack">
+                                    <div class="tech-item">
+                                        ☁️
+                                        <span class="tech-tooltip">SharePoint Online</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        ⚙️
+                                        <span class="tech-tooltip">PowerShell</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        🔐
+                                        <span class="tech-tooltip">Security</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        📦
+                                        <span class="tech-tooltip">Batch Processing</span>
                                     </div>
                                 </div>
 
-                                <div class="project-section">
-                                    <div class="section-icon">✓</div>
-                                    <div class="section-text">
-                                        <strong>Résultat</strong>
-                                        <p>Migration sans downtime. Tous les utilisateurs (200+) formés. Accès centralisé amélioré de 40%.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-footer">
                                 <div class="tech-tags">
                                     <span class="tech-tag">SharePoint</span>
                                     <span class="tech-tag">PowerShell</span>
