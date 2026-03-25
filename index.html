@@ -1442,7 +1442,7 @@
                         .project-card-clean:hover {
                             border-color: #00F0FF;
                             border-width: 1px;
-                            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+                            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.12);
                         }
 
                         .project-card-clean:hover::before {
@@ -1479,6 +1479,8 @@
                             margin: 0;
                             transition: color 0.3s ease;
                             line-height: 1.4;
+                            font-family: 'Courier New', monospace;
+                            letter-spacing: 0.3px;
                         }
 
                         .project-card-clean:hover .card-title {
@@ -1488,7 +1490,7 @@
                         .card-description {
                             color: #666;
                             font-size: 0.8em;
-                            margin: 8px 0 0 0;
+                            margin: 10px 0 12px 0;
                             transition: color 0.3s ease;
                             line-height: 1.5;
                             font-weight: 400;
@@ -1496,6 +1498,45 @@
 
                         .project-card-clean:hover .card-description {
                             color: #444;
+                        }
+
+                        .card-details-btn {
+                            display: inline-block;
+                            background: transparent;
+                            border: 1px solid #e0e0e0;
+                            color: #333;
+                            padding: 8px 16px;
+                            font-size: 0.85em;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            margin-top: 5px;
+                        }
+
+                        .project-card-clean:hover .card-details-btn {
+                            background: #00F0FF;
+                            color: #000;
+                            border-color: #00F0FF;
+                        }
+
+                        .card-status {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            background: transparent;
+                            color: #00F0FF;
+                            font-size: 0.65em;
+                            font-weight: 700;
+                            letter-spacing: 1px;
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                            font-family: 'Courier New', monospace;
+                        }
+
+                        .project-card-clean:hover .card-status {
+                            opacity: 1;
                         }
 
                         /* ========== CLEAN PROJECTS LIGHTBOX ========== */
@@ -1689,74 +1730,90 @@
                     <div class="projects-grid-clean">
                         <!-- 1. GLPI - Inventaire/Parc -->
                         <div class="project-card-clean" data-title="GLPI" data-preview="img/previews/glpi.jpg" data-pdf="pdf/glpi.pdf">
+                            <div class="card-status">[STATUS: READY]</div>
                             <div class="card-logo-container">
                                 <img src="img/logos/glpi.png" alt="Logo GLPI" class="card-logo">
                             </div>
                             <h3 class="card-title">Déploiement GLPI</h3>
                             <p class="card-description">Mise en place d'un serveur GLPI pour la gestion de parc informatique et le ticketing.</p>
+                            <button class="card-details-btn">Détails</button>
                         </div>
 
                         <!-- 2. PfSense - Firewall/Réseau -->
                         <div class="project-card-clean" data-title="PfSense" data-preview="img/previews/pfsense.jpg" data-pdf="pdf/pfsense.pdf">
+                            <div class="card-status">[STATUS: READY]</div>
                             <div class="card-logo-container">
                                 <img src="img/logos/pfsense.png" alt="Logo PfSense" class="card-logo">
                             </div>
                             <h3 class="card-title">Configuration PfSense</h3>
                             <p class="card-description">Configuration d'un firewall PfSense, règles de filtrage, NAT et VPN.</p>
+                            <button class="card-details-btn">Détails</button>
                         </div>
 
                         <!-- 3. Proxmox - Virtualisation -->
                         <div class="project-card-clean" data-title="Proxmox" data-preview="img/previews/proxmox.jpg" data-pdf="pdf/proxmox.pdf">
+                            <div class="card-status">[STATUS: READY]</div>
                             <div class="card-logo-container">
                                 <img src="img/logos/proxmox.png" alt="Logo Proxmox" class="card-logo">
                             </div>
                             <h3 class="card-title">Virtualisation Proxmox</h3>
                             <p class="card-description">Déploiement d'un cluster Proxmox VE, création de VMs et gestion des storages.</p>
+                            <button class="card-details-btn">Détails</button>
                         </div>
 
                         <!-- 4. Active Directory - Identité -->
                         <div class="project-card-clean" data-title="Active Directory" data-preview="img/previews/active-directory.jpg" data-pdf="pdf/active-directory.pdf">
+                            <div class="card-status">[STATUS: READY]</div>
                             <div class="card-logo-container">
                                 <img src="img/logos/active-directory.png" alt="Logo Active Directory" class="card-logo">
                             </div>
                             <h3 class="card-title">Déploiement Active Directory</h3>
                             <p class="card-description">Installation d'un contrôleur de domaine Windows Server, GPOs et scripts de connexion.</p>
+                            <button class="card-details-btn">Détails</button>
                         </div>
 
                         <!-- 5. Exchange - Messagerie -->
                         <div class="project-card-clean" data-title="Exchange" data-preview="img/previews/exchange.jpg" data-pdf="pdf/exchange.pdf">
+                            <div class="card-status">[STATUS: READY]</div>
                             <div class="card-logo-container">
                                 <img src="img/logos/exchange.png" alt="Logo Exchange" class="card-logo">
                             </div>
                             <h3 class="card-title">Configuration Exchange</h3>
                             <p class="card-description">Configuration d'un serveur Exchange Server pour la messagerie collaborative.</p>
+                            <button class="card-details-btn">Détails</button>
                         </div>
 
                         <!-- 6. Zyxel - Sécurité Réseau -->
                         <div class="project-card-clean" data-title="Zyxel" data-preview="img/previews/zyxel.jpg" data-pdf="pdf/zyxel.pdf">
+                            <div class="card-status">[STATUS: READY]</div>
                             <div class="card-logo-container">
                                 <img src="img/logos/zyxel.png" alt="Logo Zyxel" class="card-logo">
                             </div>
                             <h3 class="card-title">Équipement Zyxel</h3>
                             <p class="card-description">Configuration de switches gérables Zyxel, VLANs et filtrage MAC.</p>
+                            <button class="card-details-btn">Détails</button>
                         </div>
 
                         <!-- 7. D-Link WiFi - Infrastructure -->
                         <div class="project-card-clean" data-title="D-Link WiFi" data-preview="img/previews/dlink-wifi.jpg" data-pdf="pdf/dlink-wifi.pdf">
+                            <div class="card-status">[STATUS: READY]</div>
                             <div class="card-logo-container">
                                 <img src="img/logos/dlink.png" alt="Logo D-Link" class="card-logo">
                             </div>
                             <h3 class="card-title">Accès WiFi D-Link</h3>
                             <p class="card-description">Déploiement d'une infrastructure WiFi d'entreprise avec contrôleur D-Link.</p>
+                            <button class="card-details-btn">Détails</button>
                         </div>
 
                         <!-- 8. Schéma E63 - Soutenance -->
                         <div class="project-card-clean" data-title="Schéma E63" data-preview="img/previews/schema-e63.jpg" data-pdf="schema/schema_e6.pdf">
+                            <div class="card-status">[STATUS: READY]</div>
                             <div class="card-logo-container">
                                 <img src="img/logos/schema.png" alt="Logo Schéma" class="card-logo">
                             </div>
                             <h3 class="card-title">Schéma Infrastructure E63</h3>
                             <p class="card-description">Schéma global de l'infrastructure réseau pour l'épreuve E63 du BTS SIO.</p>
+                            <button class="card-details-btn">Détails</button>
                         </div>
                     </div>
 
@@ -1790,6 +1847,15 @@
                                 card.addEventListener('click', () => {
                                     openLightbox(card);
                                 });
+
+                                // Also allow DETAILS button to open lightbox
+                                const detailsBtn = card.querySelector('.card-details-btn');
+                                if (detailsBtn) {
+                                    detailsBtn.addEventListener('click', (e) => {
+                                        e.stopPropagation();
+                                        openLightbox(card);
+                                    });
+                                }
                             });
 
                             // Close button
