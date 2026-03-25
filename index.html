@@ -1828,6 +1828,19 @@
                             transition: border-color 0.3s ease, box-shadow 0.3s ease;
                             background: #ffffff;
                             flex-shrink: 0;
+                            overflow: hidden;
+                        }
+
+                        .prc-logo img {
+                            width: 58px;
+                            height: 58px;
+                            object-fit: contain;
+                            border-radius: 50%;
+                            transition: transform 0.3s ease;
+                        }
+
+                        .prc-card:hover .prc-logo img {
+                            transform: scale(1.08);
                         }
                         .prc-card:nth-child(4n+1):hover .prc-logo { border-color: #00F0FF; box-shadow: 0 0 16px rgba(0, 240, 255, 0.25); }
                         .prc-card:nth-child(4n+2):hover .prc-logo { border-color: #0019a8; box-shadow: 0 0 16px rgba(0, 25, 168, 0.25); }
@@ -1899,7 +1912,7 @@
                         <div class="prc-card">
                             <div class="prc-number">PRC_01</div>
                             <div class="prc-status">[READY]</div>
-                            <div class="prc-logo"></div>
+                            <div class="prc-logo"><img src="img/logos/glpi.svg" alt="GLPI"></div>
                             <h3 class="prc-title">GLPI</h3>
                             <div class="prc-data">// ASSET MANAGEMENT</div>
                         </div>
@@ -1907,7 +1920,7 @@
                         <div class="prc-card">
                             <div class="prc-number">PRC_02</div>
                             <div class="prc-status">[READY]</div>
-                            <div class="prc-logo"></div>
+                            <div class="prc-logo"><img src="img/logos/pfsense.svg" alt="pfSense"></div>
                             <h3 class="prc-title">PFSENSE</h3>
                             <div class="prc-data">// FIREWALL RULES</div>
                         </div>
@@ -1915,7 +1928,7 @@
                         <div class="prc-card">
                             <div class="prc-number">PRC_03</div>
                             <div class="prc-status">[READY]</div>
-                            <div class="prc-logo"></div>
+                            <div class="prc-logo"><img src="img/logos/proxmox.svg" alt="Proxmox"></div>
                             <h3 class="prc-title">PROXMOX</h3>
                             <div class="prc-data">// CLUSTER DEPLOY</div>
                         </div>
@@ -1923,7 +1936,7 @@
                         <div class="prc-card">
                             <div class="prc-number">PRC_04</div>
                             <div class="prc-status">[READY]</div>
-                            <div class="prc-logo"></div>
+                            <div class="prc-logo"><img src="img/logos/active-directory.svg" alt="Active Directory"></div>
                             <h3 class="prc-title">ACTIVE DIR</h3>
                             <div class="prc-data">// DOMAIN CONFIG</div>
                         </div>
@@ -1931,7 +1944,7 @@
                         <div class="prc-card">
                             <div class="prc-number">PRC_05</div>
                             <div class="prc-status">[READY]</div>
-                            <div class="prc-logo"></div>
+                            <div class="prc-logo"><img src="img/logos/exchange.svg" alt="Exchange"></div>
                             <h3 class="prc-title">EXCHANGE</h3>
                             <div class="prc-data">// MAIL SERVER</div>
                         </div>
@@ -1939,7 +1952,7 @@
                         <div class="prc-card">
                             <div class="prc-number">PRC_06</div>
                             <div class="prc-status">[READY]</div>
-                            <div class="prc-logo"></div>
+                            <div class="prc-logo"><img src="img/logos/zyxel.svg" alt="Zyxel"></div>
                             <h3 class="prc-title">ZYXEL</h3>
                             <div class="prc-data">// VLAN CONFIG</div>
                         </div>
@@ -1947,7 +1960,7 @@
                         <div class="prc-card">
                             <div class="prc-number">PRC_07</div>
                             <div class="prc-status">[READY]</div>
-                            <div class="prc-logo"></div>
+                            <div class="prc-logo"><img src="img/logos/dlink.svg" alt="D-Link"></div>
                             <h3 class="prc-title">D-LINK WIFI</h3>
                             <div class="prc-data">// WIRELESS INFRA</div>
                         </div>
@@ -1955,7 +1968,7 @@
                         <div class="prc-card">
                             <div class="prc-number">PRC_08</div>
                             <div class="prc-status">[READY]</div>
-                            <div class="prc-logo"></div>
+                            <div class="prc-logo"><img src="img/logos/schema-e63.svg" alt="Schéma E63"></div>
                             <h3 class="prc-title">SCHEMA E63</h3>
                             <div class="prc-data">// NETWORK ARCH</div>
                         </div>
