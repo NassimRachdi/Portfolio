@@ -1387,495 +1387,335 @@
                     </script>
                 </div>
 
-                <!-- PROJETS SCOLAIRES - LIGHTBOX MODAL -->
-                <div id="projectsLightboxModal" class="projects-lightbox">
-                    <div class="projects-lightbox-overlay" id="projectsLightboxOverlay"></div>
-                    <div class="projects-lightbox-content">
-                        <button class="projects-lightbox-close" id="projectsLightboxClose">&times;</button>
-                        <div class="projects-lightbox-image">
-                            <img id="projectsLightboxImg" src="" alt="Prévisualisation du projet">
-                        </div>
-                        <div class="projects-lightbox-footer">
-                            <a id="projectsLightboxPdfBtn" href="#" target="_blank" class="projects-btn-pdf">VOIR LE PDF COMPLET</a>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- PROJETS SCOLAIRES -->
                 <div class="tab-content" id="tab-scolaires">
                     <style>
-                        /* ========== CLEAN PROJECTS GRID - 4x2 ========== */
-                        .projects-grid-clean {
+                        /* ========== LIGHT CYBER PROCEDURES GRID (4x2) ========== */
+                        .prc-grid {
                             display: grid;
                             grid-template-columns: repeat(4, 1fr);
-                            gap: 20px;
+                            gap: 32px;
                             margin: 40px 0;
                             animation: slideInContent 0.8s ease-out forwards;
                             opacity: 0;
                         }
 
-                        .project-card-clean {
-                            background: #ffffff;
-                            border: 1px solid #e0e0e0;
+                        /* ========== PRC CARD STYLING ========== */
+                        .prc-card {
+                            background: #FFFFFF;
+                            border: 1px solid #d0d0d0;
                             border-radius: 0;
-                            padding: 30px 20px 35px 20px;
-                            text-align: center;
-                            cursor: pointer;
-                            transition: all 0.3s ease;
+                            padding: 28px 20px;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: space-between;
+                            cursor: default;
+                            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                             position: relative;
+                            min-height: 280px;
                             overflow: hidden;
+                            box-shadow: none;
                         }
 
-                        .project-card-clean::before {
+                        /* Subtle gradient background on hover */
+                        .prc-card::after {
                             content: '';
                             position: absolute;
                             top: 0;
                             left: 0;
                             right: 0;
                             bottom: 0;
-                            background: rgba(0, 240, 255, 0.05);
+                            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(240, 248, 255, 0.3) 100%);
                             opacity: 0;
                             transition: opacity 0.3s ease;
                             pointer-events: none;
+                            z-index: 0;
                         }
 
-                        .project-card-clean:hover {
-                            border-color: #00F0FF;
-                            border-width: 1px;
-                            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.12);
-                        }
-
-                        .project-card-clean:hover::before {
+                        .prc-card:hover::after {
                             opacity: 1;
                         }
 
-                        .card-logo-container {
-                            width: 100%;
-                            height: 100px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            margin-bottom: 15px;
-                            overflow: hidden;
+                        /* Container for content layering */
+                        .prc-card > * {
+                            position: relative;
+                            z-index: 1;
                         }
 
-                        .card-logo {
-                            max-width: 90%;
-                            max-height: 90%;
-                            width: auto;
-                            height: auto;
-                            object-fit: contain;
-                            transition: transform 0.3s ease;
-                        }
-
-                        .project-card-clean:hover .card-logo {
-                            transform: scale(1.1);
-                        }
-
-                        .card-title {
-                            color: #333;
-                            font-size: 0.95em;
-                            font-weight: 600;
-                            margin: 0;
-                            transition: color 0.3s ease;
-                            line-height: 1.4;
-                            font-family: 'Courier New', monospace;
-                            letter-spacing: 0.3px;
-                        }
-
-                        .project-card-clean:hover .card-title {
-                            color: #00F0FF;
-                        }
-
-                        .card-description {
-                            color: #666;
-                            font-size: 0.8em;
-                            margin: 10px 0 12px 0;
-                            transition: color 0.3s ease;
-                            line-height: 1.5;
-                            font-weight: 400;
-                        }
-
-                        .project-card-clean:hover .card-description {
-                            color: #444;
-                        }
-
-                        .card-details-btn {
-                            display: inline-block;
-                            background: transparent;
-                            border: 1px solid #e0e0e0;
-                            color: #333;
-                            padding: 8px 16px;
-                            font-size: 0.85em;
-                            font-weight: 600;
-                            cursor: pointer;
-                            transition: all 0.3s ease;
-                            text-transform: uppercase;
-                            letter-spacing: 0.5px;
-                            margin-top: 5px;
-                        }
-
-                        .project-card-clean:hover .card-details-btn {
-                            background: #00F0FF;
-                            color: #000;
-                            border-color: #00F0FF;
-                        }
-
-                        .card-status {
+                        /* PRC Number - Top Left */
+                        .prc-number {
                             position: absolute;
-                            top: 10px;
-                            right: 10px;
-                            background: transparent;
-                            color: #00F0FF;
+                            top: 8px;
+                            left: 8px;
+                            font-family: 'Courier New', monospace;
                             font-size: 0.65em;
                             font-weight: 700;
+                            color: #999;
+                            letter-spacing: 1px;
+                            transition: color 0.3s ease;
+                        }
+
+                        .prc-card:hover .prc-number {
+                            color: #00F0FF;
+                        }
+
+                        /* STATUS Badge - Top Right (Hidden by default) */
+                        .prc-status {
+                            position: absolute;
+                            top: 8px;
+                            right: 8px;
+                            font-family: 'Courier New', monospace;
+                            font-size: 0.6em;
+                            font-weight: 700;
+                            color: #00F0FF;
                             letter-spacing: 1px;
                             opacity: 0;
                             transition: opacity 0.3s ease;
-                            font-family: 'Courier New', monospace;
+                            text-transform: uppercase;
                         }
 
-                        .project-card-clean:hover .card-status {
+                        .prc-card:hover .prc-status {
                             opacity: 1;
                         }
 
-                        /* ========== CLEAN PROJECTS LIGHTBOX ========== */
-                        .projects-lightbox {
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            z-index: 1000;
-                            pointer-events: none;
-                        }
-
-                        .projects-lightbox.active {
-                            pointer-events: auto;
-                        }
-
-                        .projects-lightbox-overlay {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            background: rgba(0, 0, 0, 0.5);
-                            backdrop-filter: blur(5px);
-                            opacity: 0;
-                            transition: opacity 0.3s ease;
-                        }
-
-                        .projects-lightbox.active .projects-lightbox-overlay {
-                            opacity: 1;
-                        }
-
-                        .projects-lightbox-content {
-                            position: fixed;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%) scale(0.9);
-                            max-width: 700px;
-                            width: 90%;
-                            background: #ffffff;
-                            border: 1px solid #e0e0e0;
-                            border-radius: 0;
-                            padding: 0;
-                            opacity: 0;
-                            transition: all 0.3s ease;
-                            pointer-events: auto;
-                            max-height: 85vh;
-                            overflow-y: auto;
-                            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-                        }
-
-                        .projects-lightbox.active .projects-lightbox-content {
-                            opacity: 1;
-                            transform: translate(-50%, -50%) scale(1);
-                        }
-
-                        .projects-lightbox-close {
-                            position: absolute;
-                            top: 15px;
-                            right: 15px;
-                            background: transparent;
-                            border: none;
-                            color: #999;
-                            font-size: 32px;
-                            width: 40px;
-                            height: 40px;
-                            border-radius: 0;
-                            cursor: pointer;
+                        /* Placeholder Logo - Circular */
+                        .prc-logo {
+                            width: 80px;
+                            height: 80px;
+                            border: 2px solid #d0d0d0;
+                            border-radius: 50%;
+                            margin: 15px 0 20px 0;
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            transition: color 0.3s ease;
-                            z-index: 1001;
-                            font-weight: 300;
+                            transition: all 0.3s ease;
+                            background: #fafafa;
+                            flex-shrink: 0;
                         }
 
-                        .projects-lightbox-close:hover {
+                        .prc-card:hover .prc-logo {
+                            border-color: #00F0FF;
+                            background: #f0fdff;
+                            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+                        }
+
+                        /* PRC Title - Main Text */
+                        .prc-title {
+                            color: #333;
+                            font-size: 1.05em;
+                            font-weight: 700;
+                            margin: 10px 0;
+                            text-transform: uppercase;
+                            letter-spacing: 0.8px;
+                            font-family: 'Courier New', monospace;
+                            line-height: 1.3;
+                            transition: all 0.3s ease;
+                            text-align: center;
+                        }
+
+                        .prc-card:hover .prc-title {
                             color: #00F0FF;
                         }
 
-                        .projects-lightbox-image {
+                        /* Data Line - Bottom */
+                        .prc-data {
+                            color: #b0b0b0;
+                            font-size: 0.75em;
+                            font-family: 'Courier New', monospace;
+                            margin-top: auto;
+                            padding-top: 12px;
+                            border-top: 1px solid #e8e8e8;
                             width: 100%;
-                            background: #f5f5f5;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            min-height: 400px;
-                            overflow: hidden;
-                        }
-
-                        .projects-lightbox-image img {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                        }
-
-                        .projects-lightbox-footer {
-                            padding: 30px 30px;
-                            border-top: 1px solid #e0e0e0;
-                            display: flex;
-                            justify-content: center;
-                        }
-
-                        .projects-btn-pdf {
-                            background: #333;
-                            color: #fff;
-                            border: none;
-                            padding: 14px 40px;
-                            font-size: 0.9em;
-                            font-weight: 600;
-                            cursor: pointer;
-                            border-radius: 0;
+                            text-align: center;
+                            letter-spacing: 0.3px;
                             transition: all 0.3s ease;
-                            text-decoration: none;
-                            display: inline-block;
-                            text-transform: uppercase;
-                            letter-spacing: 0.5px;
+                            line-height: 1.4;
                         }
 
-                        .projects-btn-pdf:hover {
-                            background: #00F0FF;
-                            color: #333;
+                        .prc-card:hover .prc-data {
+                            color: #999;
+                            border-top-color: #00F0FF;
                         }
 
-                        /* Responsive Grid */
+                        /* Card Hover - Main Effects */
+                        .prc-card:hover {
+                            border-color: #00F0FF;
+                            box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+                        }
+
+                        /* ========== RESPONSIVE BREAKPOINTS ========== */
                         @media (max-width: 1200px) {
-                            .projects-grid-clean {
+                            .prc-grid {
                                 grid-template-columns: repeat(3, 1fr);
-                                gap: 18px;
+                                gap: 28px;
+                            }
+
+                            .prc-card {
+                                padding: 24px 18px;
+                                min-height: 260px;
+                            }
+
+                            .prc-title {
+                                font-size: 0.95em;
+                            }
+
+                            .prc-logo {
+                                width: 70px;
+                                height: 70px;
                             }
                         }
 
                         @media (max-width: 768px) {
-                            .projects-grid-clean {
+                            .prc-grid {
                                 grid-template-columns: repeat(2, 1fr);
-                                gap: 15px;
+                                gap: 20px;
                             }
 
-                            .project-card-clean {
+                            .prc-card {
                                 padding: 20px 15px;
+                                min-height: 240px;
                             }
 
-                            .card-logo-container {
-                                height: 80px;
+                            .prc-number {
+                                font-size: 0.6em;
                             }
 
-                            .card-title {
-                                font-size: 0.85em;
+                            .prc-status {
+                                font-size: 0.55em;
                             }
 
-                            .projects-lightbox-content {
-                                max-width: 95%;
+                            .prc-title {
+                                font-size: 0.9em;
                             }
 
-                            .projects-lightbox-footer {
-                                padding: 20px 20px;
+                            .prc-data {
+                                font-size: 0.7em;
+                            }
+
+                            .prc-logo {
+                                width: 65px;
+                                height: 65px;
+                                margin: 10px 0 15px 0;
                             }
                         }
 
                         @media (max-width: 480px) {
-                            .projects-grid-clean {
-                                grid-template-columns: repeat(2, 1fr);
-                                gap: 12px;
+                            .prc-grid {
+                                grid-template-columns: 1fr;
+                                gap: 16px;
                             }
 
-                            .project-card-clean {
-                                padding: 15px 10px;
+                            .prc-card {
+                                padding: 18px 14px;
+                                min-height: 220px;
                             }
 
-                            .card-logo-container {
-                                height: 70px;
-                                margin-bottom: 10px;
+                            .prc-number {
+                                font-size: 0.55em;
+                                top: 6px;
+                                left: 6px;
                             }
 
-                            .card-title {
-                                font-size: 0.75em;
+                            .prc-status {
+                                font-size: 0.5em;
+                                top: 6px;
+                                right: 6px;
                             }
 
-                            .projects-lightbox-image {
-                                min-height: 250px;
+                            .prc-title {
+                                font-size: 0.85em;
                             }
 
-                            .projects-btn-pdf {
-                                padding: 10px 30px;
-                                font-size: 0.8em;
+                            .prc-data {
+                                font-size: 0.65em;
+                                margin-top: 8px;
+                                padding-top: 8px;
+                            }
+
+                            .prc-logo {
+                                width: 60px;
+                                height: 60px;
+                                margin: 8px 0 12px 0;
                             }
                         }
+
                     </style>
 
-                    <div class="projects-grid-clean">
-                        <!-- 1. GLPI - Inventaire/Parc -->
-                        <div class="project-card-clean" data-title="GLPI" data-preview="img/previews/glpi.jpg" data-pdf="pdf/glpi.pdf">
-                            <div class="card-status">[STATUS: READY]</div>
-                            <div class="card-logo-container">
-                                <img src="img/logos/glpi.png" alt="Logo GLPI" class="card-logo">
-                            </div>
-                            <h3 class="card-title">Déploiement GLPI</h3>
-                            <p class="card-description">Mise en place d'un serveur GLPI pour la gestion de parc informatique et le ticketing.</p>
-                            <button class="card-details-btn">Détails</button>
+                    <div class="prc-grid">
+                        <!-- 1. PRC_01 - GLPI -->
+                        <div class="prc-card">
+                            <div class="prc-number">PRC_01</div>
+                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-logo"></div>
+                            <h3 class="prc-title">GLPI</h3>
+                            <div class="prc-data">// ASSET MANAGEMENT</div>
                         </div>
 
-                        <!-- 2. PfSense - Firewall/Réseau -->
-                        <div class="project-card-clean" data-title="PfSense" data-preview="img/previews/pfsense.jpg" data-pdf="pdf/pfsense.pdf">
-                            <div class="card-status">[STATUS: READY]</div>
-                            <div class="card-logo-container">
-                                <img src="img/logos/pfsense.png" alt="Logo PfSense" class="card-logo">
-                            </div>
-                            <h3 class="card-title">Configuration PfSense</h3>
-                            <p class="card-description">Configuration d'un firewall PfSense, règles de filtrage, NAT et VPN.</p>
-                            <button class="card-details-btn">Détails</button>
+                        <!-- 2. PRC_02 - PfSense -->
+                        <div class="prc-card">
+                            <div class="prc-number">PRC_02</div>
+                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-logo"></div>
+                            <h3 class="prc-title">PFSENSE</h3>
+                            <div class="prc-data">// FIREWALL RULES</div>
                         </div>
 
-                        <!-- 3. Proxmox - Virtualisation -->
-                        <div class="project-card-clean" data-title="Proxmox" data-preview="img/previews/proxmox.jpg" data-pdf="pdf/proxmox.pdf">
-                            <div class="card-status">[STATUS: READY]</div>
-                            <div class="card-logo-container">
-                                <img src="img/logos/proxmox.png" alt="Logo Proxmox" class="card-logo">
-                            </div>
-                            <h3 class="card-title">Virtualisation Proxmox</h3>
-                            <p class="card-description">Déploiement d'un cluster Proxmox VE, création de VMs et gestion des storages.</p>
-                            <button class="card-details-btn">Détails</button>
+                        <!-- 3. PRC_03 - Proxmox -->
+                        <div class="prc-card">
+                            <div class="prc-number">PRC_03</div>
+                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-logo"></div>
+                            <h3 class="prc-title">PROXMOX</h3>
+                            <div class="prc-data">// CLUSTER DEPLOY</div>
                         </div>
 
-                        <!-- 4. Active Directory - Identité -->
-                        <div class="project-card-clean" data-title="Active Directory" data-preview="img/previews/active-directory.jpg" data-pdf="pdf/active-directory.pdf">
-                            <div class="card-status">[STATUS: READY]</div>
-                            <div class="card-logo-container">
-                                <img src="img/logos/active-directory.png" alt="Logo Active Directory" class="card-logo">
-                            </div>
-                            <h3 class="card-title">Déploiement Active Directory</h3>
-                            <p class="card-description">Installation d'un contrôleur de domaine Windows Server, GPOs et scripts de connexion.</p>
-                            <button class="card-details-btn">Détails</button>
+                        <!-- 4. PRC_04 - Active Directory -->
+                        <div class="prc-card">
+                            <div class="prc-number">PRC_04</div>
+                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-logo"></div>
+                            <h3 class="prc-title">ACTIVE DIR</h3>
+                            <div class="prc-data">// DOMAIN CONFIG</div>
                         </div>
 
-                        <!-- 5. Exchange - Messagerie -->
-                        <div class="project-card-clean" data-title="Exchange" data-preview="img/previews/exchange.jpg" data-pdf="pdf/exchange.pdf">
-                            <div class="card-status">[STATUS: READY]</div>
-                            <div class="card-logo-container">
-                                <img src="img/logos/exchange.png" alt="Logo Exchange" class="card-logo">
-                            </div>
-                            <h3 class="card-title">Configuration Exchange</h3>
-                            <p class="card-description">Configuration d'un serveur Exchange Server pour la messagerie collaborative.</p>
-                            <button class="card-details-btn">Détails</button>
+                        <!-- 5. PRC_05 - Exchange -->
+                        <div class="prc-card">
+                            <div class="prc-number">PRC_05</div>
+                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-logo"></div>
+                            <h3 class="prc-title">EXCHANGE</h3>
+                            <div class="prc-data">// MAIL SERVER</div>
                         </div>
 
-                        <!-- 6. Zyxel - Sécurité Réseau -->
-                        <div class="project-card-clean" data-title="Zyxel" data-preview="img/previews/zyxel.jpg" data-pdf="pdf/zyxel.pdf">
-                            <div class="card-status">[STATUS: READY]</div>
-                            <div class="card-logo-container">
-                                <img src="img/logos/zyxel.png" alt="Logo Zyxel" class="card-logo">
-                            </div>
-                            <h3 class="card-title">Équipement Zyxel</h3>
-                            <p class="card-description">Configuration de switches gérables Zyxel, VLANs et filtrage MAC.</p>
-                            <button class="card-details-btn">Détails</button>
+                        <!-- 6. PRC_06 - Zyxel -->
+                        <div class="prc-card">
+                            <div class="prc-number">PRC_06</div>
+                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-logo"></div>
+                            <h3 class="prc-title">ZYXEL</h3>
+                            <div class="prc-data">// VLAN CONFIG</div>
                         </div>
 
-                        <!-- 7. D-Link WiFi - Infrastructure -->
-                        <div class="project-card-clean" data-title="D-Link WiFi" data-preview="img/previews/dlink-wifi.jpg" data-pdf="pdf/dlink-wifi.pdf">
-                            <div class="card-status">[STATUS: READY]</div>
-                            <div class="card-logo-container">
-                                <img src="img/logos/dlink.png" alt="Logo D-Link" class="card-logo">
-                            </div>
-                            <h3 class="card-title">Accès WiFi D-Link</h3>
-                            <p class="card-description">Déploiement d'une infrastructure WiFi d'entreprise avec contrôleur D-Link.</p>
-                            <button class="card-details-btn">Détails</button>
+                        <!-- 7. PRC_07 - D-Link WiFi -->
+                        <div class="prc-card">
+                            <div class="prc-number">PRC_07</div>
+                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-logo"></div>
+                            <h3 class="prc-title">D-LINK WIFI</h3>
+                            <div class="prc-data">// WIRELESS INFRA</div>
                         </div>
 
-                        <!-- 8. Schéma E63 - Soutenance -->
-                        <div class="project-card-clean" data-title="Schéma E63" data-preview="img/previews/schema-e63.jpg" data-pdf="schema/schema_e6.pdf">
-                            <div class="card-status">[STATUS: READY]</div>
-                            <div class="card-logo-container">
-                                <img src="img/logos/schema.png" alt="Logo Schéma" class="card-logo">
-                            </div>
-                            <h3 class="card-title">Schéma Infrastructure E63</h3>
-                            <p class="card-description">Schéma global de l'infrastructure réseau pour l'épreuve E63 du BTS SIO.</p>
-                            <button class="card-details-btn">Détails</button>
+                        <!-- 8. PRC_08 - Schéma E63 -->
+                        <div class="prc-card">
+                            <div class="prc-number">PRC_08</div>
+                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-logo"></div>
+                            <h3 class="prc-title">SCHEMA E63</h3>
+                            <div class="prc-data">// NETWORK ARCH</div>
                         </div>
                     </div>
 
-                    <script>
-                        // ========== CLEAN PROJECTS LIGHTBOX SYSTEM ==========
-                        (function initProjectsLightbox() {
-                            const lightbox = document.getElementById('projectsLightboxModal');
-                            const lightboxOverlay = document.getElementById('projectsLightboxOverlay');
-                            const lightboxClose = document.getElementById('projectsLightboxClose');
-                            const lightboxImg = document.getElementById('projectsLightboxImg');
-                            const lightboxPdfBtn = document.getElementById('projectsLightboxPdfBtn');
-                            const projectCards = document.querySelectorAll('#tab-scolaires .project-card-clean');
-
-                            function openLightbox(card) {
-                                const preview = card.dataset.preview;
-                                const pdf = card.dataset.pdf;
-
-                                lightboxImg.src = preview;
-                                lightboxPdfBtn.href = pdf;
-                                lightbox.classList.add('active');
-                                document.body.style.overflow = 'hidden';
-                            }
-
-                            function closeLightbox() {
-                                lightbox.classList.remove('active');
-                                document.body.style.overflow = '';
-                            }
-
-                            // Event Listeners: Click on cards
-                            projectCards.forEach(card => {
-                                card.addEventListener('click', () => {
-                                    openLightbox(card);
-                                });
-
-                                // Also allow DETAILS button to open lightbox
-                                const detailsBtn = card.querySelector('.card-details-btn');
-                                if (detailsBtn) {
-                                    detailsBtn.addEventListener('click', (e) => {
-                                        e.stopPropagation();
-                                        openLightbox(card);
-                                    });
-                                }
-                            });
-
-                            // Close button
-                            lightboxClose.addEventListener('click', closeLightbox);
-
-                            // Close on overlay click
-                            lightboxOverlay.addEventListener('click', closeLightbox);
-
-                            // Close on Escape key
-                            document.addEventListener('keydown', (e) => {
-                                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                                    closeLightbox();
-                                }
-                            });
-
-                            // Prevent closing when clicking inside content
-                            document.querySelector('.projects-lightbox-content').addEventListener('click', (e) => {
-                                e.stopPropagation();
-                            });
-                        })();
                     </script>
                 </div>
                                 </div>
