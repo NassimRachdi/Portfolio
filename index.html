@@ -747,26 +747,30 @@
                 <!-- PROJETS EN ENTREPRISE -->
                 <div class="tab-content active" id="tab-entreprise">
                     <style>
-                        .mission-grid {
-                            display: grid;
-                            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-                            gap: 32px;
-                            margin-top: 20px;
+                        /* Rapport de Mission - Lightbox & Gallery */
+                        .rapport-mission-container {
+                            max-width: 900px;
+                            margin: 0 auto;
                         }
 
-                        .mission-card {
+                        .mission-report {
                             background: linear-gradient(135deg, #ffffff 0%, rgba(0, 25, 168, 0.01) 100%);
                             border: 1.5px solid #0019a8;
                             border-left: 5px solid #E2001A;
-                            clip-path: polygon(0 0, 100% 0, 98% 2%, 100% 4%, 100% 100%, 0 100%, 0 4%, 2% 2%);
-                            padding: 28px;
+                            border-radius: 2px;
+                            padding: 40px;
+                            margin-bottom: 32px;
                             position: relative;
-                            overflow: hidden;
-                            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+                            transition: all 0.4s ease;
+                            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
                         }
 
-                        .mission-card::before {
+                        .mission-report:hover {
+                            border-width: 2px;
+                            box-shadow: 0 12px 32px rgba(0, 25, 168, 0.15);
+                        }
+
+                        .mission-report::before {
                             content: '';
                             position: absolute;
                             top: 0;
@@ -778,334 +782,609 @@
                             z-index: 0;
                         }
 
-                        .mission-card:hover {
-                            transform: scale(1.02) translateY(-8px);
-                            box-shadow: 0 16px 40px rgba(0, 25, 168, 0.2), 0 0 30px rgba(0, 25, 168, 0.15), inset 0 0 20px rgba(0, 25, 168, 0.05);
-                            border-color: #0019a8;
-                        }
-
-                        .mission-card:hover .mission-text {
-                            color: #1a1f2e;
-                        }
-
-                        .mission-content {
+                        .mission-report-content {
                             position: relative;
                             z-index: 1;
                         }
 
-                        .mission-header {
+                        .mission-header-main {
                             display: flex;
-                            align-items: flex-start;
-                            gap: 12px;
-                            margin-bottom: 24px;
                             justify-content: space-between;
+                            align-items: flex-start;
+                            margin-bottom: 32px;
+                            gap: 20px;
                         }
 
-                        .mission-title-group {
-                            flex: 1;
-                            display: flex;
-                            align-items: center;
-                            gap: 12px;
-                        }
-
-                        .mission-icon {
-                            font-size: 1.8em;
-                            flex-shrink: 0;
-                            animation: float 3s ease-in-out infinite;
-                        }
-
-                        @keyframes float {
-                            0%, 100% { transform: translateY(0); }
-                            50% { transform: translateY(-4px); }
-                        }
-
-                        .mission-title {
-                            font-family: 'Avenir', 'Helvetica Neue', sans-serif;
-                            font-size: 1.2em;
-                            font-weight: 700;
-                            text-transform: uppercase;
-                            letter-spacing: 1px;
-                            color: #0019a8;
-                            margin: 0;
-                        }
-
-                        .mission-id {
+                        .mission-title-main {
                             font-family: 'Roboto Mono', monospace;
-                            font-size: 0.7em;
+                            font-size: 1.4em;
                             font-weight: 700;
-                            color: #E2001A;
-                            background: rgba(226, 0, 26, 0.08);
-                            padding: 4px 10px;
-                            border-radius: 2px;
-                            border: 1px solid rgba(226, 0, 26, 0.3);
-                            white-space: nowrap;
-                            flex-shrink: 0;
-                        }
-
-                        .mission-sections {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 16px;
-                            margin-bottom: 24px;
-                        }
-
-                        .mission-section {
-                            display: flex;
-                            gap: 12px;
-                        }
-
-                        .section-icon-small {
-                            font-size: 1.3em;
-                            flex-shrink: 0;
-                            opacity: 0.7;
-                        }
-
-                        .section-text {
-                            flex: 1;
-                        }
-
-                        .section-text strong {
-                            font-family: 'Avenir', 'Helvetica Neue', sans-serif;
-                            font-size: 0.95em;
                             color: #0019a8;
+                            margin: 0 0 8px 0;
                             text-transform: uppercase;
-                            letter-spacing: 0.5px;
-                            display: block;
-                            margin-bottom: 4px;
+                            letter-spacing: 1.5px;
                         }
 
-                        .section-text p {
+                        .mission-subtitle {
                             font-family: 'Inter', sans-serif;
-                            font-size: 0.9em;
-                            line-height: 1.6;
+                            font-size: 0.95em;
                             color: #6b7280;
                             margin: 0;
                         }
 
-                        .mission-card:hover .section-text p {
-                            color: #4b5563;
+                        .mission-ref {
+                            font-family: 'Roboto Mono', monospace;
+                            font-size: 0.8em;
+                            font-weight: 700;
+                            color: #E2001A;
+                            background: rgba(226, 0, 26, 0.08);
+                            border: 1px solid rgba(226, 0, 26, 0.3);
+                            padding: 8px 14px;
+                            border-radius: 2px;
+                            white-space: nowrap;
                         }
 
-                        .mission-tech-stack {
+                        .mission-description {
+                            font-family: 'Inter', sans-serif;
+                            font-size: 0.95em;
+                            line-height: 1.7;
+                            color: #4b5563;
+                            margin: 0 0 32px 0;
+                        }
+
+                        .mission-sections-main {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                            gap: 24px;
+                            margin-bottom: 32px;
+                        }
+
+                        .mission-section-main {
+                            background: rgba(0, 25, 168, 0.03);
+                            border-left: 3px solid #0019a8;
+                            padding: 16px;
+                            border-radius: 2px;
+                        }
+
+                        .section-label {
+                            font-family: 'Avenir', 'Helvetica Neue', sans-serif;
+                            font-size: 0.8em;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            color: #0019a8;
+                            margin-bottom: 8px;
+                            display: block;
+                        }
+
+                        .section-value {
+                            font-family: 'Inter', sans-serif;
+                            font-size: 0.9em;
+                            color: #1a1f2e;
+                            line-height: 1.6;
+                            margin: 0;
+                        }
+
+                        /* Tech Stack with Logos */
+                        .tech-stack-main {
                             display: flex;
                             align-items: center;
-                            gap: 16px;
-                            padding-top: 20px;
+                            gap: 24px;
+                            padding: 24px 0;
                             border-top: 1px solid rgba(0, 25, 168, 0.1);
+                            border-bottom: 1px solid rgba(0, 25, 168, 0.1);
+                            margin-bottom: 32px;
                             flex-wrap: wrap;
                         }
 
-                        .tech-item {
+                        .tech-logo {
                             position: relative;
+                            width: 50px;
+                            height: 50px;
+                            background: white;
+                            border: 1.5px solid #0019a8;
+                            border-radius: 4px;
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            width: 40px;
-                            height: 40px;
-                            background: rgba(0, 25, 168, 0.08);
-                            border: 1px solid rgba(0, 25, 168, 0.2);
-                            border-radius: 4px;
-                            font-size: 1.4em;
+                            font-size: 1.8em;
                             cursor: pointer;
                             transition: all 0.3s ease;
+                            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
                         }
 
-                        .tech-item:hover {
-                            background: rgba(0, 25, 168, 0.15);
-                            border-color: #0019a8;
-                            transform: scale(1.15) rotate(-5deg);
-                            box-shadow: 0 4px 12px rgba(0, 25, 168, 0.25);
+                        .tech-logo:hover {
+                            background: rgba(0, 25, 168, 0.1);
+                            border-color: #E2001A;
+                            transform: scale(1.15);
+                            box-shadow: 0 6px 16px rgba(0, 25, 168, 0.2);
                         }
 
-                        .tech-tooltip {
+                        .tech-logo-tooltip {
                             position: absolute;
                             bottom: 100%;
                             left: 50%;
-                            transform: translateX(-50%) translateY(-8px);
+                            transform: translateX(-50%) translateY(-12px);
                             background: #1a1f2e;
                             color: #ffffff;
-                            padding: 6px 12px;
+                            padding: 8px 14px;
                             border-radius: 3px;
-                            font-family: 'Roboto Mono', monospace;
-                            font-size: 0.75em;
+                            border-left: 2px solid #E2001A;
+                            font-family: 'Inter', sans-serif;
+                            font-size: 0.8em;
                             font-weight: 600;
                             white-space: nowrap;
                             opacity: 0;
                             pointer-events: none;
                             transition: all 0.2s ease;
-                            z-index: 10;
+                            z-index: 20;
                         }
 
-                        .tech-item:hover .tech-tooltip {
+                        .tech-logo:hover .tech-logo-tooltip {
                             opacity: 1;
-                            transform: translateX(-50%) translateY(-12px);
+                            transform: translateX(-50%) translateY(-16px);
                         }
 
-                        .tech-tags {
-                            display: flex;
-                            flex-wrap: wrap;
-                            gap: 8px;
-                            margin-top: 16px;
+                        /* Screenshot Gallery */
+                        .screenshots-section {
+                            margin-top: 32px;
                         }
 
-                        .tech-tag {
-                            font-family: 'Roboto Mono', monospace;
-                            font-size: 0.75em;
-                            font-weight: 600;
-                            background: rgba(0, 25, 168, 0.1);
+                        .screenshots-title {
+                            font-family: 'Avenir', 'Helvetica Neue', sans-serif;
+                            font-size: 1em;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
                             color: #0019a8;
-                            border: 1px solid rgba(0, 25, 168, 0.25);
-                            padding: 4px 10px;
+                            margin: 0 0 16px 0;
+                        }
+
+                        .screenshots-grid {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                            gap: 12px;
+                        }
+
+                        .screenshot-thumbnail {
+                            position: relative;
+                            width: 100%;
+                            padding-bottom: 75%;
+                            background: #f5f5f5;
+                            border: 1.5px solid rgba(0, 25, 168, 0.2);
                             border-radius: 2px;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            overflow: hidden;
+                        }
+
+                        .screenshot-thumbnail:hover {
+                            border-color: #0019a8;
+                            box-shadow: 0 4px 12px rgba(0, 25, 168, 0.2);
+                            transform: scale(1.05);
+                        }
+
+                        .screenshot-thumbnail img {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
                             transition: all 0.3s ease;
                         }
 
-                        .tech-tag:hover {
-                            background: rgba(0, 25, 168, 0.2);
-                            border-color: #0019a8;
+                        .screenshot-thumbnail:hover img {
+                            filter: brightness(1.1);
+                        }
+
+                        .screenshot-placeholder {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: linear-gradient(135deg, rgba(0, 25, 168, 0.05) 0%, rgba(0, 25, 168, 0.02) 100%);
+                            color: #0019a8;
+                            font-size: 2em;
+                            opacity: 0.7;
+                        }
+
+                        /* Lightbox Modal */
+                        .lightbox-overlay {
+                            display: none;
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.8);
+                            backdrop-filter: blur(4px);
+                            z-index: 100;
+                            animation: fadeIn 0.3s ease;
+                        }
+
+                        .lightbox-overlay.active {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        @keyframes fadeIn {
+                            from { opacity: 0; }
+                            to { opacity: 1; }
+                        }
+
+                        .lightbox-content {
+                            background: #ffffff;
+                            border: 2px solid #0019a8;
+                            border-radius: 4px;
+                            max-width: 85vw;
+                            max-height: 85vh;
+                            position: relative;
+                            animation: slideIn 0.3s ease;
+                            display: flex;
+                            flex-direction: column;
+                        }
+
+                        @keyframes slideIn {
+                            from { 
+                                transform: scale(0.95) translateY(-20px);
+                                opacity: 0;
+                            }
+                            to { 
+                                transform: scale(1) translateY(0);
+                                opacity: 1;
+                            }
+                        }
+
+                        .lightbox-header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 16px 20px;
+                            border-bottom: 1px solid rgba(0, 25, 168, 0.1);
+                        }
+
+                        .lightbox-title {
+                            font-family: 'Roboto Mono', monospace;
+                            font-size: 0.9em;
+                            font-weight: 700;
+                            color: #0019a8;
+                            margin: 0;
+                        }
+
+                        .lightbox-close {
+                            background: none;
+                            border: none;
+                            font-size: 1.8em;
+                            color: #E2001A;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+                            padding: 4px;
+                            line-height: 1;
+                        }
+
+                        .lightbox-close:hover {
+                            transform: scale(1.2);
+                        }
+
+                        .lightbox-image-container {
+                            flex: 1;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            overflow: auto;
+                            padding: 20px;
+                            background: #fafbfc;
+                        }
+
+                        .lightbox-image-container img {
+                            max-width: 100%;
+                            max-height: 100%;
+                            object-fit: contain;
+                        }
+
+                        .lightbox-footer {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 16px 20px;
+                            border-top: 1px solid rgba(0, 25, 168, 0.1);
+                        }
+
+                        .lightbox-nav {
+                            display: flex;
+                            gap: 12px;
+                        }
+
+                        .lightbox-btn {
+                            background: #0019a8;
+                            color: white;
+                            border: none;
+                            padding: 8px 16px;
+                            border-radius: 2px;
+                            cursor: pointer;
+                            font-family: 'Avenir', sans-serif;
+                            font-size: 0.85em;
+                            font-weight: 600;
+                            transition: all 0.2s ease;
+                        }
+
+                        .lightbox-btn:hover {
+                            background: #E2001A;
+                            transform: translateY(-2px);
+                        }
+
+                        .lightbox-btn:disabled {
+                            background: #cccccc;
+                            cursor: not-allowed;
+                        }
+
+                        .lightbox-counter {
+                            font-family: 'Roboto Mono', monospace;
+                            font-size: 0.8em;
+                            color: #0019a8;
+                            font-weight: 600;
                         }
 
                         @media (max-width: 768px) {
-                            .mission-grid { grid-template-columns: 1fr; gap: 20px; }
-                            .mission-card { padding: 20px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-                            .mission-title { font-size: 1.05em; }
-                            .mission-tech-stack { gap: 12px; }
+                            .mission-report { padding: 24px; }
+                            .mission-header-main { flex-direction: column; }
+                            .mission-sections-main { grid-template-columns: 1fr; }
+                            .tech-stack-main { gap: 16px; }
+                            .screenshots-grid { grid-template-columns: repeat(3, 1fr); }
+                            .lightbox-content { max-width: 95vw; max-height: 90vh; }
                         }
                     </style>
 
-                    <div class="mission-grid">
-                        
-                        <!-- MISSION 1: AUTOMATISATION VBA -->
-                        <div class="mission-card">
-                            <div class="mission-content">
-                                <div class="mission-header">
-                                    <div class="mission-title-group">
-                                        <div class="mission-icon">⚙️</div>
-                                        <h3 class="mission-title">VBA Excel</h3>
-                                    </div>
-                                    <span class="mission-id">[MISSION_01]</span>
+                    <!-- Lightbox Modal -->
+                    <div class="lightbox-overlay" id="lightboxOverlay">
+                        <div class="lightbox-content">
+                            <div class="lightbox-header">
+                                <h3 class="lightbox-title" id="lightboxTitle">Capture d'écran</h3>
+                                <button class="lightbox-close" id="lightboxClose">✕</button>
+                            </div>
+                            <div class="lightbox-image-container">
+                                <img id="lightboxImage" src="" alt="Screenshot">
+                            </div>
+                            <div class="lightbox-footer">
+                                <div class="lightbox-nav">
+                                    <button class="lightbox-btn" id="lightboxPrev">← Précédent</button>
+                                    <button class="lightbox-btn" id="lightboxNext">Suivant →</button>
                                 </div>
-
-                                <div class="mission-sections">
-                                    <div class="mission-section">
-                                        <div class="section-icon-small">🔧</div>
-                                        <div class="section-text">
-                                            <strong>Problématique</strong>
-                                            <p>Traitement manuel répétitif de 500+ lignes de données Excel quotidiennement, consommant 2+ heures par jour.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="mission-section">
-                                        <div class="section-icon-small">⚡</div>
-                                        <div class="section-text">
-                                            <strong>Solution</strong>
-                                            <p>Développement de macros VBA avec validation de données, génération automatique de rapports et intégration SharePoint.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="mission-section">
-                                        <div class="section-icon-small">✨</div>
-                                        <div class="section-text">
-                                            <strong>Résultat</strong>
-                                            <p>Réduction du temps de traitement de 95% (2h → 6 min/jour). Zéro erreur manuelle. Économie annuelle de 432 heures.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mission-tech-stack">
-                                    <div class="tech-item">
-                                        📊
-                                        <span class="tech-tooltip">Excel VBA</span>
-                                    </div>
-                                    <div class="tech-item">
-                                        📋
-                                        <span class="tech-tooltip">Data Validation</span>
-                                    </div>
-                                    <div class="tech-item">
-                                        ☁️
-                                        <span class="tech-tooltip">SharePoint</span>
-                                    </div>
-                                    <div class="tech-item">
-                                        🔄
-                                        <span class="tech-tooltip">Automation</span>
-                                    </div>
-                                </div>
-
-                                <div class="tech-tags">
-                                    <span class="tech-tag">VBA</span>
-                                    <span class="tech-tag">Excel</span>
-                                    <span class="tech-tag">Automation</span>
-                                    <span class="tech-tag">Data Processing</span>
-                                </div>
+                                <span class="lightbox-counter"><span id="lightboxCurrent">1</span> / <span id="lightboxTotal">6</span></span>
                             </div>
                         </div>
-
-                        <!-- MISSION 2: MIGRATION SHAREPOINT -->
-                        <div class="mission-card">
-                            <div class="mission-content">
-                                <div class="mission-header">
-                                    <div class="mission-title-group">
-                                        <div class="mission-icon">☁️</div>
-                                        <h3 class="mission-title">SharePoint</h3>
-                                    </div>
-                                    <span class="mission-id">[MISSION_02]</span>
-                                </div>
-
-                                <div class="mission-sections">
-                                    <div class="mission-section">
-                                        <div class="section-icon-small">🔧</div>
-                                        <div class="section-text">
-                                            <strong>Problématique</strong>
-                                            <p>Migration de 10 000+ documents d'un serveur legacy vers SharePoint Online sans perte de données ni accès.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="mission-section">
-                                        <div class="section-icon-small">⚡</div>
-                                        <div class="section-text">
-                                            <strong>Solution</strong>
-                                            <p>Configuration de SharePoint, création de structures hiérarchiques, synchronisation et migration en batch via PowerShell.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="mission-section">
-                                        <div class="section-icon-small">✨</div>
-                                        <div class="section-text">
-                                            <strong>Résultat</strong>
-                                            <p>Migration sans downtime. Tous les utilisateurs (200+) formés. Accès centralisé amélioré de 40%.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mission-tech-stack">
-                                    <div class="tech-item">
-                                        ☁️
-                                        <span class="tech-tooltip">SharePoint Online</span>
-                                    </div>
-                                    <div class="tech-item">
-                                        ⚙️
-                                        <span class="tech-tooltip">PowerShell</span>
-                                    </div>
-                                    <div class="tech-item">
-                                        🔐
-                                        <span class="tech-tooltip">Security</span>
-                                    </div>
-                                    <div class="tech-item">
-                                        📦
-                                        <span class="tech-tooltip">Batch Processing</span>
-                                    </div>
-                                </div>
-
-                                <div class="tech-tags">
-                                    <span class="tech-tag">SharePoint</span>
-                                    <span class="tech-tag">PowerShell</span>
-                                    <span class="tech-tag">Migration</span>
-                                    <span class="tech-tag">Microsoft 365</span>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
+
+                    <div class="rapport-mission-container">
+                        <!-- MISSION VBA EXCEL -->
+                        <div class="mission-report">
+                            <div class="mission-report-content">
+                                <div class="mission-header-main">
+                                    <div>
+                                        <h2 class="mission-title-main">PROJET OSCAR - AUTOMATISATION VBA</h2>
+                                        <p class="mission-subtitle">Optimisation processus Excel & intégration collaborative</p>
+                                    </div>
+                                    <span class="mission-ref">[OSCAR_VBA]</span>
+                                </div>
+
+                                <p class="mission-description">Conception et développement d'une solution d'automatisation complète pour traiter les volumes massifs de données Excel. Intégration avec SharePoint pour centraliser les rapports générés et faciliter l'accès multi-utilisateurs.</p>
+
+                                <div class="mission-sections-main">
+                                    <div class="mission-section-main">
+                                        <span class="section-label">Durée</span>
+                                        <p class="section-value">3 mois (alternance)</p>
+                                    </div>
+                                    <div class="mission-section-main">
+                                        <span class="section-label">Volume Traité</span>
+                                        <p class="section-value">500+ lignes/jour</p>
+                                    </div>
+                                    <div class="mission-section-main">
+                                        <span class="section-label">Résultat</span>
+                                        <p class="section-value">95% gain de temps</p>
+                                    </div>
+                                    <div class="mission-section-main">
+                                        <span class="section-label">Économie Annuelle</span>
+                                        <p class="section-value">432 heures</p>
+                                    </div>
+                                </div>
+
+                                <div class="tech-stack-main">
+                                    <div class="tech-logo">
+                                        📊
+                                        <span class="tech-logo-tooltip">Automatisation de processus et gestion de bases de données.</span>
+                                    </div>
+                                    <div class="tech-logo">
+                                        ☁️
+                                        <span class="tech-logo-tooltip">Structuration de l'espace collaboratif et gestion documentaire.</span>
+                                    </div>
+                                </div>
+
+                                <div class="screenshots-section">
+                                    <h4 class="screenshots-title">Captures d'écran du projet</h4>
+                                    <div class="screenshots-grid" data-mission="vba">
+                                        <div class="screenshot-thumbnail" data-src="img/vba-dashboard.png" data-title="Tableau de bord VBA">
+                                            <div class="screenshot-placeholder">📊</div>
+                                        </div>
+                                        <div class="screenshot-thumbnail" data-src="img/vba-macro.png" data-title="Éditeur de macro VBA">
+                                            <div class="screenshot-placeholder">⚙️</div>
+                                        </div>
+                                        <div class="screenshot-thumbnail" data-src="img/vba-results.png" data-title="Résultats traitement">
+                                            <div class="screenshot-placeholder">✓</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(0, 25, 168, 0.1);">
+                                    <p style="font-family: 'Roboto Mono', monospace; font-size: 0.9em; color: #0019a8; font-weight: 600; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 0.5px;">Compétences Développées</p>
+                                    <p style="font-family: 'Inter', sans-serif; font-size: 0.9em; line-height: 1.7; color: #4b5563; margin: 0;">Maîtrise complète du développement VBA (formulaires, validation, génération rapports). Connaissance approfondie de l'architecture Excel. Intégration transparente des solutions avec l'écosystème Microsoft 365. Gestion des erreurs, version control, documentation technique.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MISSION SHAREPOINT -->
+                        <div class="mission-report">
+                            <div class="mission-report-content">
+                                <div class="mission-header-main">
+                                    <div>
+                                        <h2 class="mission-title-main">PROJET OSCAR - MIGRATION SHAREPOINT</h2>
+                                        <p class="mission-subtitle">Consolidation documentaire & structuration collaborative</p>
+                                    </div>
+                                    <span class="mission-ref">[OSCAR_SP]</span>
+                                </div>
+
+                                <p class="mission-description">Migration critique de 10 000+ documents depuis serveurs legacy vers SharePoint Online. Restructuration complète de l'architecture informationnelle avec mise en place de taxonomies, permissions granulaires et workflows d'approbation. Formation de l'ensemble des utilisateurs (200+) et optimisation des accès.</p>
+
+                                <div class="mission-sections-main">
+                                    <div class="mission-section-main">
+                                        <span class="section-label">Durée</span>
+                                        <p class="section-value">4 mois (alternance)</p>
+                                    </div>
+                                    <div class="mission-section-main">
+                                        <span class="section-label">Documents Migrés</span>
+                                        <p class="section-value">10 000+</p>
+                                    </div>
+                                    <div class="mission-section-main">
+                                        <span class="section-label">Utilisateurs Formés</span>
+                                        <p class="section-value">200+</p>
+                                    </div>
+                                    <div class="mission-section-main">
+                                        <span class="section-label">Amélioration Accès</span>
+                                        <p class="section-value">+40%</p>
+                                    </div>
+                                </div>
+
+                                <div class="tech-stack-main">
+                                    <div class="tech-logo">
+                                        📊
+                                        <span class="tech-logo-tooltip">Automatisation de processus et gestion de bases de données.</span>
+                                    </div>
+                                    <div class="tech-logo">
+                                        ☁️
+                                        <span class="tech-logo-tooltip">Structuration de l'espace collaboratif et gestion documentaire.</span>
+                                    </div>
+                                </div>
+
+                                <div class="screenshots-section">
+                                    <h4 class="screenshots-title">Captures d'écran du projet</h4>
+                                    <div class="screenshots-grid" data-mission="sharepoint">
+                                        <div class="screenshot-thumbnail" data-src="img/sharepoint-hierarchy.png" data-title="Hiérarchie SharePoint">
+                                            <div class="screenshot-placeholder">📁</div>
+                                        </div>
+                                        <div class="screenshot-thumbnail" data-src="img/sharepoint-workflow.png" data-title="Workflow d'approbation">
+                                            <div class="screenshot-placeholder">✓</div>
+                                        </div>
+                                        <div class="screenshot-thumbnail" data-src="img/sharepoint-search.png" data-title="Moteur de recherche">
+                                            <div class="screenshot-placeholder">🔍</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(0, 25, 168, 0.1);">
+                                    <p style="font-family: 'Roboto Mono', monospace; font-size: 0.9em; color: #0019a8; font-weight: 600; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 0.5px;">Compétences Développées</p>
+                                    <p style="font-family: 'Inter', sans-serif; font-size: 0.9em; line-height: 1.7; color: #4b5563; margin: 0;">Administration complète de SharePoint Online. Conception de taxonomies et structures métier. Configuration des permissions et des registres d'informations. Automatisation via PowerShell et Flow. Gestion de projet collaboration. Formation utilisateurs avancée. Gestion sans downtime de systèmes critiques.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        // Lightbox System
+                        const lightboxOverlay = document.getElementById('lightboxOverlay');
+                        const lightboxImage = document.getElementById('lightboxImage');
+                        const lightboxTitle = document.getElementById('lightboxTitle');
+                        const lightboxClose = document.getElementById('lightboxClose');
+                        const lightboxPrev = document.getElementById('lightboxPrev');
+                        const lightboxNext = document.getElementById('lightboxNext');
+                        const lightboxCurrent = document.getElementById('lightboxCurrent');
+                        const lightboxTotal = document.getElementById('lightboxTotal');
+
+                        let currentMissionPhotos = [];
+                        let currentPhotoIndex = 0;
+
+                        // Collect all screenshots
+                        const allScreenshots = document.querySelectorAll('.screenshot-thumbnail');
+                        const screenshotsByMission = {};
+
+                        allScreenshots.forEach(thumb => {
+                            const mission = thumb.closest('.screenshots-grid').dataset.mission;
+                            if (!screenshotsByMission[mission]) {
+                                screenshotsByMission[mission] = [];
+                            }
+                            screenshotsByMission[mission].push({
+                                src: thumb.dataset.src,
+                                title: thumb.dataset.title
+                            });
+                        });
+
+                        // Open lightbox on thumbnail click
+                        allScreenshots.forEach((thumb, index) => {
+                            thumb.addEventListener('click', (e) => {
+                                const mission = thumb.closest('.screenshots-grid').dataset.mission;
+                                currentMissionPhotos = screenshotsByMission[mission];
+                                
+                                // Find the index in current mission
+                                currentPhotoIndex = Array.from(thumb.closest('.screenshots-grid').querySelectorAll('.screenshot-thumbnail')).indexOf(thumb);
+                                
+                                openLightbox();
+                            });
+                        });
+
+                        function openLightbox() {
+                            const photo = currentMissionPhotos[currentPhotoIndex];
+                            lightboxImage.src = photo.src;
+                            lightboxTitle.textContent = photo.title;
+                            lightboxCurrent.textContent = currentPhotoIndex + 1;
+                            lightboxTotal.textContent = currentMissionPhotos.length;
+                            
+                            lightboxPrev.disabled = currentPhotoIndex === 0;
+                            lightboxNext.disabled = currentPhotoIndex === currentMissionPhotos.length - 1;
+                            
+                            lightboxOverlay.classList.add('active');
+                        }
+
+                        function closeLightbox() {
+                            lightboxOverlay.classList.remove('active');
+                        }
+
+                        lightboxClose.addEventListener('click', closeLightbox);
+                        lightboxOverlay.addEventListener('click', (e) => {
+                            if (e.target === lightboxOverlay) closeLightbox();
+                        });
+
+                        lightboxPrev.addEventListener('click', () => {
+                            if (currentPhotoIndex > 0) {
+                                currentPhotoIndex--;
+                                openLightbox();
+                            }
+                        });
+
+                        lightboxNext.addEventListener('click', () => {
+                            if (currentPhotoIndex < currentMissionPhotos.length - 1) {
+                                currentPhotoIndex++;
+                                openLightbox();
+                            }
+                        });
+
+                        // Keyboard navigation
+                        document.addEventListener('keydown', (e) => {
+                            if (!lightboxOverlay.classList.contains('active')) return;
+                            if (e.key === 'ArrowLeft' && currentPhotoIndex > 0) {
+                                currentPhotoIndex--;
+                                openLightbox();
+                            } else if (e.key === 'ArrowRight' && currentPhotoIndex < currentMissionPhotos.length - 1) {
+                                currentPhotoIndex++;
+                                openLightbox();
+                            } else if (e.key === 'Escape') {
+                                closeLightbox();
+                            }
+                        });
+                    </script>
                 </div>
 
                 <!-- PROJETS SCOLAIRES -->
