@@ -1387,354 +1387,413 @@
                     </script>
                 </div>
 
+                <!-- PROJETS SCOLAIRES - LIGHTBOX MODAL -->
+                <div id="projectsLightboxModal" class="projects-lightbox">
+                    <div class="projects-lightbox-overlay" id="projectsLightboxOverlay"></div>
+                    <div class="projects-lightbox-content">
+                        <button class="projects-lightbox-close" id="projectsLightboxClose">&times;</button>
+                        <div class="projects-lightbox-image">
+                            <img id="projectsLightboxImg" src="" alt="Prévisualisation du projet">
+                        </div>
+                        <div class="projects-lightbox-footer">
+                            <a id="projectsLightboxPdfBtn" href="#" target="_blank" class="projects-btn-pdf">VOIR LE PDF COMPLET</a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- PROJETS SCOLAIRES -->
                 <div class="tab-content" id="tab-scolaires">
                     <style>
-                        .cyber-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
-                        .doc-card { background: rgba(255, 255, 255, 0.85); border: 1px solid #e8ebf0; border-radius: 12px; overflow: hidden; backdrop-filter: blur(10px); transition: all 0.3s ease; position: relative; display: flex; flex-direction: column; height: 100%; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-                        .doc-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 0 32px rgba(0, 240, 255, 0.25), 0 8px 24px rgba(0,0,0,0.12), inset 0 0 20px rgba(0, 240, 255, 0.05); border-color: #00F0FF; }
-                        .doc-thumbnail { width: 100%; height: 160px; background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; border-bottom: 1px solid #e8ebf0; }
-                        .doc-thumbnail::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, transparent, #00F0FF, #00FF41, #00F0FF, transparent); opacity: 0; animation: scan-effect 0s ease-in-out; transform: translateY(0); box-shadow: 0 0 16px rgba(0, 240, 255, 0.8); }
-                        .doc-card:hover .doc-thumbnail::after { animation: scan-effect 0.9s ease-in-out forwards; }
-                        @keyframes scan-effect { 0% { transform: translateY(-6px); opacity: 0; box-shadow: 0 0 8px rgba(0, 240, 255, 0.2); } 10% { opacity: 1; box-shadow: 0 0 20px rgba(0, 240, 255, 0.9); } 50% { opacity: 1; box-shadow: 0 0 20px rgba(0, 240, 255, 0.9); } 90% { opacity: 1; box-shadow: 0 0 16px rgba(0, 240, 255, 0.4); } 100% { transform: translateY(160px); opacity: 0; box-shadow: 0 0 8px rgba(0, 240, 255, 0.2); } }
-                        .doc-thumbnail svg { width: 120px; height: 120px; z-index: 1; position: relative; filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.2)); transition: all 0.4s ease; }
-                        .doc-card:hover .doc-thumbnail svg { filter: drop-shadow(0 0 24px rgba(0, 240, 255, 0.5)); transform: scale(1.1) rotate(-2deg); }
-                        .doc-info { padding: 16px 14px; flex: 1; display: flex; flex-direction: column; }
-                        .doc-title { font-family: 'Roboto Mono', monospace; font-size: 0.95em; font-weight: 700; color: #1a1f2e; margin: 0 0 4px 0; line-height: 1.3; }
-                        .doc-subtitle { font-family: 'Inter', sans-serif; font-size: 0.8em; color: #6b7280; margin: 0 0 8px 0; font-weight: 500; }
-                        .doc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-                        .doc-tag { background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); color: #00F0FF; font-size: 0.7em; padding: 3px 8px; border-radius: 12px; font-family: 'Roboto Mono', monospace; font-weight: 600; transition: all 0.3s; }
-                        .doc-tag:hover { background: rgba(0, 240, 255, 0.25); }
-                        .doc-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 12px; border-top: 1px solid #e8ebf0; }
-                        .doc-action-btn { flex: 1; padding: 8px 10px; border: 1px solid #e8ebf0; background: rgba(255, 255, 255, 0.6); color: #00F0FF; border-radius: 6px; font-size: 0.8em; font-family: 'Roboto Mono', monospace; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px; }
-                        .doc-action-btn:hover { background: #00F0FF; color: white; box-shadow: 0 0 12px rgba(0, 240, 255, 0.3); transform: scale(1.05); }
-                        .doc-action-btn.secondary { border-color: #BD00FF; color: #BD00FF; }
-                        .doc-action-btn.secondary:hover { background: #BD00FF; color: white; box-shadow: 0 0 12px rgba(189, 0, 255, 0.3); }
+                        /* ========== CLEAN PROJECTS GRID - 4x2 ========== */
+                        .projects-grid-clean {
+                            display: grid;
+                            grid-template-columns: repeat(4, 1fr);
+                            gap: 20px;
+                            margin: 40px 0;
+                            animation: slideInContent 0.8s ease-out forwards;
+                            opacity: 0;
+                        }
+
+                        .project-card-clean {
+                            background: #ffffff;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 0;
+                            padding: 30px 20px;
+                            text-align: center;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            position: relative;
+                            overflow: hidden;
+                        }
+
+                        .project-card-clean::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: rgba(0, 240, 255, 0.05);
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                            pointer-events: none;
+                        }
+
+                        .project-card-clean:hover {
+                            border-color: #00F0FF;
+                            border-width: 1px;
+                            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+                        }
+
+                        .project-card-clean:hover::before {
+                            opacity: 1;
+                        }
+
+                        .card-logo-container {
+                            width: 100%;
+                            height: 100px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-bottom: 15px;
+                            overflow: hidden;
+                        }
+
+                        .card-logo {
+                            max-width: 90%;
+                            max-height: 90%;
+                            width: auto;
+                            height: auto;
+                            object-fit: contain;
+                            transition: transform 0.3s ease;
+                        }
+
+                        .project-card-clean:hover .card-logo {
+                            transform: scale(1.1);
+                        }
+
+                        .card-title {
+                            color: #333;
+                            font-size: 0.95em;
+                            font-weight: 600;
+                            margin: 0;
+                            transition: color 0.3s ease;
+                            line-height: 1.4;
+                        }
+
+                        .project-card-clean:hover .card-title {
+                            color: #00F0FF;
+                        }
+
+                        /* ========== CLEAN PROJECTS LIGHTBOX ========== */
+                        .projects-lightbox {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 1000;
+                            pointer-events: none;
+                        }
+
+                        .projects-lightbox.active {
+                            pointer-events: auto;
+                        }
+
+                        .projects-lightbox-overlay {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.5);
+                            backdrop-filter: blur(5px);
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                        }
+
+                        .projects-lightbox.active .projects-lightbox-overlay {
+                            opacity: 1;
+                        }
+
+                        .projects-lightbox-content {
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%) scale(0.9);
+                            max-width: 700px;
+                            width: 90%;
+                            background: #ffffff;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 0;
+                            padding: 0;
+                            opacity: 0;
+                            transition: all 0.3s ease;
+                            pointer-events: auto;
+                            max-height: 85vh;
+                            overflow-y: auto;
+                            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+                        }
+
+                        .projects-lightbox.active .projects-lightbox-content {
+                            opacity: 1;
+                            transform: translate(-50%, -50%) scale(1);
+                        }
+
+                        .projects-lightbox-close {
+                            position: absolute;
+                            top: 15px;
+                            right: 15px;
+                            background: transparent;
+                            border: none;
+                            color: #999;
+                            font-size: 32px;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 0;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            transition: color 0.3s ease;
+                            z-index: 1001;
+                            font-weight: 300;
+                        }
+
+                        .projects-lightbox-close:hover {
+                            color: #00F0FF;
+                        }
+
+                        .projects-lightbox-image {
+                            width: 100%;
+                            background: #f5f5f5;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            min-height: 400px;
+                            overflow: hidden;
+                        }
+
+                        .projects-lightbox-image img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+
+                        .projects-lightbox-footer {
+                            padding: 30px 30px;
+                            border-top: 1px solid #e0e0e0;
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        .projects-btn-pdf {
+                            background: #333;
+                            color: #fff;
+                            border: none;
+                            padding: 14px 40px;
+                            font-size: 0.9em;
+                            font-weight: 600;
+                            cursor: pointer;
+                            border-radius: 0;
+                            transition: all 0.3s ease;
+                            text-decoration: none;
+                            display: inline-block;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                        }
+
+                        .projects-btn-pdf:hover {
+                            background: #00F0FF;
+                            color: #333;
+                        }
+
+                        /* Responsive Grid */
+                        @media (max-width: 1200px) {
+                            .projects-grid-clean {
+                                grid-template-columns: repeat(3, 1fr);
+                                gap: 18px;
+                            }
+                        }
+
+                        @media (max-width: 768px) {
+                            .projects-grid-clean {
+                                grid-template-columns: repeat(2, 1fr);
+                                gap: 15px;
+                            }
+
+                            .project-card-clean {
+                                padding: 20px 15px;
+                            }
+
+                            .card-logo-container {
+                                height: 80px;
+                            }
+
+                            .card-title {
+                                font-size: 0.85em;
+                            }
+
+                            .projects-lightbox-content {
+                                max-width: 95%;
+                            }
+
+                            .projects-lightbox-footer {
+                                padding: 20px 20px;
+                            }
+                        }
+
+                        @media (max-width: 480px) {
+                            .projects-grid-clean {
+                                grid-template-columns: repeat(2, 1fr);
+                                gap: 12px;
+                            }
+
+                            .project-card-clean {
+                                padding: 15px 10px;
+                            }
+
+                            .card-logo-container {
+                                height: 70px;
+                                margin-bottom: 10px;
+                            }
+
+                            .card-title {
+                                font-size: 0.75em;
+                            }
+
+                            .projects-lightbox-image {
+                                min-height: 250px;
+                            }
+
+                            .projects-btn-pdf {
+                                padding: 10px 30px;
+                                font-size: 0.8em;
+                            }
+                        }
                     </style>
-                    <div class="cyber-gallery">
-                        
-                        <!-- Card 1: Infrastructure Globale -->
-                        <div class="doc-card">
-                            <div class="doc-thumbnail">
-                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
-                                    <!-- Background glow -->
-                                    <defs>
-                                        <radialGradient id="infra-glow" cx="50%" cy="50%">
-                                            <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:0.15" />
-                                            <stop offset="100%" style="stop-color:#00F0FF;stop-opacity:0" />
-                                        </radialGradient>
-                                    </defs>
-                                    <circle cx="80" cy="80" r="70" fill="url(#infra-glow)"/>
-                                    <!-- Network topology -->
-                                    <rect x="20" y="20" width="120" height="120" fill="none" stroke="#00F0FF" stroke-width="1" opacity="0.3" rx="8"/>
-                                    <circle cx="80" cy="40" r="8" fill="#00F0FF"/>
-                                    <circle cx="40" cy="80" r="6" fill="#BD00FF"/>
-                                    <circle cx="120" cy="80" r="6" fill="#BD00FF"/>
-                                    <circle cx="80" cy="120" r="6" fill="#00FF41"/>
-                                    <line x1="80" y1="48" x2="80" y2="72" stroke="#00F0FF" stroke-width="1.5"/>
-                                    <line x1="80" y1="48" x2="45" y2="75" stroke="#BD00FF" stroke-width="1.5"/>
-                                    <line x1="80" y1="48" x2="115" y2="75" stroke="#BD00FF" stroke-width="1.5"/>
-                                    <line x1="80" y1="48" x2="80" y2="114" stroke="#00FF41" stroke-width="1.5"/>
-                                </svg>
+
+                    <div class="projects-grid-clean">
+                        <!-- 1. GLPI -->
+                        <div class="project-card-clean" data-title="GLPI" data-preview="img/previews/glpi.jpg" data-pdf="pdf/glpi.pdf">
+                            <div class="card-logo-container">
+                                <img src="img/logos/glpi.png" alt="Logo GLPI" class="card-logo">
                             </div>
-                            <div class="doc-info">
-                                <h3 class="doc-title">Schéma S3P3</h3>
-                                <p class="doc-subtitle">Infrastructure Globale</p>
-                                <div class="doc-tags">
-                                    <span class="doc-tag">Schéma</span>
-                                    <span class="doc-tag">Architecture</span>
-                                    <span class="doc-tag">Réseau</span>
-                                </div>
-                                <div class="doc-actions">
-                                    <button class="doc-action-btn" onclick="openDocModal('infra')">👁️ Specs</button>
-                                    <a href="https://1drv.ms/b/c/df1934ba8460870f/IQAK-veRz1meTb2vLr2SCDlKAW9_NeQoOsBv9f3kWhZVyRM?e=V8uH19" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
-                                </div>
-                            </div>
+                            <h3 class="card-title">Déploiement GLPI</h3>
                         </div>
 
-                        <!-- Card 2: Switch Cisco / Zyxel -->
-                        <div class="doc-card">
-                            <div class="doc-thumbnail">
-                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
-                                    <defs>
-                                        <radialGradient id="switch-glow" cx="50%" cy="50%">
-                                            <stop offset="0%" style="stop-color:#BD00FF;stop-opacity:0.15" />
-                                            <stop offset="100%" style="stop-color:#BD00FF;stop-opacity:0" />
-                                        </radialGradient>
-                                    </defs>
-                                    <circle cx="80" cy="80" r="70" fill="url(#switch-glow)"/>
-                                    <!-- Switch representation -->
-                                    <rect x="25" y="35" width="110" height="90" fill="none" stroke="#BD00FF" stroke-width="2" rx="4"/>
-                                    <!-- Ports -->
-                                    <circle cx="35" cy="50" r="3" fill="#BD00FF"/><circle cx="55" cy="50" r="3" fill="#BD00FF"/><circle cx="75" cy="50" r="3" fill="#BD00FF"/><circle cx="95" cy="50" r="3" fill="#BD00FF"/><circle cx="115" cy="50" r="3" fill="#BD00FF"/>
-                                    <circle cx="35" cy="70" r="3" fill="#00F0FF"/><circle cx="55" cy="70" r="3" fill="#00F0FF"/><circle cx="75" cy="70" r="3" fill="#00F0FF"/><circle cx="95" cy="70" r="3" fill="#00F0FF"/><circle cx="115" cy="70" r="3" fill="#00F0FF"/>
-                                    <circle cx="35" cy="90" r="3" fill="#00FF41"/><circle cx="55" cy="90" r="3" fill="#00FF41"/><circle cx="75" cy="90" r="3" fill="#00FF41"/><circle cx="95" cy="90" r="3" fill="#00FF41"/><circle cx="115" cy="90" r="3" fill="#00FF41"/>
-                                    <circle cx="35" cy="110" r="3" fill="#00FF41"/><circle cx="55" cy="110" r="3" fill="#00FF41"/><circle cx="75" cy="110" r="3" fill="#00FF41"/><circle cx="95" cy="110" r="3" fill="#00FF41"/><circle cx="115" cy="110" r="3" fill="#00FF41"/>
-                                </svg>
+                        <!-- 2. PfSense -->
+                        <div class="project-card-clean" data-title="PfSense" data-preview="img/previews/pfsense.jpg" data-pdf="pdf/pfsense.pdf">
+                            <div class="card-logo-container">
+                                <img src="img/logos/pfsense.png" alt="Logo PfSense" class="card-logo">
                             </div>
-                            <div class="doc-info">
-                                <h3 class="doc-title">Config Zyxel/Switch</h3>
-                                <p class="doc-subtitle">Configuration Réseau L2/L3</p>
-                                <div class="doc-tags">
-                                    <span class="doc-tag">Switching</span>
-                                    <span class="doc-tag">VLAN</span>
-                                    <span class="doc-tag">Cisco</span>
-                                </div>
-                                <div class="doc-actions">
-                                    <button class="doc-action-btn" onclick="openDocModal('switch')">👁️ Specs</button>
-                                    <a href="pdf/CONFIG_ZYXEL_SWITCH.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
-                                </div>
-                            </div>
+                            <h3 class="card-title">Configuration PfSense</h3>
                         </div>
 
-                        <!-- Card 3: Point d'Accès WiFi -->
-                        <div class="doc-card">
-                            <div class="doc-thumbnail">
-                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
-                                    <defs>
-                                        <radialGradient id="wifi-glow" cx="50%" cy="50%">
-                                            <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:0.15" />
-                                            <stop offset="100%" style="stop-color:#00F0FF;stop-opacity:0" />
-                                        </radialGradient>
-                                    </defs>
-                                    <circle cx="80" cy="80" r="70" fill="url(#wifi-glow)"/>
-                                    <!-- WiFi signal -->
-                                    <rect x="50" y="60" width="60" height="60" fill="none" stroke="#00F0FF" stroke-width="1.5" rx="4"/>
-                                    <circle cx="80" cy="95" r="4" fill="#00F0FF"/>
-                                    <!-- Signal waves -->
-                                    <path d="M 80 85 Q 85 80 90 85" fill="none" stroke="#00F0FF" stroke-width="1.5" opacity="0.8"/>
-                                    <path d="M 80 75 Q 88 67 96 75" fill="none" stroke="#00F0FF" stroke-width="1.5" opacity="0.6"/>
-                                    <path d="M 80 65 Q 92 57 104 65" fill="none" stroke="#00F0FF" stroke-width="1.5" opacity="0.4"/>
-                                    <!-- Device representation -->
-                                    <rect x="60" y="50" width="40" height="8" fill="#00F0FF" opacity="0.3" rx="2"/>
-                                </svg>
+                        <!-- 3. Proxmox -->
+                        <div class="project-card-clean" data-title="Proxmox" data-preview="img/previews/proxmox.jpg" data-pdf="pdf/proxmox.pdf">
+                            <div class="card-logo-container">
+                                <img src="img/logos/proxmox.png" alt="Logo Proxmox" class="card-logo">
                             </div>
-                            <div class="doc-info">
-                                <h3 class="doc-title">Point d'accès WIFI</h3>
-                                <p class="doc-subtitle">802.11ax D-Link</p>
-                                <div class="doc-tags">
-                                    <span class="doc-tag">Wireless</span>
-                                    <span class="doc-tag">WPA3</span>
-                                    <span class="doc-tag">AC/AX</span>
-                                </div>
-                                <div class="doc-actions">
-                                    <button class="doc-action-btn" onclick="openDocModal('wifi')">👁️ Specs</button>
-                                    <a href="pdf/WIFI_ACCESS_POINT.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
-                                </div>
-                            </div>
+                            <h3 class="card-title">Virtualisation Proxmox</h3>
                         </div>
 
-                        <!-- Card 4: Proxmox & Virtualisation -->
-                        <div class="doc-card">
-                            <div class="doc-thumbnail">
-                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
-                                    <defs>
-                                        <radialGradient id="proxmox-glow" cx="50%" cy="50%">
-                                            <stop offset="0%" style="stop-color:#BD00FF;stop-opacity:0.15" />
-                                            <stop offset="100%" style="stop-color:#BD00FF;stop-opacity:0" />
-                                        </radialGradient>
-                                    </defs>
-                                    <circle cx="80" cy="80" r="70" fill="url(#proxmox-glow)"/>
-                                    <!-- Server stack -->
-                                    <rect x="35" y="30" width="90" height="20" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="2"/>
-                                    <text x="80" y="44" text-anchor="middle" font-size="10" fill="#BD00FF">Host</text>
-                                    <g opacity="0.7">
-                                        <rect x="35" y="55" width="90" height="18" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="2"/>
-                                        <text x="80" y="68" text-anchor="middle" font-size="9" fill="#BD00FF">VM 1</text>
-                                    </g>
-                                    <g opacity="0.7">
-                                        <rect x="35" y="78" width="90" height="18" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="2"/>
-                                        <text x="80" y="91" text-anchor="middle" font-size="9" fill="#BD00FF">VM 2</text>
-                                    </g>
-                                    <g opacity="0.7">
-                                        <rect x="35" y="101" width="90" height="18" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="2"/>
-                                        <text x="80" y="114" text-anchor="middle" font-size="9" fill="#BD00FF">VM 3</text>
-                                    </g>
-                                </svg>
+                        <!-- 4. Active Directory -->
+                        <div class="project-card-clean" data-title="Active Directory" data-preview="img/previews/active-directory.jpg" data-pdf="pdf/active-directory.pdf">
+                            <div class="card-logo-container">
+                                <img src="img/logos/active-directory.png" alt="Logo Active Directory" class="card-logo">
                             </div>
-                            <div class="doc-info">
-                                <h3 class="doc-title">Proxmox & VM</h3>
-                                <p class="doc-subtitle">Infrastructure Virtuelle KVM</p>
-                                <div class="doc-tags">
-                                    <span class="doc-tag">Hypervisor</span>
-                                    <span class="doc-tag">Virtualisation</span>
-                                    <span class="doc-tag">HA</span>
-                                </div>
-                                <div class="doc-actions">
-                                    <button class="doc-action-btn" onclick="openDocModal('proxmox')">👁️ Specs</button>
-                                    <a href="pdf/PROXMOX_KVM.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
-                                </div>
-                            </div>
+                            <h3 class="card-title">Déploiement Active Directory</h3>
                         </div>
 
-                        <!-- Card 5: Active Directory -->
-                        <div class="doc-card">
-                            <div class="doc-thumbnail">
-                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
-                                    <defs>
-                                        <radialGradient id="ad-glow" cx="50%" cy="50%">
-                                            <stop offset="0%" style="stop-color:#00FF41;stop-opacity:0.15" />
-                                            <stop offset="100%" style="stop-color:#00FF41;stop-opacity:0" />
-                                        </radialGradient>
-                                    </defs>
-                                    <circle cx="80" cy="80" r="70" fill="url(#ad-glow)"/>
-                                    <!-- Directory tree -->
-                                    <circle cx="80" cy="40" r="6" fill="#00FF41"/>
-                                    <circle cx="50" cy="70" r="5" fill="#00FF41"/>
-                                    <circle cx="80" cy="70" r="5" fill="#00FF41"/>
-                                    <circle cx="110" cy="70" r="5" fill="#00FF41"/>
-                                    <circle cx="35" cy="100" r="4" fill="#00FF41"/>
-                                    <circle cx="50" cy="100" r="4" fill="#00FF41"/>
-                                    <circle cx="80" cy="100" r="4" fill="#00FF41"/>
-                                    <circle cx="110" cy="100" r="4" fill="#00FF41"/>
-                                    <circle cx="125" cy="100" r="4" fill="#00FF41"/>
-                                    <!-- Connections -->
-                                    <line x1="80" y1="46" x2="50" y2="65" stroke="#00FF41" stroke-width="1" opacity="0.5"/>
-                                    <line x1="80" y1="46" x2="80" y2="65" stroke="#00FF41" stroke-width="1" opacity="0.5"/>
-                                    <line x1="80" y1="46" x2="110" y2="65" stroke="#00FF41" stroke-width="1" opacity="0.5"/>
-                                </svg>
+                        <!-- 5. Exchange -->
+                        <div class="project-card-clean" data-title="Exchange" data-preview="img/previews/exchange.jpg" data-pdf="pdf/exchange.pdf">
+                            <div class="card-logo-container">
+                                <img src="img/logos/exchange.png" alt="Logo Exchange" class="card-logo">
                             </div>
-                            <div class="doc-info">
-                                <h3 class="doc-title">Active Directory</h3>
-                                <p class="doc-subtitle">Annuaire & IAM Services</p>
-                                <div class="doc-tags">
-                                    <span class="doc-tag">IAM</span>
-                                    <span class="doc-tag">LDAP</span>
-                                    <span class="doc-tag">Domaine</span>
-                                </div>
-                                <div class="doc-actions">
-                                    <button class="doc-action-btn" onclick="openDocModal('ad')">👁️ Specs</button>
-                                    <a href="pdf/ACTIVE_DIRECTORY.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
-                                </div>
-                            </div>
+                            <h3 class="card-title">Configuration Exchange</h3>
                         </div>
 
-                        <!-- Card 6: Exchange Server -->
-                        <div class="doc-card">
-                            <div class="doc-thumbnail">
-                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
-                                    <defs>
-                                        <radialGradient id="exchange-glow" cx="50%" cy="50%">
-                                            <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:0.15" />
-                                            <stop offset="100%" style="stop-color:#00F0FF;stop-opacity:0" />
-                                        </radialGradient>
-                                    </defs>
-                                    <circle cx="80" cy="80" r="70" fill="url(#exchange-glow)"/>
-                                    <!-- Mail server -->
-                                    <rect x="30" y="45" width="100" height="70" fill="none" stroke="#00F0FF" stroke-width="2" rx="6"/>
-                                    <!-- Envelopes -->
-                                    <g>
-                                        <rect x="40" y="55" width="20" height="15" fill="none" stroke="#00F0FF" stroke-width="1" rx="1"/>
-                                        <line x1="40" y1="55" x2="50" y2="62.5" stroke="#00F0FF" stroke-width="1"/>
-                                    </g>
-                                    <g>
-                                        <rect x="70" y="55" width="20" height="15" fill="none" stroke="#00F0FF" stroke-width="1" rx="1"/>
-                                        <line x1="70" y1="55" x2="80" y2="62.5" stroke="#00F0FF" stroke-width="1"/>
-                                    </g>
-                                    <g>
-                                        <rect x="100" y="55" width="20" height="15" fill="none" stroke="#00F0FF" stroke-width="1" rx="1"/>
-                                        <line x1="100" y1="55" x2="110" y2="62.5" stroke="#00F0FF" stroke-width="1"/>
-                                    </g>
-                                    <!-- Mailboxes -->
-                                    <circle cx="45" cy="85" r="4" fill="#00F0FF"/>
-                                    <circle cx="75" cy="85" r="4" fill="#00F0FF"/>
-                                    <circle cx="105" cy="85" r="4" fill="#00F0FF"/>
-                                    <!-- Queue -->
-                                    <line x1="50" y1="105" x2="110" y2="105" stroke="#00F0FF" stroke-width="1.5"/>
-                                </svg>
+                        <!-- 6. Zyxel -->
+                        <div class="project-card-clean" data-title="Zyxel" data-preview="img/previews/zyxel.jpg" data-pdf="pdf/zyxel.pdf">
+                            <div class="card-logo-container">
+                                <img src="img/logos/zyxel.png" alt="Logo Zyxel" class="card-logo">
                             </div>
-                            <div class="doc-info">
-                                <h3 class="doc-title">Exchange</h3>
-                                <p class="doc-subtitle">Serveur de Messagerie</p>
-                                <div class="doc-tags">
-                                    <span class="doc-tag">Email</span>
-                                    <span class="doc-tag">Collaboration</span>
-                                    <span class="doc-tag">HA</span>
-                                </div>
-                                <div class="doc-actions">
-                                    <button class="doc-action-btn" onclick="openDocModal('exchange')">👁️ Specs</button>
-                                    <a href="pdf/EXCHANGE_SERVER.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
-                                </div>
-                            </div>
+                            <h3 class="card-title">Équipement Zyxel</h3>
                         </div>
 
-                        <!-- Card 7: GLPI -->
-                        <div class="doc-card">
-                            <div class="doc-thumbnail">
-                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
-                                    <defs>
-                                        <radialGradient id="glpi-glow" cx="50%" cy="50%">
-                                            <stop offset="0%" style="stop-color:#BD00FF;stop-opacity:0.15" />
-                                            <stop offset="100%" style="stop-color:#BD00FF;stop-opacity:0" />
-                                        </radialGradient>
-                                    </defs>
-                                    <circle cx="80" cy="80" r="70" fill="url(#glpi-glow)"/>
-                                    <!-- Dashboard grid -->
-                                    <rect x="30" y="40" width="100" height="80" fill="none" stroke="#BD00FF" stroke-width="1.5" rx="4"/>
-                                    <!-- Bars/charts -->
-                                    <rect x="40" y="75" width="8" height="35" fill="#BD00FF" rx="1"/>
-                                    <rect x="53" y="65" width="8" height="45" fill="#BD00FF" rx="1" opacity="0.8"/>
-                                    <rect x="66" y="55" width="8" height="55" fill="#BD00FF" rx="1" opacity="0.6"/>
-                                    <rect x="79" y="70" width="8" height="40" fill="#BD00FF" rx="1" opacity="0.8"/>
-                                    <rect x="92" y="60" width="8" height="50" fill="#BD00FF" rx="1"/>
-                                    <!-- Indicators -->
-                                    <circle cx="45" cy="50" r="3" fill="#00FF41"/>
-                                    <circle cx="85" cy="48" r="3" fill="#00F0FF"/>
-                                </svg>
+                        <!-- 7. D-Link WiFi -->
+                        <div class="project-card-clean" data-title="D-Link WiFi" data-preview="img/previews/dlink-wifi.jpg" data-pdf="pdf/dlink-wifi.pdf">
+                            <div class="card-logo-container">
+                                <img src="img/logos/dlink.png" alt="Logo D-Link" class="card-logo">
                             </div>
-                            <div class="doc-info">
-                                <h3 class="doc-title">GLPI</h3>
-                                <p class="doc-subtitle">Gestion de Parc IT</p>
-                                <div class="doc-tags">
-                                    <span class="doc-tag">ITSM</span>
-                                    <span class="doc-tag">Assets</span>
-                                    <span class="doc-tag">Tickets</span>
-                                </div>
-                                <div class="doc-actions">
-                                    <button class="doc-action-btn" onclick="openDocModal('glpi')">👁️ Specs</button>
-                                    <a href="pdf/GLPI_ITSM.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
-                                </div>
-                            </div>
+                            <h3 class="card-title">Accès WiFi D-Link</h3>
                         </div>
 
-                        <!-- Card 8: PfSense Firewall -->
-                        <div class="doc-card">
-                            <div class="doc-thumbnail">
-                                <svg width="100%" height="100%" viewBox="0 0 160 160" style="overflow: visible;">
-                                    <defs>
-                                        <radialGradient id="pfsense-glow" cx="50%" cy="50%">
-                                            <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:0.15" />
-                                            <stop offset="100%" style="stop-color:#FF6B6B;stop-opacity:0" />
-                                        </radialGradient>
-                                    </defs>
-                                    <circle cx="80" cy="80" r="70" fill="url(#pfsense-glow)"/>
-                                    <!-- Firewall shield -->
-                                    <path d="M80 30 L120 50 L120 90 Q120 120 80 135 Q40 120 40 90 L40 50 Z" fill="none" stroke="#FF6B6B" stroke-width="2" rx="4"/>
-                                    <!-- Lock -->
-                                    <rect x="60" y="75" width="40" height="25" fill="none" stroke="#FF6B6B" stroke-width="1.5" rx="2"/>
-                                    <path d="M70 75 Q70 65 80 65 Q90 65 90 75" fill="none" stroke="#FF6B6B" stroke-width="1.5" rx="2"/>
-                                    <!-- Check marks -->
-                                    <circle cx="75" cy="87" r="2" fill="#FF6B6B"/>
-                                    <circle cx="85" cy="87" r="2" fill="#FF6B6B"/>
-                                </svg>
+                        <!-- 8. Schéma E63 -->
+                        <div class="project-card-clean" data-title="Schéma E63" data-preview="img/previews/schema-e63.jpg" data-pdf="schema/schema_e6.pdf">
+                            <div class="card-logo-container">
+                                <img src="img/logos/schema.png" alt="Logo Schéma" class="card-logo">
                             </div>
-                            <div class="doc-info">
-                                <h3 class="doc-title">PfSense</h3>
-                                <p class="doc-subtitle">Pare-feu Réseau</p>
-                                <div class="doc-tags">
-                                    <span class="doc-tag">Security</span>
-                                    <span class="doc-tag">Firewall</span>
-                                    <span class="doc-tag">NAT</span>
-                                </div>
-                                <div class="doc-actions">
-                                    <button class="doc-action-btn" onclick="openDocModal('pfsense')">👁️ Specs</button>
-                                    <a href="pdf/PFSENSE_FIREWALL.pdf" target="_blank" class="doc-action-btn secondary">🔗 PDF</a>
-                                </div>
-                            </div>
+                            <h3 class="card-title">Schéma Infrastructure E63</h3>
                         </div>
-
                     </div>
+
+                    <script>
+                        // ========== CLEAN PROJECTS LIGHTBOX SYSTEM ==========
+                        (function initProjectsLightbox() {
+                            const lightbox = document.getElementById('projectsLightboxModal');
+                            const lightboxOverlay = document.getElementById('projectsLightboxOverlay');
+                            const lightboxClose = document.getElementById('projectsLightboxClose');
+                            const lightboxImg = document.getElementById('projectsLightboxImg');
+                            const lightboxPdfBtn = document.getElementById('projectsLightboxPdfBtn');
+                            const projectCards = document.querySelectorAll('#tab-scolaires .project-card-clean');
+
+                            function openLightbox(card) {
+                                const preview = card.dataset.preview;
+                                const pdf = card.dataset.pdf;
+
+                                lightboxImg.src = preview;
+                                lightboxPdfBtn.href = pdf;
+                                lightbox.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                            }
+
+                            function closeLightbox() {
+                                lightbox.classList.remove('active');
+                                document.body.style.overflow = '';
+                            }
+
+                            // Event Listeners: Click on cards
+                            projectCards.forEach(card => {
+                                card.addEventListener('click', () => {
+                                    openLightbox(card);
+                                });
+                            });
+
+                            // Close button
+                            lightboxClose.addEventListener('click', closeLightbox);
+
+                            // Close on overlay click
+                            lightboxOverlay.addEventListener('click', closeLightbox);
+
+                            // Close on Escape key
+                            document.addEventListener('keydown', (e) => {
+                                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                                    closeLightbox();
+                                }
+                            });
+
+                            // Prevent closing when clicking inside content
+                            document.querySelector('.projects-lightbox-content').addEventListener('click', (e) => {
+                                e.stopPropagation();
+                            });
+                        })();
+                    </script>
                 </div>
+                                </div>
+                            </div>
+                        </div>
 
             </div>
         </section>
