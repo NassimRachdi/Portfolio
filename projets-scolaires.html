@@ -354,7 +354,7 @@
         }
 
         .project-card-clean:hover .card-title {
-            color: #00F0FF;
+            color: #006d7f; /* contrast 5.97:1 sur fond blanc — corrigé depuis #00F0FF (1.4:1) */
         }
 
         /* ========== CLEAN PROJECTS LIGHTBOX ========== */
@@ -541,6 +541,36 @@
             .projects-btn-pdf {
                 padding: 10px 30px;
                 font-size: 0.8em;
+            }
+        }
+
+        /* ===== FIX 1: Responsive single column small phones ===== */
+        @media (max-width: 380px) {
+            .projects-grid-clean {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .card-logo-container {
+                height: 80px;
+            }
+
+            .card-title {
+                font-size: 0.9em;
+            }
+        }
+
+        /* ===== FIX 2: prefers-reduced-motion — prevent invisible elements ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .page-section,
+            .projects-grid-clean,
+            .content p,
+            .content ul,
+            .project-item,
+            .content h3 {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
     </style>
