@@ -345,7 +345,7 @@
                 }
 
                 .sncf-container {
-                    max-width: 1200px;
+                    max-width: 1400px;
                     margin: 0 auto;
                     padding: 120px 40px;
                     position: relative;
@@ -358,46 +358,50 @@
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 3px;
-                    color: #0019a8;
+                    color: #1a1f2e;
                     text-align: center;
-                    margin: 0 0 100px 0;
+                    margin: 0 0 80px 0;
                 }
 
-                .connection-line {
-                    position: relative;
+                .blocks-container {
                     display: grid;
-                    grid-template-columns: 1fr;
-                    gap: 0;
-                    align-items: stretch;
-                }
-
-                .connection-line::before {
-                    content: '';
-                    position: absolute;
-                    left: 50%;
-                    top: 0;
-                    bottom: 0;
-                    width: 2px;
-                    background: linear-gradient(to bottom, #0019a8, rgba(0, 25, 168, 0.3));
-                    transform: translateX(-50%);
-                    z-index: 0;
-                    transition: all 0.4s ease;
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                    gap: 2rem;
+                    margin-bottom: 80px;
                 }
 
                 .sncf-block {
                     position: relative;
-                    z-index: 1;
                     display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    min-height: 300px;
+                    flex-direction: column;
+                    background: #ffffff;
+                    border-radius: 4px;
+                    overflow: hidden;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     opacity: 0;
                     animation: fadeInUp 0.8s ease forwards;
+                    border-top: 5px solid;
                 }
 
-                .sncf-block:nth-child(1) { animation-delay: 0.1s; }
-                .sncf-block:nth-child(2) { animation-delay: 0.3s; }
-                .sncf-block:nth-child(3) { animation-delay: 0.5s; }
+                .sncf-block:nth-child(1) { 
+                    animation-delay: 0.1s; 
+                    border-top-color: #0019a8;
+                    --accent-color: #0019a8;
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(0, 25, 168, 0.02) 100%);
+                }
+                .sncf-block:nth-child(2) { 
+                    animation-delay: 0.25s; 
+                    border-top-color: #0088CC;
+                    --accent-color: #0088CC;
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(0, 136, 204, 0.02) 100%);
+                }
+                .sncf-block:nth-child(3) { 
+                    animation-delay: 0.4s; 
+                    border-top-color: #E2001A;
+                    --accent-color: #E2001A;
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(226, 0, 26, 0.02) 100%);
+                }
 
                 @keyframes fadeInUp {
                     from {
@@ -410,85 +414,58 @@
                     }
                 }
 
-                .sncf-station-dot {
-                    position: absolute;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 16px;
-                    height: 16px;
-                    background: #0019a8;
-                    border: 3px solid #ffffff;
-                    border-radius: 50%;
-                    box-shadow: 0 0 0 2px #0019a8;
-                    top: 50%;
-                    z-index: 2;
+                .block-header {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 16px;
+                    padding: 32px 32px 20px 32px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
                 }
 
-                .sncf-card {
-                    width: 100%;
-                    max-width: 600px;
-                    background: rgba(255, 255, 255, 0.9);
-                    border: 1px solid rgba(0, 25, 168, 0.15);
-                    border-radius: 0;
-                    padding: 48px;
-                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-                    backdrop-filter: blur(8px);
-                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                    position: relative;
-                    overflow: hidden;
+                .block-icon {
+                    font-size: 2.4em;
+                    flex-shrink: 0;
+                    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
                 }
 
-                .sncf-card::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    height: 1px;
-                    background: linear-gradient(90deg, transparent, #0019a8, transparent);
-                    opacity: 0;
-                    transition: opacity 0.4s ease;
+                .sncf-block:hover .block-icon {
+                    transform: scale(1.15) rotate(-8deg);
                 }
 
-                .sncf-block:hover .sncf-card {
-                    border-color: #0019a8;
-                    box-shadow: 0 12px 40px rgba(0, 25, 168, 0.15), inset 0 0 30px rgba(0, 25, 168, 0.05);
-                    transform: translateY(-4px);
-                }
-
-                .sncf-block:hover .sncf-card::before {
-                    opacity: 1;
-                }
-
-                .sncf-block:hover ~ .connection-line::before,
-                .sncf-block:hover .connection-line::before {
-                    background: linear-gradient(to bottom, #0019a8, #0019a8);
-                    box-shadow: 0 0 20px rgba(0, 25, 168, 0.5);
+                .block-header-text {
+                    flex: 1;
                 }
 
                 .sncf-card-title {
                     font-family: 'Avenir', 'Helvetica Neue', sans-serif;
-                    font-size: 1.6em;
+                    font-size: 1.25em;
                     font-weight: 700;
                     text-transform: uppercase;
-                    letter-spacing: 1.5px;
-                    color: #0019a8;
-                    margin: 0 0 16px 0;
+                    letter-spacing: 1px;
+                    margin: 0 0 4px 0;
+                    color: var(--accent-color);
                 }
 
                 .sncf-card-subtitle {
                     font-family: 'Inter', sans-serif;
-                    font-size: 0.95em;
+                    font-size: 0.85em;
                     font-weight: 600;
-                    color: #0019a8;
-                    margin: 0 0 20px 0;
+                    color: #6b7280;
+                    margin: 0;
+                }
+
+                .block-content {
+                    padding: 24px 32px 32px 32px;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
                 }
 
                 .sncf-card-text {
                     font-family: 'Inter', sans-serif;
                     font-size: 0.95em;
-                    line-height: 1.8;
-                    color: #6b7280;
+                    line-height: 1.7;
+                    color: #4b5563;
                     margin: 0 0 16px 0;
                 }
 
@@ -506,12 +483,14 @@
                 .sncf-card ul li {
                     font-family: 'Inter', sans-serif;
                     font-size: 0.9em;
-                    margin: 8px 0;
-                    padding-left: 20px;
+                    margin: 10px 0;
+                    padding-left: 24px;
                     position: relative;
+                    color: #4b5563;
+                    line-height: 1.6;
                 }
 
-                .sncf-card ul li::before {
+                .sncf-block:nth-child(1) .sncf-card ul li::before {
                     content: '→';
                     position: absolute;
                     left: 0;
@@ -519,27 +498,81 @@
                     font-weight: 700;
                 }
 
+                .sncf-block:nth-child(2) .sncf-card ul li::before {
+                    content: '→';
+                    position: absolute;
+                    left: 0;
+                    color: #0088CC;
+                    font-weight: 700;
+                }
+
+                .sncf-block:nth-child(3) .sncf-card ul li::before {
+                    content: '→';
+                    position: absolute;
+                    left: 0;
+                    color: #E2001A;
+                    font-weight: 700;
+                }
+
+                .sncf-block:hover {
+                    transform: translateY(-8px);
+                    border-top-width: 7px;
+                    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+                }
+
+                .sncf-block:nth-child(1):hover {
+                    box-shadow: 0 16px 40px rgba(0, 25, 168, 0.2), 0 0 20px rgba(0, 25, 168, 0.1);
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(0, 25, 168, 0.05) 100%);
+                }
+
+                .sncf-block:nth-child(2):hover {
+                    box-shadow: 0 16px 40px rgba(0, 136, 204, 0.2), 0 0 20px rgba(0, 136, 204, 0.1);
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(0, 136, 204, 0.05) 100%);
+                }
+
+                .sncf-block:nth-child(3):hover {
+                    box-shadow: 0 16px 40px rgba(226, 0, 26, 0.2), 0 0 20px rgba(226, 0, 26, 0.1);
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(226, 0, 26, 0.05) 100%);
+                }
+
+                .partners-section {
+                    margin-top: 100px;
+                    padding-top: 80px;
+                    border-top: 2px solid rgba(0, 0, 0, 0.08);
+                }
+
+                .partners-title {
+                    font-family: 'Avenir', 'Helvetica Neue', sans-serif;
+                    font-size: 1.8em;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    color: #1a1f2e;
+                    text-align: center;
+                    margin: 0 0 60px 0;
+                }
+
                 .partners-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                     gap: 24px;
-                    margin-top: 40px;
                 }
 
                 .partner-card {
-                    background: rgba(255, 255, 255, 0.85);
-                    border: 1px solid rgba(0, 25, 168, 0.12);
-                    border-radius: 0;
+                    background: #ffffff;
+                    border: 1px solid rgba(226, 0, 26, 0.2);
+                    border-left: 4px solid #E2001A;
+                    border-radius: 4px;
                     padding: 28px;
-                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-                    backdrop-filter: blur(8px);
-                    transition: all 0.3s ease;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 }
 
                 .partner-card:hover {
-                    border-color: #0019a8;
-                    box-shadow: 0 8px 24px rgba(0, 25, 168, 0.12), inset 0 0 20px rgba(0, 25, 168, 0.04);
-                    transform: translateY(-2px);
+                    transform: translateY(-6px);
+                    border-left-width: 6px;
+                    box-shadow: 0 12px 32px rgba(226, 0, 26, 0.15), 0 0 16px rgba(226, 0, 26, 0.08);
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(226, 0, 26, 0.04) 100%);
                 }
 
                 .partner-card h4 {
@@ -548,7 +581,7 @@
                     font-weight: 700;
                     text-transform: uppercase;
                     letter-spacing: 0.5px;
-                    color: #0019a8;
+                    color: #E2001A;
                     margin: 0 0 12px 0;
                 }
 
@@ -556,85 +589,105 @@
                     font-family: 'Inter', sans-serif;
                     font-size: 0.9em;
                     line-height: 1.6;
-                    color: #6b7280;
+                    color: #4b5563;
                     margin: 0 0 12px 0;
                 }
 
                 .partner-card p:last-child {
                     margin-bottom: 0;
                     font-size: 0.85em;
-                    color: #0019a8;
+                    color: #E2001A;
+                    font-weight: 600;
                 }
 
                 @media (max-width: 768px) {
                     .sncf-container { padding: 80px 24px; }
-                    .sncf-title { font-size: 1.8em; letter-spacing: 1.5px; margin-bottom: 60px; }
-                    .sncf-card { padding: 32px; }
-                    .sncf-card-title { font-size: 1.3em; }
-                    .sncf-block { min-height: auto; }
-                    .connection-line::before { display: none; }
+                    .sncf-title { font-size: 1.8em; letter-spacing: 1.5px; margin-bottom: 50px; }
+                    .blocks-container { gap: 1.5rem; grid-template-columns: 1fr; }
+                    .block-header { padding: 24px 24px 16px 24px; }
+                    .block-content { padding: 16px 24px 24px 24px; }
+                    .sncf-card-title { font-size: 1.1em; }
                     .partners-grid { grid-template-columns: 1fr; }
+                    .sncf-block:hover { transform: translateY(-4px); }
                 }
             </style>
 
             <div class="sncf-container">
                 <h2 class="sncf-title">Mon Entreprise</h2>
 
-                <div class="connection-line">
-                    <!-- BLOC 1: L'ENTREPRISE (SNCF) -->
+                <div class="blocks-container">
+                    <!-- BLOC 1: L'ENTREPRISE (SNCF GLOBAL) - BLEU SNCF -->
                     <div class="sncf-block">
-                        <div class="sncf-station-dot"></div>
-                        <div class="sncf-card">
-                            <h3 class="sncf-card-title">L'Entreprise</h3>
-                            <p class="sncf-card-subtitle">SNCF - Société Nationale des Chemins de Fer</p>
-                            <p class="sncf-card-text">Entreprise ferroviaire publique française, créée officiellement en 1937. Pionnière du transport et de la mobilité en France et en Europe.</p>
-                            <ul>
-                                <li>Transport de voyageurs</li>
-                                <li>Transport de marchandises</li>
-                                <li>Gestion et maintenance du réseau national (28 000 km)</li>
-                            </ul>
-                            <p class="sncf-card-text"><strong>Statut :</strong> Société anonyme à capitaux publics depuis 2020</p>
+                        <div class="block-header">
+                            <div class="block-icon">🚂</div>
+                            <div class="block-header-text">
+                                <h3 class="sncf-card-title">L'Entreprise</h3>
+                                <p class="sncf-card-subtitle">SNCF - Société Nationale des Chemins de Fer</p>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <div class="sncf-card">
+                                <p class="sncf-card-text">Entreprise ferroviaire publique française, créée officiellement en 1937. Pionnière du transport et de la mobilité en France et en Europe.</p>
+                                <ul>
+                                    <li>Transport de voyageurs</li>
+                                    <li>Transport de marchandises</li>
+                                    <li>Gestion et maintenance du réseau national (28 000 km)</li>
+                                </ul>
+                                <p class="sncf-card-text"><strong>Statut :</strong> Société anonyme à capitaux publics depuis 2020</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- BLOC 2: L'ENTITÉ (TER SUD) -->
+                    <!-- BLOC 2: L'ENTITÉ (TER SUD) - BLEU AZUR -->
                     <div class="sncf-block">
-                        <div class="sncf-station-dot"></div>
-                        <div class="sncf-card">
-                            <h3 class="sncf-card-title">L'Entité</h3>
-                            <p class="sncf-card-subtitle">TER SUD - Transport Express Régional Région Sud</p>
-                            <p class="sncf-card-text">Service régional assurant les liaisons entre grandes villes et zones rurales de la région Sud.</p>
-                            <ul>
-                                <li>Liaisons régulières entre grandes villes</li>
-                                <li>Desserte complète des zones rurales</li>
-                                <li>Mobilité verte et développement régional</li>
-                            </ul>
-                            <p class="sncf-card-text"><strong>Mon alternance :</strong> Participation à des projets IT concrets et dynamiques</p>
+                        <div class="block-header">
+                            <div class="block-icon">🚄</div>
+                            <div class="block-header-text">
+                                <h3 class="sncf-card-title">L'Entité</h3>
+                                <p class="sncf-card-subtitle">TER SUD - Transport Express Régional</p>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <div class="sncf-card">
+                                <p class="sncf-card-text">Service régional assurant les liaisons entre grandes villes et zones rurales de la région Sud.</p>
+                                <ul>
+                                    <li>Liaisons régulières entre grandes villes</li>
+                                    <li>Desserte complète des zones rurales</li>
+                                    <li>Mobilité verte et développement régional</li>
+                                </ul>
+                                <p class="sncf-card-text"><strong>Mon alternance :</strong> Participation à des projets IT concrets et dynamiques</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- BLOC 3: L'ÉCOSYSTÈME (PARTENAIRES) -->
+                    <!-- BLOC 3: L'ÉCOSYSTÈME (PARTENAIRES) - CARMILLON ROUGE -->
                     <div class="sncf-block">
-                        <div class="sncf-station-dot"></div>
-                        <div class="sncf-card">
-                            <h3 class="sncf-card-title">L'Écosystème</h3>
-                            <p class="sncf-card-subtitle">Partenaires Stratégiques du Groupe</p>
-                            <p class="sncf-card-text">Le groupe SNCF s'appuie sur un écosystème riche de partenaires stratégiques :</p>
-                            <ul>
-                                <li><strong>SNCF Réseau</strong> - Infrastructure & Maintenance</li>
-                                <li><strong>SNCF Voyageurs</strong> - Transport de Voyageurs</li>
-                                <li><strong>SNCF Gares</strong> - Gares & Connexions</li>
-                                <li><strong>Keolis</strong> - Mobilités Partagées</li>
-                                <li><strong>Rail Logistics</strong> - Fret & Logistique</li>
-                                <li><strong>GEODIS</strong> - Transport & Logistique</li>
-                            </ul>
+                        <div class="block-header">
+                            <div class="block-icon">🌐</div>
+                            <div class="block-header-text">
+                                <h3 class="sncf-card-title">L'Écosystème</h3>
+                                <p class="sncf-card-subtitle">Partenaires Stratégiques du Groupe</p>
+                            </div>
+                        </div>
+                        <div class="block-content">
+                            <div class="sncf-card">
+                                <p class="sncf-card-text">Le groupe SNCF s'appuie sur un écosystème riche de partenaires stratégiques :</p>
+                                <ul>
+                                    <li><strong>SNCF Réseau</strong> - Infrastructure & Maintenance</li>
+                                    <li><strong>SNCF Voyageurs</strong> - Transport de Voyageurs</li>
+                                    <li><strong>SNCF Gares</strong> - Gares & Connexions</li>
+                                    <li><strong>Keolis</strong> - Mobilités Partagées</li>
+                                    <li><strong>Rail Logistics</strong> - Fret & Logistique</li>
+                                    <li><strong>GEODIS</strong> - Transport & Logistique</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- PARTENAIRES DÉTAIL -->
-                <div style="margin-top: 100px; padding-top: 80px; border-top: 2px solid rgba(0, 25, 168, 0.1);">
-                    <h3 style="font-family: 'Avenir', 'Helvetica Neue', sans-serif; font-size: 1.8em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #0019a8; text-align: center; margin: 0 0 60px 0;">Réseau de Partenaires</h3>
+                <!-- SECTION PARTENAIRES DÉTAIL -->
+                <div class="partners-section">
+                    <h3 class="partners-title">Réseau de Partenaires</h3>
                     <div class="partners-grid">
                         <div class="partner-card">
                             <h4>SNCF Réseau</h4>
