@@ -83,244 +83,465 @@
                 </div>
             </div>
         </section>
-                <section id="apropos" class="about-section">
+                <section id="apropos" class="about-dynamic-section">
             <style>
+                /* ===== SECTION BACKGROUND ===== */
                 #apropos {
-                    background: #ffffff;
+                    background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
                     position: relative;
                     overflow: hidden;
                 }
 
-                .about-container {
-                    max-width: 1200px;
+                /* ===== ANIMATED BACKGROUND ELEMENTS ===== */
+                #apropos::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='0' x2='60' y2='60' stroke='%23e5e7eb' stroke-width='0.5' opacity='0.2'/%3E%3Cline x1='60' y1='0' x2='0' y2='60' stroke='%23e5e7eb' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E") repeat;
+                    opacity: 0.4;
+                    z-index: 0;
+                }
+
+                .about-dynamic-container {
+                    max-width: 1300px;
                     margin: 0 auto;
-                    padding: 80px 40px;
+                    padding: 120px 40px;
                     position: relative;
                     z-index: 1;
                 }
 
-                .about-title {
+                .about-dynamic-title {
                     font-family: 'Roboto Mono', monospace;
-                    font-size: 2.2em;
+                    font-size: 2.6em;
                     font-weight: 700;
                     text-transform: uppercase;
-                    letter-spacing: 2px;
+                    letter-spacing: 3px;
                     color: #1a1f2e;
-                    margin: 0 0 60px 0;
                     text-align: center;
+                    margin: 0 0 100px 0;
+                    background: linear-gradient(135deg, #00F0FF 0%, #0019a8 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
                 }
 
-                .about-grid {
+                /* ===== CARDS GRID LAYOUT ===== */
+                .about-cards-container {
                     display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 40px;
-                    align-items: start;
-                }
-
-                .about-card {
-                    background: #ffffff;
-                    border: 1px solid #e5e7eb;
-                    border-radius: 0;
-                    padding: 40px;
+                    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+                    gap: 2.5rem;
+                    margin-bottom: 60px;
                     position: relative;
+                }
+
+                /* ===== CONNECTION LINE BETWEEN CARDS ===== */
+                .about-cards-container::before {
+                    content: '';
+                    position: absolute;
+                    top: 80px;
+                    left: calc(33.333% - 1.25rem);
+                    right: calc(33.333% + 1.25rem);
+                    height: 2px;
+                    background: linear-gradient(90deg, transparent, #00F0FF, #0019a8, transparent);
+                    z-index: 0;
+                    opacity: 0;
+                    animation: drawLine 1.2s ease-out forwards 0.6s;
+                    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+                }
+
+                @keyframes drawLine {
+                    from { 
+                        opacity: 0;
+                        width: 0;
+                        left: 50%;
+                    }
+                    to { 
+                        opacity: 1;
+                        width: auto;
+                        left: auto;
+                    }
+                }
+
+                /* ===== CARD BASE STYLES ===== */
+                .about-card-block {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    background: #ffffff;
+                    border-radius: 4px;
                     overflow: hidden;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    opacity: 0;
+                    animation: cardSlideIn 0.8s ease-out forwards;
+                    border-top: 5px solid;
+                    z-index: 1;
                 }
 
-                .about-card:hover {
-                    border-color: #d1d5db;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                /* ===== STAGGERED ANIMATION ===== */
+                .about-card-block:nth-child(1) { 
+                    animation-delay: 0.1s; 
+                    border-top-color: #00F0FF;
+                    --card-color: #00F0FF;
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(0, 240, 255, 0.03) 100%);
                 }
 
+                .about-card-block:nth-child(2) { 
+                    animation-delay: 0.3s; 
+                    border-top-color: #0019a8;
+                    --card-color: #0019a8;
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(0, 25, 168, 0.03) 100%);
+                }
+
+                .about-card-block:nth-child(3) { 
+                    animation-delay: 0.5s; 
+                    border-top-color: #BD00FF;
+                    --card-color: #BD00FF;
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(189, 0, 255, 0.03) 100%);
+                }
+
+                /* ===== KEYFRAME: CARD SLIDE-IN ===== */
+                @keyframes cardSlideIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(40px) translateX(-20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0) translateX(0);
+                    }
+                }
+
+                /* ===== CARD HEADER ===== */
                 .about-card-header {
-                    font-family: 'Roboto Mono', monospace;
-                    font-size: 0.75em;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 1.5px;
-                    color: #9ca3af;
-                    margin-bottom: 20px;
-                    padding-bottom: 12px;
-                    border-bottom: 1px solid #f3f4f6;
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 36px 32px 24px 32px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+                }
+
+                .about-card-icon {
+                    font-size: 2.6em;
+                    flex-shrink: 0;
+                    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    display: inline-block;
+                }
+
+                /* ===== ICON ANIMATIONS ===== */
+                .about-card-block:hover .about-card-icon {
+                    transform: scale(1.2) rotate(12deg) translateY(-4px);
+                    filter: drop-shadow(0 8px 12px var(--card-color));
+                }
+
+                .about-card-block:nth-child(1):hover .about-card-icon {
+                    animation: iconBounceBlue 0.6s ease-in-out;
+                }
+
+                .about-card-block:nth-child(2):hover .about-card-icon {
+                    animation: iconBounceDeepBlue 0.6s ease-in-out;
+                }
+
+                .about-card-block:nth-child(3):hover .about-card-icon {
+                    animation: iconBouncePurple 0.6s ease-in-out;
+                }
+
+                @keyframes iconBounceBlue {
+                    0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+                    50% { filter: drop-shadow(0 8px 16px rgba(0, 240, 255, 0.5)); }
+                }
+
+                @keyframes iconBounceDeepBlue {
+                    0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+                    50% { filter: drop-shadow(0 8px 16px rgba(0, 25, 168, 0.5)); }
+                }
+
+                @keyframes iconBouncePurple {
+                    0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+                    50% { filter: drop-shadow(0 8px 16px rgba(189, 0, 255, 0.5)); }
                 }
 
                 .about-card-title {
                     font-family: 'Roboto Mono', monospace;
-                    font-size: 1.4em;
+                    font-size: 1.35em;
                     font-weight: 700;
                     text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    color: #1a1f2e;
-                    margin: 0 0 20px 0;
-                    line-height: 1.3;
+                    letter-spacing: 1.5px;
+                    color: var(--card-color);
+                    margin: 0;
+                    transition: all 0.3s ease;
                 }
 
+                .about-card-block:hover .about-card-title {
+                    letter-spacing: 2px;
+                    text-shadow: 0 0 8px var(--card-color);
+                }
+
+                /* ===== CARD CONTENT ===== */
                 .about-card-content {
+                    padding: 28px 32px 32px 32px;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                /* ===== SCANNER LINE EFFECT ===== */
+                .about-card-content::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                    opacity: 0;
+                    transition: all 0.3s ease;
+                    pointer-events: none;
+                    z-index: 10;
+                }
+
+                .about-card-block:hover .about-card-content::before {
+                    opacity: 1;
+                    animation: scanLine 0.8s ease-in-out;
+                }
+
+                @keyframes scanLine {
+                    from { left: -100%; }
+                    to { left: 100%; }
+                }
+
+                .about-card-text {
                     font-family: 'Inter', sans-serif;
                     font-size: 0.95em;
-                    line-height: 1.7;
-                    color: #6b7280;
+                    line-height: 1.8;
+                    color: #4b5563;
+                    margin: 0 0 16px 0;
+                    position: relative;
+                    z-index: 1;
                 }
 
-                .about-card-content p {
-                    margin: 0 0 14px 0;
+                .about-card-text strong {
+                    color: var(--card-color);
+                    font-weight: 700;
                 }
 
-                .about-card-content p:last-child {
+                .about-card-text:last-child {
                     margin-bottom: 0;
                 }
 
-                .about-card-content strong {
-                    color: #1a1f2e;
-                    font-weight: 600;
+                .about-card-list {
+                    list-style: none;
+                    padding: 0;
+                    margin: 16px 0;
+                    position: relative;
+                    z-index: 1;
                 }
 
-                .info-list {
-                    margin-top: 20px;
-                    padding-top: 20px;
-                    border-top: 1px solid #f3f4f6;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 12px;
-                }
-
-                .info-item {
+                .about-card-list li {
+                    font-family: 'Inter', sans-serif;
                     font-size: 0.9em;
-                    color: #6b7280;
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
+                    margin: 10px 0;
+                    padding-left: 24px;
+                    position: relative;
+                    color: #4b5563;
+                    line-height: 1.6;
+                    transition: all 0.3s ease;
                 }
 
-                .info-label {
-                    font-weight: 600;
+                .about-card-block:nth-child(1) .about-card-list li::before {
+                    content: '◆';
+                    position: absolute;
+                    left: 0;
+                    color: #00F0FF;
+                    font-size: 0.8em;
+                }
+
+                .about-card-block:nth-child(2) .about-card-list li::before {
+                    content: '◆';
+                    position: absolute;
+                    left: 0;
+                    color: #0019a8;
+                    font-size: 0.8em;
+                }
+
+                .about-card-block:nth-child(3) .about-card-list li::before {
+                    content: '◆';
+                    position: absolute;
+                    left: 0;
+                    color: #BD00FF;
+                    font-size: 0.8em;
+                }
+
+                .about-card-block:hover .about-card-list li {
                     color: #1a1f2e;
-                    min-width: 100px;
+                    padding-left: 28px;
                 }
 
-                .skills-grid {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 16px;
-                    margin-top: 20px;
-                    padding-top: 20px;
-                    border-top: 1px solid #f3f4f6;
+                /* ===== HOVER EFFECTS (WAOUH!) ===== */
+                .about-card-block:hover {
+                    transform: translateY(-12px);
+                    border-top-width: 7px;
                 }
 
-                .skill-item {
-                    font-size: 0.85em;
-                    color: #6b7280;
-                    padding: 8px 12px;
-                    background: #f9fafb;
-                    border: 1px solid #f3f4f6;
-                    display: flex;
-                    align-items: center;
-                    gap: 6px;
+                /* ===== COLOR-SPECIFIC GLOWS ===== */
+                .about-card-block:nth-child(1):hover {
+                    box-shadow: 0 20px 50px rgba(0, 240, 255, 0.2), 0 0 30px rgba(0, 240, 255, 0.15);
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(0, 240, 255, 0.06) 100%);
                 }
 
-                .skill-label {
-                    font-weight: 600;
-                    color: #1a1f2e;
+                .about-card-block:nth-child(2):hover {
+                    box-shadow: 0 20px 50px rgba(0, 25, 168, 0.2), 0 0 30px rgba(0, 25, 168, 0.15);
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(0, 25, 168, 0.06) 100%);
                 }
 
-                @media (max-width: 900px) {
-                    .about-grid {
+                .about-card-block:nth-child(3):hover {
+                    box-shadow: 0 20px 50px rgba(189, 0, 255, 0.2), 0 0 30px rgba(189, 0, 255, 0.15);
+                    background: linear-gradient(135deg, #ffffff 0%, rgba(189, 0, 255, 0.06) 100%);
+                }
+
+                /* ===== RESPONSIVE ===== */
+                @media (max-width: 1000px) {
+                    .about-cards-container::before {
+                        display: none;
+                    }
+
+                    .about-dynamic-title {
+                        font-size: 2em;
+                        margin-bottom: 80px;
+                    }
+
+                    .about-card-block:hover {
+                        transform: translateY(-8px);
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .about-dynamic-container {
+                        padding: 80px 24px;
+                    }
+
+                    .about-dynamic-title {
+                        font-size: 1.6em;
+                        letter-spacing: 2px;
+                        margin-bottom: 60px;
+                    }
+
+                    .about-cards-container {
                         grid-template-columns: 1fr;
-                        gap: 32px;
+                        gap: 1.5rem;
                     }
 
-                    .about-title {
-                        font-size: 1.8em;
-                        letter-spacing: 1.5px;
+                    .about-card-header {
+                        padding: 28px 24px 16px 24px;
                     }
 
-                    .about-card {
-                        padding: 32px;
-                    }
-                }
-
-                @media (max-width: 600px) {
-                    .about-container {
-                        padding: 60px 24px;
-                    }
-
-                    .about-title {
-                        font-size: 1.4em;
-                        margin-bottom: 48px;
-                    }
-
-                    .about-card {
-                        padding: 24px;
+                    .about-card-icon {
+                        font-size: 2.2em;
                     }
 
                     .about-card-title {
                         font-size: 1.15em;
                     }
 
-                    .skills-grid {
+                    .about-card-content {
+                        padding: 20px 24px 24px 24px;
+                    }
+
+                    .about-card-block:hover {
+                        transform: translateY(-6px);
+                        border-top-width: 6px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .about-dynamic-container {
+                        padding: 60px 16px;
+                    }
+
+                    .about-dynamic-title {
+                        font-size: 1.3em;
+                        letter-spacing: 1px;
+                        margin-bottom: 40px;
+                    }
+
+                    .about-card-header {
                         gap: 12px;
+                    }
+
+                    .about-card-icon {
+                        font-size: 1.8em;
+                    }
+
+                    .about-card-title {
+                        font-size: 1em;
+                        letter-spacing: 1px;
+                    }
+
+                    .about-card-text {
+                        font-size: 0.9em;
                     }
                 }
             </style>
 
-            <div class="about-container">
-                <h2 class="about-title">À Propos de Moi</h2>
+            <div class="about-dynamic-container">
+                <h2 class="about-dynamic-title">À Propos de Moi</h2>
 
-                <div class="about-grid">
-                    <!-- CARD 1: PROFIL -->
-                    <div class="about-card">
-                        <div class="about-card-header">Profil</div>
-                        <h3 class="about-card-title">Nassim Rachdi</h3>
+                <div class="about-cards-container">
+                    <!-- CARD 1: PROFIL - CYAN -->
+                    <div class="about-card-block">
+                        <div class="about-card-header">
+                            <div class="about-card-icon">👤</div>
+                            <h3 class="about-card-title">Profil</h3>
+                        </div>
                         <div class="about-card-content">
-                            <p>En dernière année de <strong>BTS SIO option SISR</strong> en alternance chez <strong>SNCF TER</strong>, région Provence-Alpes-Côte d'Azur.</p>
-                            <p>Spécialisé dans l'<strong>administration système</strong>, les <strong>réseaux Cisco</strong>, la <strong>virtualisation</strong> et la <strong>cybersécurité</strong> appliquée.</p>
-                            
-                            <div class="info-list">
-                                <div class="info-item">
-                                    <span class="info-label">📍 Lieu :</span>
-                                    <span>Marseille, France</span>
-                                </div>
-                                <div class="info-item">
-                                    <span class="info-label">🎯 Objectif :</span>
-                                    <span>Ingénieur Infrastructure IT</span>
-                                </div>
-                            </div>
+                            <p class="about-card-text"><strong>Nassim Rachdi</strong>, étudiant en dernière année de <strong>BTS SIO option SISR</strong> en alternance chez <strong>SNCF TER</strong> en région Provence-Alpes-Côte d'Azur.</p>
+                            <p class="about-card-text">Généraliste en infrastructure informatique avec une passion particulière pour l'administration système, les architectures réseau et l'administration de bases de données.</p>
+                            <ul class="about-card-list">
+                                <li>📍 <strong>Localisation :</strong> Marseille, France</li>
+                                <li>🎯 <strong>Objectif :</strong> Ingénieur Infrastructure IT ou Consultant Cybersécurité</li>
+                            </ul>
                         </div>
                     </div>
 
-                    <!-- CARD 2: COMPÉTENCES -->
-                    <div class="about-card">
-                        <div class="about-card-header">Spécialités</div>
-                        <h3 class="about-card-title">Domaines</h3>
+                    <!-- CARD 2: FORMATION - DEEP BLUE -->
+                    <div class="about-card-block">
+                        <div class="about-card-header">
+                            <div class="about-card-icon">🎓</div>
+                            <h3 class="about-card-title">Formation</h3>
+                        </div>
                         <div class="about-card-content">
-                            <p style="margin-bottom: 20px;">Vous trouverez ci-dessous mes domaines de compétence principaux développés durant ma formation BTS SIO option SISR.</p>
-                            
-                            <div class="skills-grid">
-                                <div class="skill-item">
-                                    <span class="skill-label">→</span>
-                                    <span>Administration Système</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-label">→</span>
-                                    <span>Réseaux Cisco</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-label">→</span>
-                                    <span>Virtualisation Proxmox</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-label">→</span>
-                                    <span>Active Directory</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-label">→</span>
-                                    <span>Cybersécurité</span>
-                                </div>
-                                <div class="skill-item">
-                                    <span class="skill-label">→</span>
-                                    <span>Cloud Infrastructure</span>
-                                </div>
-                            </div>
+                            <p class="about-card-text">Spécialisation <strong>SISR</strong> (Systèmes, Infrastructures, Systèmes et Réseaux) avec un focus sur :</p>
+                            <ul class="about-card-list">
+                                <li>Administration Système (Windows & Linux)</li>
+                                <li>Réseaux Cisco et Architecture LAN/WAN</li>
+                                <li>Virtualisation (Proxmox, VMware)</li>
+                                <li>Active Directory et GPO</li>
+                                <li>Cybersécurité appliquée</li>
+                                <li>Gestion d'infrastructure cloud</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3: VISION - PURPLE -->
+                    <div class="about-card-block">
+                        <div class="about-card-header">
+                            <div class="about-card-icon">🔒</div>
+                            <h3 class="about-card-title">Vision</h3>
+                        </div>
+                        <div class="about-card-content">
+                            <p class="about-card-text">Passionné par la sécurité informatique et l'infrastructure de réseau, je vois mon rôle comme celui d'un <strong>gardien de l'infrastructure</strong> digitale.</p>
+                            <p class="about-card-text">Mon objectif long terme : participer à la conception et la sécurisation d'infrastructures d'envergure, contribuer à des projets d'envergure nationale, et devenir un expert reconnu en infrastructure IT.</p>
+                            <ul class="about-card-list">
+                                <li>Devenir expert en infrastructure IT</li>
+                                <li>Maîtriser les architectures complexes</li>
+                                <li>Contribuer à des projets d'envergure</li>
+                                <li>Partager mes connaissances</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
