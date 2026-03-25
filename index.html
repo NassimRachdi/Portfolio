@@ -1742,333 +1742,224 @@
                 <!-- PROJETS SCOLAIRES -->
                 <div class="tab-content" id="tab-scolaires">
                     <style>
-                        /* ========== LIGHT CYBER PROCEDURES GRID (4x2) ========== */
+                        /* ========== PRC GRID - Light Cyber REFONTE ========== */
                         .prc-grid {
                             display: grid;
                             grid-template-columns: repeat(4, 1fr);
-                            gap: 32px;
-                            margin: 40px 0;
-                            animation: slideInContent 0.8s ease-out forwards;
-                            opacity: 0;
+                            gap: 24px;
+                            margin: 20px 0 40px 0;
+                            /* BUGFIX: suppression opacity:0 + animation qui bloquait la visibilité */
                         }
 
-                        /* ========== PRC CARD STYLING ========== */
                         .prc-card {
-                            background: #FFFFFF;
-                            border: 1px solid #d0d0d0;
-                            border-radius: 0;
-                            padding: 28px 20px;
+                            background: #f8fafc;
+                            border: 1px solid #e2e8f0;
+                            border-top: 4px solid #00F0FF;
+                            border-radius: 8px;
+                            padding: 28px 20px 22px;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            justify-content: space-between;
                             cursor: default;
-                            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                                        box-shadow 0.3s ease,
+                                        border-color 0.3s ease,
+                                        background 0.3s ease;
                             position: relative;
-                            min-height: 280px;
+                            min-height: 240px;
                             overflow: hidden;
-                            box-shadow: none;
                         }
 
-                        /* Subtle gradient background on hover */
-                        .prc-card::after {
-                            content: '';
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(240, 248, 255, 0.3) 100%);
-                            opacity: 0;
-                            transition: opacity 0.3s ease;
-                            pointer-events: none;
-                            z-index: 0;
-                        }
+                        /* 4-color system — accent couleur tournante par position */
+                        .prc-card:nth-child(4n+1) { border-top-color: #00F0FF; }
+                        .prc-card:nth-child(4n+2) { border-top-color: #0019a8; }
+                        .prc-card:nth-child(4n+3) { border-top-color: #BD00FF; }
+                        .prc-card:nth-child(4n+4) { border-top-color: #00a86b; }
 
-                        .prc-card:hover::after {
-                            opacity: 1;
+                        .prc-card:hover {
+                            transform: translateY(-6px);
+                            background: #ffffff;
                         }
+                        .prc-card:nth-child(4n+1):hover { border-color: #00F0FF; box-shadow: 0 12px 32px rgba(0, 240, 255, 0.2); }
+                        .prc-card:nth-child(4n+2):hover { border-color: #0019a8; box-shadow: 0 12px 32px rgba(0, 25, 168, 0.2); }
+                        .prc-card:nth-child(4n+3):hover { border-color: #BD00FF; box-shadow: 0 12px 32px rgba(189, 0, 255, 0.2); }
+                        .prc-card:nth-child(4n+4):hover { border-color: #00a86b; box-shadow: 0 12px 32px rgba(0, 168, 107, 0.2); }
 
-                        /* Container for content layering */
-                        .prc-card > * {
-                            position: relative;
-                            z-index: 1;
-                        }
-
-                        /* PRC Number - Top Left */
                         .prc-number {
                             position: absolute;
-                            top: 8px;
-                            left: 8px;
+                            top: 10px;
+                            left: 12px;
                             font-family: 'Courier New', monospace;
-                            font-size: 0.65em;
+                            font-size: 0.62em;
                             font-weight: 700;
-                            color: #999;
+                            color: #94a3b8;
                             letter-spacing: 1px;
                             transition: color 0.3s ease;
                         }
+                        .prc-card:nth-child(4n+1):hover .prc-number { color: #00b8c4; }
+                        .prc-card:nth-child(4n+2):hover .prc-number { color: #0019a8; }
+                        .prc-card:nth-child(4n+3):hover .prc-number { color: #BD00FF; }
+                        .prc-card:nth-child(4n+4):hover .prc-number { color: #00a86b; }
 
-                        .prc-card:hover .prc-number {
-                            color: #00F0FF;
-                        }
-
-                        /* STATUS Badge - Top Right (Hidden by default) */
                         .prc-status {
                             position: absolute;
-                            top: 8px;
-                            right: 8px;
+                            top: 10px;
+                            right: 12px;
                             font-family: 'Courier New', monospace;
-                            font-size: 0.6em;
+                            font-size: 0.58em;
                             font-weight: 700;
-                            color: #00F0FF;
+                            color: #00b8c4;
                             letter-spacing: 1px;
                             opacity: 0;
                             transition: opacity 0.3s ease;
                             text-transform: uppercase;
                         }
+                        .prc-card:hover .prc-status { opacity: 1; }
 
-                        .prc-card:hover .prc-status {
-                            opacity: 1;
-                        }
-
-                        /* Placeholder Logo - Circular */
                         .prc-logo {
-                            width: 80px;
-                            height: 80px;
-                            border: 2px solid #d0d0d0;
+                            width: 72px;
+                            height: 72px;
+                            border: 2px solid #e2e8f0;
                             border-radius: 50%;
-                            margin: 15px 0 20px 0;
+                            margin: 20px 0 18px 0;
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            transition: all 0.3s ease;
-                            background: #fafafa;
+                            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                            background: #ffffff;
                             flex-shrink: 0;
                         }
+                        .prc-card:nth-child(4n+1):hover .prc-logo { border-color: #00F0FF; box-shadow: 0 0 16px rgba(0, 240, 255, 0.25); }
+                        .prc-card:nth-child(4n+2):hover .prc-logo { border-color: #0019a8; box-shadow: 0 0 16px rgba(0, 25, 168, 0.25); }
+                        .prc-card:nth-child(4n+3):hover .prc-logo { border-color: #BD00FF; box-shadow: 0 0 16px rgba(189, 0, 255, 0.25); }
+                        .prc-card:nth-child(4n+4):hover .prc-logo { border-color: #00a86b; box-shadow: 0 0 16px rgba(0, 168, 107, 0.25); }
 
-                        .prc-card:hover .prc-logo {
-                            border-color: #00F0FF;
-                            background: #f0fdff;
-                            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-                        }
-
-                        /* PRC Title - Main Text */
                         .prc-title {
-                            color: #333;
-                            font-size: 1.05em;
+                            color: #1a1f2e;
+                            font-size: 1em;
                             font-weight: 700;
-                            margin: 10px 0;
+                            margin: 0 0 auto 0;
                             text-transform: uppercase;
-                            letter-spacing: 0.8px;
+                            letter-spacing: 1px;
                             font-family: 'Courier New', monospace;
                             line-height: 1.3;
-                            transition: all 0.3s ease;
+                            transition: color 0.3s ease;
                             text-align: center;
                         }
+                        .prc-card:nth-child(4n+1):hover .prc-title { color: #00b8c4; }
+                        .prc-card:nth-child(4n+2):hover .prc-title { color: #0019a8; }
+                        .prc-card:nth-child(4n+3):hover .prc-title { color: #BD00FF; }
+                        .prc-card:nth-child(4n+4):hover .prc-title { color: #00a86b; }
 
-                        .prc-card:hover .prc-title {
-                            color: #00F0FF;
-                        }
-
-                        /* Data Line - Bottom */
                         .prc-data {
-                            color: #b0b0b0;
-                            font-size: 0.75em;
+                            color: #94a3b8;
+                            font-size: 0.73em;
                             font-family: 'Courier New', monospace;
-                            margin-top: auto;
+                            margin-top: 14px;
                             padding-top: 12px;
-                            border-top: 1px solid #e8e8e8;
+                            border-top: 1px solid #e2e8f0;
                             width: 100%;
                             text-align: center;
-                            letter-spacing: 0.3px;
-                            transition: all 0.3s ease;
+                            letter-spacing: 0.5px;
+                            transition: color 0.3s ease, border-top-color 0.3s ease;
                             line-height: 1.4;
                         }
+                        .prc-card:nth-child(4n+1):hover .prc-data { color: #475569; border-top-color: #00F0FF; }
+                        .prc-card:nth-child(4n+2):hover .prc-data { color: #475569; border-top-color: #0019a8; }
+                        .prc-card:nth-child(4n+3):hover .prc-data { color: #475569; border-top-color: #BD00FF; }
+                        .prc-card:nth-child(4n+4):hover .prc-data { color: #475569; border-top-color: #00a86b; }
 
-                        .prc-card:hover .prc-data {
-                            color: #999;
-                            border-top-color: #00F0FF;
-                        }
-
-                        /* Card Hover - Main Effects */
-                        .prc-card:hover {
-                            border-color: #00F0FF;
-                            box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
-                        }
-
-                        /* ========== RESPONSIVE BREAKPOINTS ========== */
+                        /* ========== RESPONSIVE ========== */
                         @media (max-width: 1200px) {
-                            .prc-grid {
-                                grid-template-columns: repeat(3, 1fr);
-                                gap: 28px;
-                            }
-
-                            .prc-card {
-                                padding: 24px 18px;
-                                min-height: 260px;
-                            }
-
-                            .prc-title {
-                                font-size: 0.95em;
-                            }
-
-                            .prc-logo {
-                                width: 70px;
-                                height: 70px;
-                            }
+                            .prc-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+                            .prc-card { min-height: 220px; }
                         }
-
                         @media (max-width: 768px) {
-                            .prc-grid {
-                                grid-template-columns: repeat(2, 1fr);
-                                gap: 20px;
-                            }
-
-                            .prc-card {
-                                padding: 20px 15px;
-                                min-height: 240px;
-                            }
-
-                            .prc-number {
-                                font-size: 0.6em;
-                            }
-
-                            .prc-status {
-                                font-size: 0.55em;
-                            }
-
-                            .prc-title {
-                                font-size: 0.9em;
-                            }
-
-                            .prc-data {
-                                font-size: 0.7em;
-                            }
-
-                            .prc-logo {
-                                width: 65px;
-                                height: 65px;
-                                margin: 10px 0 15px 0;
-                            }
+                            .prc-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+                            .prc-card { min-height: 200px; padding: 22px 16px 18px; }
+                            .prc-title { font-size: 0.9em; }
                         }
-
                         @media (max-width: 480px) {
-                            .prc-grid {
-                                grid-template-columns: 1fr;
-                                gap: 16px;
-                            }
-
-                            .prc-card {
-                                padding: 18px 14px;
-                                min-height: 220px;
-                            }
-
-                            .prc-number {
-                                font-size: 0.55em;
-                                top: 6px;
-                                left: 6px;
-                            }
-
-                            .prc-status {
-                                font-size: 0.5em;
-                                top: 6px;
-                                right: 6px;
-                            }
-
-                            .prc-title {
-                                font-size: 0.85em;
-                            }
-
-                            .prc-data {
-                                font-size: 0.65em;
-                                margin-top: 8px;
-                                padding-top: 8px;
-                            }
-
-                            .prc-logo {
-                                width: 60px;
-                                height: 60px;
-                                margin: 8px 0 12px 0;
-                            }
+                            .prc-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+                            .prc-card { min-height: 180px; padding: 18px 12px 14px; }
+                            .prc-title { font-size: 0.82em; }
+                            .prc-data { font-size: 0.67em; }
                         }
-
+                        @media (max-width: 360px) {
+                            .prc-grid { grid-template-columns: 1fr; }
+                        }
+                        @media (prefers-reduced-motion: reduce) {
+                            .prc-card { transition: none; }
+                            .prc-card:hover { transform: none; }
+                        }
                     </style>
 
                     <div class="prc-grid">
-                        <!-- 1. PRC_01 - GLPI -->
+                        <!-- PRC_01 - GLPI -->
                         <div class="prc-card">
                             <div class="prc-number">PRC_01</div>
-                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-status">[READY]</div>
                             <div class="prc-logo"></div>
                             <h3 class="prc-title">GLPI</h3>
                             <div class="prc-data">// ASSET MANAGEMENT</div>
                         </div>
-
-                        <!-- 2. PRC_02 - PfSense -->
+                        <!-- PRC_02 - PfSense -->
                         <div class="prc-card">
                             <div class="prc-number">PRC_02</div>
-                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-status">[READY]</div>
                             <div class="prc-logo"></div>
                             <h3 class="prc-title">PFSENSE</h3>
                             <div class="prc-data">// FIREWALL RULES</div>
                         </div>
-
-                        <!-- 3. PRC_03 - Proxmox -->
+                        <!-- PRC_03 - Proxmox -->
                         <div class="prc-card">
                             <div class="prc-number">PRC_03</div>
-                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-status">[READY]</div>
                             <div class="prc-logo"></div>
                             <h3 class="prc-title">PROXMOX</h3>
                             <div class="prc-data">// CLUSTER DEPLOY</div>
                         </div>
-
-                        <!-- 4. PRC_04 - Active Directory -->
+                        <!-- PRC_04 - Active Directory -->
                         <div class="prc-card">
                             <div class="prc-number">PRC_04</div>
-                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-status">[READY]</div>
                             <div class="prc-logo"></div>
                             <h3 class="prc-title">ACTIVE DIR</h3>
                             <div class="prc-data">// DOMAIN CONFIG</div>
                         </div>
-
-                        <!-- 5. PRC_05 - Exchange -->
+                        <!-- PRC_05 - Exchange -->
                         <div class="prc-card">
                             <div class="prc-number">PRC_05</div>
-                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-status">[READY]</div>
                             <div class="prc-logo"></div>
                             <h3 class="prc-title">EXCHANGE</h3>
                             <div class="prc-data">// MAIL SERVER</div>
                         </div>
-
-                        <!-- 6. PRC_06 - Zyxel -->
+                        <!-- PRC_06 - Zyxel -->
                         <div class="prc-card">
                             <div class="prc-number">PRC_06</div>
-                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-status">[READY]</div>
                             <div class="prc-logo"></div>
                             <h3 class="prc-title">ZYXEL</h3>
                             <div class="prc-data">// VLAN CONFIG</div>
                         </div>
-
-                        <!-- 7. PRC_07 - D-Link WiFi -->
+                        <!-- PRC_07 - D-Link WiFi -->
                         <div class="prc-card">
                             <div class="prc-number">PRC_07</div>
-                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-status">[READY]</div>
                             <div class="prc-logo"></div>
                             <h3 class="prc-title">D-LINK WIFI</h3>
                             <div class="prc-data">// WIRELESS INFRA</div>
                         </div>
-
-                        <!-- 8. PRC_08 - Schéma E63 -->
+                        <!-- PRC_08 - Schéma E63 -->
                         <div class="prc-card">
                             <div class="prc-number">PRC_08</div>
-                            <div class="prc-status">[STATUS: READY]</div>
+                            <div class="prc-status">[READY]</div>
                             <div class="prc-logo"></div>
                             <h3 class="prc-title">SCHEMA E63</h3>
                             <div class="prc-data">// NETWORK ARCH</div>
                         </div>
                     </div>
-
-                    </script>
                 </div>
                                 </div>
                             </div>
