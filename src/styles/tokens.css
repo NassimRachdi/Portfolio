@@ -1,0 +1,120 @@
+/* ==========================================================================
+   PARAMÈTRES VISUELS
+   Toutes les couleurs, polices, tailles et durées du site sont réglées ici.
+   ========================================================================== */
+
+:root {
+  /* — Surfaces sombres (nuit) — */
+  --night-0: #080b11;
+  --night-1: #0d1118;
+  --night-2: #131823;
+  --night-3: #1b2130;
+  --night-line: rgba(237, 233, 225, 0.12);
+  --night-line-strong: rgba(237, 233, 225, 0.24);
+
+  /* — Texte sur fond sombre — */
+  --ink: #ede9e1;
+  --ink-soft: #b5b7bd;
+  --ink-faint: #8a8f99;
+
+  /* — Surfaces claires (papier) — */
+  --paper-0: #e4dfd5;
+  --paper-1: #ece8df;
+  --paper-2: #f4f1ea;
+  --paper-ink: #14171d;
+  --paper-soft: #4a4e57;
+  --paper-faint: #6b6f78;
+  --paper-line: rgba(20, 23, 29, 0.14);
+  --paper-line-strong: rgba(20, 23, 29, 0.3);
+
+  /* — Accent : un bleu électrique, utilisé avec parcimonie — */
+  --accent-night: #6683ff;
+  --accent-night-soft: rgba(102, 131, 255, 0.16);
+  --accent-paper: #2449d8;
+  --accent-paper-soft: rgba(36, 73, 216, 0.1);
+
+  /* — Statuts (honnêtes, sans couleurs criardes) — */
+  --status-done: #8fb8a0;
+  --status-progress: var(--accent-night);
+  --status-evolution: #c9b28a;
+
+  /* — Typographie — */
+  --f-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --f-text: 'Instrument Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --f-meta: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --fs-meta: 0.72rem;
+  --fs-small: 0.875rem;
+  --fs-body: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+  --fs-lead: clamp(1.08rem, 1rem + 0.4vw, 1.25rem);
+  --fs-h3: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
+  --fs-h2: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  --fs-h1: clamp(2.6rem, 1.6rem + 4vw, 5.4rem);
+  --fs-display: clamp(4rem, 1.2rem + 6.6vw, 8.25rem);
+
+  --lh-body: 1.65;
+  --measure: 38rem;
+
+  /* — Espacements & structure — */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 6rem;
+
+  --toc-width: 300px;
+  --topbar-h: 60px;
+  --pager-h: 72px;
+  --page-pad-x: clamp(1.25rem, 0.5rem + 4vw, 5rem);
+  --page-pad-y: clamp(1.5rem, 1rem + 3vw, 4rem);
+  --radius: 6px;
+  --tap: 44px;
+
+  /* — Mouvement — */
+  --ease-page: cubic-bezier(0.77, 0, 0.18, 1);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-page: 760ms;
+  --dur-reveal: 640ms;
+  --dur-fast: 180ms;
+  --stagger: 55ms;
+}
+
+/* Surfaces : chaque page reçoit les variables de sa surface. */
+[data-surface='night'] {
+  --bg: var(--night-1);
+  --bg-raised: var(--night-2);
+  --bg-sunk: var(--night-0);
+  --fg: var(--ink);
+  --fg-soft: var(--ink-soft);
+  --fg-faint: var(--ink-faint);
+  --line: var(--night-line);
+  --line-strong: var(--night-line-strong);
+  --accent: var(--accent-night);
+  --accent-soft: var(--accent-night-soft);
+  --on-accent: #070a12;
+  --focus: #9fb2ff;
+  color-scheme: dark;
+}
+
+[data-surface='paper'] {
+  --bg: var(--paper-1);
+  --bg-raised: var(--paper-2);
+  --bg-sunk: var(--paper-0);
+  --fg: var(--paper-ink);
+  --fg-soft: var(--paper-soft);
+  --fg-faint: var(--paper-faint);
+  --line: var(--paper-line);
+  --line-strong: var(--paper-line-strong);
+  --accent: var(--accent-paper);
+  --accent-soft: var(--accent-paper-soft);
+  --on-accent: #f4f1ea;
+  --focus: var(--accent-paper);
+  --status-done: #2f6b4a;
+  --status-progress: var(--accent-paper);
+  --status-evolution: #7a5b22;
+  color-scheme: light;
+}

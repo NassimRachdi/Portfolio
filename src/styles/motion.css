@@ -1,0 +1,148 @@
+/* ==========================================================================
+   MOUVEMENT
+   - Tourner une page : la nouvelle page glisse par-dessus (vers l'avant),
+     ou la page courante se retire et dévoile la précédente (vers l'arrière).
+   - Apparitions : titres ligne à ligne (masque), contenus en fondu court.
+   Tout est désactivé lorsque <html data-motion="reduced">.
+   ========================================================================== */
+
+/* ── Transitions de page ── */
+.page[data-state='entering'],
+.page[data-state='leaving'] {
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Vers l'avant : nouvelle page au-dessus */
+.stage[data-direction='forward'] .page[data-state='entering'] {
+  z-index: 2;
+  animation: page-cover-in var(--dur-page) var(--ease-page) both;
+  box-shadow: -40px 0 80px -20px rgba(0, 0, 0, 0.55);
+}
+
+.stage[data-direction='forward'] .page[data-state='leaving'] {
+  z-index: 1;
+  transform-origin: left center;
+  animation: page-push-back var(--dur-page) var(--ease-page) both;
+}
+
+/* Vers l'arrière : la page courante se retire au-dessus */
+.stage[data-direction='backward'] .page[data-state='leaving'] {
+  z-index: 2;
+  animation: page-uncover-out var(--dur-page) var(--ease-page) both;
+  box-shadow: -40px 0 80px -20px rgba(0, 0, 0, 0.55);
+}
+
+.stage[data-direction='backward'] .page[data-state='entering'] {
+  z-index: 1;
+  transform-origin: left center;
+  animation: page-come-forward var(--dur-page) var(--ease-page) both;
+}
+
+@keyframes page-cover-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes page-push-back {
+  from {
+    transform: none;
+    filter: brightness(1);
+  }
+  to {
+    transform: perspective(1800px) translateX(-14%) rotateY(5deg) scale(0.96);
+    filter: brightness(0.45);
+  }
+}
+
+@keyframes page-uncover-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes page-come-forward {
+  from {
+    transform: perspective(1800px) translateX(-14%) rotateY(5deg) scale(0.96);
+    filter: brightness(0.45);
+  }
+  to {
+    transform: none;
+    filter: brightness(1);
+  }
+}
+
+/* ── Apparition des titres : chaque mot sort d'un masque ── */
+.rw {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.rw > span {
+  display: inline-block;
+  animation: word-rise var(--dur-reveal) var(--ease-out) both;
+  animation-delay: calc(120ms + var(--i, 0) * var(--stagger));
+}
+
+@keyframes word-rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* ── Contenus : fondu court, décalé ── */
+.reveal {
+  animation: fade-up 560ms var(--ease-out) both;
+  animation-delay: calc(var(--d, 0) * 70ms);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* La page qui part ne rejoue pas ses animations. */
+.page[data-state='leaving'] .rw > span,
+.page[data-state='leaving'] .reveal {
+  animation: none;
+}
+
+/* ── Réduction des animations ── */
+:root[data-motion='reduced'] *,
+:root[data-motion='reduced'] *::before,
+:root[data-motion='reduced'] *::after {
+  animation-duration: 1ms !important;
+  animation-delay: 0ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 1ms !important;
+  transition-delay: 0ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Filet de sécurité si JavaScript n'a pas encore posé l'attribut */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='full']) * {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+  }
+}
