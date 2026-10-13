@@ -7,6 +7,7 @@ import { ChapterHeader, PageFrame } from '../components/PageFrame';
 import { hrefFor, navigate, setParam, type Route } from '../navigation/router';
 import { isReducedMotion } from '../lib/motion';
 import { scrollToInPage } from '../lib/scroll';
+import { Method } from './Method';
 
 const usageOrder: SkillUsage[] = ['entreprise', 'formation', 'personnel', 'apprentissage', 'orientation', 'piste'];
 
@@ -17,7 +18,7 @@ function evidenceLink(e: Evidence) {
   }
   if (e.type === 'experience') {
     const x = experiences.find((x) => x.id === e.id);
-    return x ? { href: hrefFor('experience', null, { focus: x.id }), kind: `Expérience · ${x.period}`, label: x.entity } : null;
+    return x ? { href: hrefFor('parcours', null, { focus: x.id }), kind: `Expérience · ${x.period}`, label: x.entity } : null;
   }
   const j = journey.find((j) => j.id === e.id);
   return j ? { href: hrefFor('parcours', null, { etape: j.id }), kind: `Formation · ${j.period}`, label: j.title } : null;
@@ -34,7 +35,7 @@ export function Skills({ route, active }: { route: Route; active: boolean }) {
 
   const selectFamily = (i: number, focus = false) => {
     const f = skillFamilies[(i + skillFamilies.length) % skillFamilies.length];
-    navigate(hrefFor('competences', null, { famille: f.id }), { replace: true });
+    navigate(hrefFor('competences', null, { famille: f.id, etape: route.params.get('etape') }), { replace: true });
     if (focus) tabs.current[skillFamilies.indexOf(f)]?.focus();
   };
 
@@ -64,7 +65,7 @@ export function Skills({ route, active }: { route: Route; active: boolean }) {
     <PageFrame chapter="competences">
       <ChapterHeader
         chapter="competences"
-        kicker="Cinq familles"
+        kicker="Savoir-faire & méthode"
         lead={
           <p>
             Pas de jauges ni de pourcentages : pour chaque compétence, j’indique comment je l’ai réellement pratiquée, et où
@@ -207,6 +208,8 @@ export function Skills({ route, active }: { route: Route; active: boolean }) {
           </div>
         </div>
       </div>
+
+      <Method route={route} />
     </PageFrame>
   );
 }

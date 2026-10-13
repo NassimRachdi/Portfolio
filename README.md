@@ -1,6 +1,6 @@
 # Portfolio — Nassim Rachdi
 
-Un portfolio pensé comme un **livre numérique interactif** en huit chapitres : couverture, à propos, parcours, expérience, projets, compétences, méthode et contact.
+Un portfolio éditorial en **cinq sections**, toujours accessibles depuis la barre de navigation : Accueil (présentation), Parcours (formation + alternance), Projets, Compétences (+ méthode) et Contact.
 
 Stack : **Vite + React + TypeScript**, polices auto-hébergées (Fraunces, Instrument Sans, IBM Plex Mono). Aucune autre bibliothèque d'interface ni d'animation.
 
@@ -43,13 +43,13 @@ Tout le texte est centralisé dans `src/content/` : il n'est pas nécessaire de 
 | Fichier | Contenu |
 | --- | --- |
 | `src/content/profile.ts` | Nom, positionnement, accroche, repères « en bref », **photo, e-mail, LinkedIn, GitHub, CV** |
-| `src/content/chapters.ts` | Ordre, titres et surface (sombre / papier) des chapitres |
-| `src/content/about.ts` | Chapitre « À propos » |
-| `src/content/journey.ts` | Timeline du parcours (formations) |
-| `src/content/experience.ts` | Expériences professionnelles et expérience secondaire |
+| `src/content/chapters.ts` | Ordre et titres des cinq sections |
+| `src/content/about.ts` | Présentation (« À propos », sur l'accueil) |
+| `src/content/journey.ts` | Timeline de formation (page Parcours) |
+| `src/content/experience.ts` | Alternance et expérience secondaire (page Parcours) |
 | `src/content/projects.ts` | Dossiers projets (ajouter un projet = copier un objet) |
 | `src/content/skills.ts` | Familles de compétences, niveaux d'usage et liens vers les preuves |
-| `src/content/method.ts` | Méthode, axes de progression, usage de l'IA |
+| `src/content/method.ts` | Méthode, axes de progression, usage de l'IA (page Compétences) |
 
 Les paramètres visuels (couleurs, polices, tailles, durées d'animation) se trouvent dans `src/styles/tokens.css`.
 
@@ -78,10 +78,10 @@ Placez l'image dans `public/images/`, puis renseignez `photo: { src: 'images/por
 src/
   content/       contenus (textes, projets, compétences…)
   navigation/    routeur (URL par hash), clavier, balayage, titre de page
-  components/    sommaire, pagination, scène des pages, illustrations
-  chapters/      un composant par chapitre
-  styles/        tokens, base, mise en page, mouvement, chapitres
-  lib/           préférences d'animation, chapitres consultés, défilement
+  components/    barre de navigation, scène des pages, illustrations
+  chapters/      un composant par section (et ses parties)
+  styles/        tokens, base, mise en page, mouvement, sections
+  lib/           préférences d'animation, défilement
 tests/           tests Playwright
 ```
 

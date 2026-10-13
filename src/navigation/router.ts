@@ -1,7 +1,7 @@
 /**
  * Routeur minimal basé sur le hash de l'URL.
  *
- *   #/                       → couverture
+ *   #/                       → accueil
  *   #/parcours               → chapitre
  *   #/parcours?etape=bts-sio → chapitre + paramètres (état de consultation)
  *   #/projets/easygov        → dossier projet (sous-page du chapitre Projets)
@@ -21,15 +21,18 @@ export interface Route {
   path: string;
 }
 
+/** Anciennes adresses (version en huit chapitres) redirigées vers la section qui les contient. */
+const aliases: Record<string, string> = { 'a-propos': '', experience: 'parcours', methode: 'competences' };
+
 function parse(hash: string): Route {
   const raw = hash.replace(/^#\/?/, '');
   const [pathPart, query = ''] = raw.split('?');
   const [slug = '', sub = null] = pathPart.split('/').filter(Boolean) as [string?, string?];
-  const chapter = chapterBySlug(slug ?? '') ?? chapters[0];
+  const chapter = chapterBySlug(aliases[slug ?? ''] ?? slug ?? '') ?? chapters[0];
   const params = new URLSearchParams(query);
   return {
     chapter: chapter.id,
-    sub: chapter.slug === (slug ?? '') ? (sub ?? null) : null,
+    sub: chapter.slug === (aliases[slug ?? ''] ?? slug ?? '') ? (sub ?? null) : null,
     params,
     path: '/' + [chapter.slug, chapter.slug === slug ? sub : null].filter(Boolean).join('/'),
   };

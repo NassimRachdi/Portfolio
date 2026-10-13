@@ -1,10 +1,11 @@
 import { useRef } from 'react';
 import { experiences } from '../content/experience';
 import { journey } from '../content/journey';
-import { ChapterHeader, PageFrame } from '../components/PageFrame';
+import { ChapterHeader, PageFrame, SectionHeader } from '../components/PageFrame';
+import { Experience } from './Experience';
 import { hrefFor, setParam, type Route } from '../navigation/router';
 
-export function Journey({ route }: { route: Route }) {
+export function Journey({ route, active }: { route: Route; active: boolean }) {
   const requested = route.params.get('etape');
   const selectedIndex = Math.max(
     0,
@@ -41,11 +42,12 @@ export function Journey({ route }: { route: Route }) {
         kicker="2022 — 2027"
         lead={
           <p>
-            Quatre étapes, une réorientation assumée et une alternance qui donne du sens à la formation. Sélectionnez une
-            étape pour en lire le détail.
+            Ma formation, puis mon alternance à la SNCF depuis 2023. Sélectionnez une étape pour en lire le détail.
           </p>
         }
       />
+
+      <SectionHeader id="formation" kicker="Formation" title="De STI2D au Bachelor" />
 
       <div className="timeline" style={{ ['--rows' as string]: journey.length }}>
         {journey.map((step, i) => {
@@ -60,7 +62,7 @@ export function Journey({ route }: { route: Route }) {
               data-last={i === journey.length - 1 || undefined}
               style={{ ['--row' as string]: i + 1 }}
             >
-              <h2 className="timeline__heading">
+              <h3 className="timeline__heading">
                 <button
                   ref={(el) => {
                     buttons.current[i] = el;
@@ -78,7 +80,7 @@ export function Journey({ route }: { route: Route }) {
                   <span className="timeline__title">{step.title}</span>
                   <span className={`status status--${step.status}`}>{step.statusLabel}</span>
                 </button>
-              </h2>
+              </h3>
 
               <section
                 id={`etape-${step.id}`}
@@ -115,7 +117,7 @@ export function Journey({ route }: { route: Route }) {
                         <ul>
                           {relatedExp.map((x) => (
                             <li key={x.id}>
-                              <a href={hrefFor('experience', null, { focus: x.id })}>
+                              <a href={hrefFor('parcours', null, { etape: step.id, focus: x.id })}>
                                 <span>{x.entity}</span>
                                 <span className="meta">{x.period}</span>
                                 <span aria-hidden="true">→</span>
@@ -145,6 +147,8 @@ export function Journey({ route }: { route: Route }) {
           );
         })}
       </div>
+
+      <Experience route={route} active={active} />
     </PageFrame>
   );
 }

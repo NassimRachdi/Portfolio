@@ -1,6 +1,6 @@
 import { aiStatement, growthAxes, methodSteps } from '../content/method';
 import { projectById } from '../content/projects';
-import { ChapterHeader, PageFrame } from '../components/PageFrame';
+import { SectionHeader } from '../components/PageFrame';
 import { hrefFor, setParam, type Route } from '../navigation/router';
 
 const R = 118;
@@ -57,28 +57,25 @@ export function Method({ route }: { route: Route }) {
   const select = (i: number) => setParam('etape', methodSteps[i].id);
 
   return (
-    <PageFrame chapter="methode">
+    <section className="method-section" aria-labelledby="methode-titre">
+      <SectionHeader
+        id="methode"
+        kicker="Ma méthode"
+        title="Comment je travaille"
+        lead={
+          <p>
+            Huit temps. Je m’efforce de n’en sauter aucun, surtout ceux qu’on est tenté d’écourter : tester et documenter.
+          </p>
+        }
+      />
       <div className="spread method">
         <div className="spread__left method__left">
-          <ChapterHeader
-            chapter="methode"
-            kicker="Approche & progression"
-            lead={
-              <p>
-                Ma méthode tient en huit temps. Je m’efforce de n’en sauter aucun — surtout ceux qu’on est tenté
-                d’écourter : tester et documenter.
-              </p>
-            }
-          />
-          <div className="method__ring reveal" style={{ ['--d' as string]: 4 }}>
+          <div className="method__ring">
             <MethodRing active={active} onSelect={select} />
           </div>
         </div>
 
         <div className="spread__right">
-          <h2 className="section-title">
-            <span className="meta">I.</span> Ma méthode
-          </h2>
           <ol className="steps">
             {methodSteps.map((s, i) => {
               const open = i === active;
@@ -110,7 +107,7 @@ export function Method({ route }: { route: Route }) {
 
       <section className="growth" aria-labelledby="growth-title">
         <h2 id="growth-title" className="section-title">
-          <span className="meta">II.</span> Ce que je construis
+          Ce que je construis
         </h2>
         <p className="growth__lead">Mes axes de progression : là où j’en suis, et ce que je travaille ensuite.</p>
         <div className="growth__table" role="table" aria-label="Axes de progression">
@@ -152,6 +149,6 @@ export function Method({ route }: { route: Route }) {
           <p key={i}>{p}</p>
         ))}
       </aside>
-    </PageFrame>
+    </section>
   );
 }

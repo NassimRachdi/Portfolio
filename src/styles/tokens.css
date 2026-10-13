@@ -17,15 +17,15 @@
   --ink-soft: #b5b7bd;
   --ink-faint: #8a8f99;
 
-  /* — Surfaces claires (papier) — */
-  --paper-0: #e4dfd5;
-  --paper-1: #ece8df;
-  --paper-2: #f4f1ea;
-  --paper-ink: #14171d;
-  --paper-soft: #4a4e57;
-  --paper-faint: #6b6f78;
-  --paper-line: rgba(20, 23, 29, 0.14);
-  --paper-line-strong: rgba(20, 23, 29, 0.3);
+  /* — Surfaces claires : fond du site — */
+  --paper-0: #e9ecf1;
+  --paper-1: #f6f7f9;
+  --paper-2: #ffffff;
+  --paper-ink: #12151c;
+  --paper-soft: #474d59;
+  --paper-faint: #646b78;
+  --paper-line: rgba(18, 21, 28, 0.12);
+  --paper-line-strong: rgba(18, 21, 28, 0.26);
 
   /* — Accent : un bleu électrique, utilisé avec parcimonie — */
   --accent-night: #6683ff;
@@ -66,9 +66,8 @@
   --space-8: 4.5rem;
   --space-9: 6rem;
 
-  --toc-width: 300px;
-  --topbar-h: 60px;
-  --pager-h: 72px;
+  --header-h: 68px;
+  --tabbar-h: 64px;
   --page-pad-x: clamp(1.25rem, 0.5rem + 4vw, 5rem);
   --page-pad-y: clamp(1.5rem, 1rem + 3vw, 4rem);
   --radius: 6px;
@@ -111,7 +110,7 @@
   --line-strong: var(--paper-line-strong);
   --accent: var(--accent-paper);
   --accent-soft: var(--accent-paper-soft);
-  --on-accent: #f4f1ea;
+  --on-accent: #ffffff;
   --focus: var(--accent-paper);
   --status-done: #2f6b4a;
   --status-progress: var(--accent-paper);

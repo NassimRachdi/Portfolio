@@ -7,7 +7,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { chapterById, chapterIndex, chapters, pad, type ChapterId } from '../content/chapters';
 import { isReducedMotion } from '../lib/motion';
-import { markVisited } from '../lib/visited';
 import type { Route } from '../navigation/router';
 import { useSwipe } from '../navigation/useBookNavigation';
 
@@ -33,8 +32,6 @@ export function ChapterStage({ route, render }: { route: Route; render: (route: 
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
   useSwipe(stage, route);
-
-  useEffect(() => markVisited(route.chapter), [route.chapter]);
 
   // Changement de chapitre : on prépare la transition.
   useLayoutEffect(() => {
@@ -93,7 +90,6 @@ export function ChapterStage({ route, render }: { route: Route; render: (route: 
             className="page"
             id={leaving ? undefined : 'contenu'}
             data-chapter={chapter.id}
-            data-surface={chapter.surface}
             data-state={layer.state}
             aria-hidden={leaving || undefined}
             inert={leaving || undefined}

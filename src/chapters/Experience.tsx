@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { enterpriseProjectsNote, experiences, sideExperience } from '../content/experience';
 import { projectById } from '../content/projects';
-import { ChapterHeader, PageFrame } from '../components/PageFrame';
+import { SectionHeader } from '../components/PageFrame';
 import { hrefFor, setParam, type Route } from '../navigation/router';
 import { isReducedMotion } from '../lib/motion';
 import { scrollToInPage } from '../lib/scroll';
@@ -20,14 +20,15 @@ export function Experience({ route, active }: { route: Route; active: boolean })
   }, [focus, active]);
 
   return (
-    <PageFrame chapter="experience">
-      <ChapterHeader
-        chapter="experience"
-        kicker="SNCF · depuis 2023"
+    <section className="xp-section" aria-labelledby="experience-titre">
+      <SectionHeader
+        id="experience"
+        kicker="Expérience professionnelle · SNCF depuis 2023"
+        title="Mon alternance"
         lead={
           <p>
-            Depuis 2023, mon alternance se déroule à la SNCF. Plutôt qu’une liste d’outils, voici les besoins que j’ai
-            rencontrés, ce que j’y ai apporté et ce que j’en retiens.
+            Plutôt qu’une liste d’outils, voici les besoins que j’ai rencontrés, ce que j’y ai apporté et ce que j’en
+            retiens.
           </p>
         }
       />
@@ -69,16 +70,16 @@ export function Experience({ route, active }: { route: Route; active: boolean })
               {x.status === 'en-cours' && <p className="status status--en-cours">En cours</p>}
             </div>
             <div className="xp__main">
-              <h2 id={`xp-title-${x.id}`} className="xp__title">
+              <h3 id={`xp-title-${x.id}`} className="xp__title">
                 {x.entity}
-              </h2>
+              </h3>
               <p className="xp__role meta">{x.role}</p>
               <p className="xp__context">{x.context}</p>
 
               {(x.needs.length > 0 || x.contributions.length > 0) && (
                 <div className="xp__grid">
                   <div>
-                    <h3 className="meta xp__col-title">Besoins rencontrés</h3>
+                    <h4 className="meta xp__col-title">Besoins rencontrés</h4>
                     <ul>
                       {x.needs.map((n) => (
                         <li key={n}>{n}</li>
@@ -86,7 +87,7 @@ export function Experience({ route, active }: { route: Route; active: boolean })
                     </ul>
                   </div>
                   <div>
-                    <h3 className="meta xp__col-title">Mes contributions</h3>
+                    <h4 className="meta xp__col-title">Mes contributions</h4>
                     <ul>
                       {x.contributions.map((c) => {
                         const p = c.relatedProject ? projectById(c.relatedProject) : null;
@@ -108,7 +109,7 @@ export function Experience({ route, active }: { route: Route; active: boolean })
                     </ul>
                   </div>
                   <div>
-                    <h3 className="meta xp__col-title">Ce que j’en retiens</h3>
+                    <h4 className="meta xp__col-title">Ce que j’en retiens</h4>
                     <ul>
                       {x.learnings.map((l) => (
                         <li key={l}>{l}</li>
@@ -130,12 +131,12 @@ export function Experience({ route, active }: { route: Route; active: boolean })
           </a>
         </p>
         <aside className="xp-side" aria-labelledby="xp-side-title">
-          <h2 id="xp-side-title" className="meta">
+          <h3 id="xp-side-title" className="meta">
             En parallèle — {sideExperience.organisation}
-          </h2>
+          </h3>
           <p>{sideExperience.text}</p>
         </aside>
       </div>
-    </PageFrame>
+    </section>
   );
 }

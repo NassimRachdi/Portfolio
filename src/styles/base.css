@@ -17,15 +17,16 @@ body {
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  background: var(--night-0);
+  background: var(--paper-1);
+  color-scheme: light;
 }
 
 body {
   font-family: var(--f-text);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  color: var(--ink);
-  background: var(--night-0);
+  color: var(--paper-ink);
+  background: var(--paper-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden; /* chaque chapitre possède son propre défilement */
@@ -139,8 +140,8 @@ code {
   left: 0.75rem;
   z-index: 100;
   padding: 0.75rem 1rem;
-  background: var(--ink);
-  color: var(--night-0);
+  background: var(--paper-ink);
+  color: var(--paper-2);
   font-weight: 600;
   border-radius: var(--radius);
   transform: translateY(-200%);

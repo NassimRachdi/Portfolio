@@ -85,8 +85,8 @@ export function Cover() {
         <p className="cover__intro">{profile.intro}</p>
 
         <div className="cover__actions">
-          <a className="btn btn--primary" href={hrefFor('a-propos')}>
-            Ouvrir le portfolio
+          <a className="btn btn--primary" href={hrefFor('parcours')}>
+            Découvrir mon parcours
             <span aria-hidden="true" className="btn__arrow">
               →
             </span>
@@ -116,11 +116,6 @@ export function Cover() {
           <CoverArt />
         )}
       </div>
-
-      <p className="cover__hint meta">
-        <span className="hint-keys">Flèches ← → pour tourner les pages</span>
-        <span className="hint-touch">Balayez ou utilisez les boutons pour tourner les pages</span>
-      </p>
     </div>
   );
 }

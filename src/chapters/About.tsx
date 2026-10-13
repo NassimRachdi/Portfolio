@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { about } from '../content/about';
 import { profile } from '../content/profile';
-import { ChapterHeader, PageFrame } from '../components/PageFrame';
-import { hrefFor } from '../navigation/router';
+import { SectionHeader } from '../components/PageFrame';
 
 export function About() {
   const [focus, setFocus] = useState<number | null>(null);
 
   return (
-    <PageFrame chapter="a-propos">
+    <section className="about-wrap" aria-labelledby="a-propos-titre">
+      <SectionHeader id="a-propos" kicker="À propos" title="Ma manière de travailler" />
       <div className="spread about">
         <div className="spread__left">
-          <ChapterHeader chapter="a-propos" kicker="Profil" />
-          <p className="about__statement reveal" style={{ ['--d' as string]: 2 }}>
+          <p className="about__statement">
             <span className="about__quote" aria-hidden="true">
               «
             </span>
@@ -22,10 +21,10 @@ export function About() {
             </span>
           </p>
 
-          <section className="about__chain-wrap reveal" style={{ ['--d' as string]: 4 }} aria-labelledby="about-chain-title">
-            <h2 id="about-chain-title" className="meta about__chain-title">
+          <section className="about__chain-wrap" aria-labelledby="about-chain-title">
+            <h3 id="about-chain-title" className="meta about__chain-title">
               Ce qui relie mon parcours
-            </h2>
+            </h3>
             <ol className="about__chain" data-focus={focus ?? undefined}>
               {about.links.map((l, i) => (
                 <li
@@ -53,41 +52,33 @@ export function About() {
         </div>
 
         <div className="spread__right about__body">
-          <p className="about__opening reveal" style={{ ['--d' as string]: 3 }}>
+          <p className="about__opening">
             Je m’appelle {profile.firstName} {profile.lastName}. Je suis en Bachelor informatique et cybersécurité, en alternance
             à la SNCF depuis 2023, après un BTS SIO option SISR obtenu en 2026.
           </p>
           {about.paragraphs.map((p, i) => (
-            <p key={i} className="reveal" style={{ ['--d' as string]: 4 + i }}>
+            <p key={i}>
               {p}
             </p>
           ))}
 
-          <aside className="about__honesty reveal" style={{ ['--d' as string]: 7 }}>
+          <aside className="about__honesty">
             <p className="meta">En toute franchise</p>
             <p>{about.honesty}</p>
           </aside>
 
-          <section className="about__interests reveal" style={{ ['--d' as string]: 8 }} aria-labelledby="about-interests">
-            <h2 id="about-interests" className="meta">
+          <section className="about__interests" aria-labelledby="about-interests">
+            <h3 id="about-interests" className="meta">
               Ce qui m’intéresse
-            </h2>
+            </h3>
             <ul>
               {about.interests.map((i) => (
                 <li key={i}>{i}</li>
               ))}
             </ul>
           </section>
-
-          <a className="continue reveal" style={{ ['--d' as string]: 9 }} href={hrefFor('parcours')}>
-            <span className="meta">Chapitre suivant</span>
-            <span className="continue__title">Mon parcours</span>
-            <span aria-hidden="true" className="continue__arrow">
-              →
-            </span>
-          </a>
         </div>
       </div>
-    </PageFrame>
+    </section>
   );
 }

@@ -95,7 +95,7 @@ export function useDocumentTitle(route: Route) {
   useEffect(() => {
     const chapter = chapters[chapterIndex(route.chapter)];
     let title = `${fullName} — Portfolio`;
-    if (route.chapter !== 'couverture') title = `${chapter.title} — ${fullName}`;
+    if (route.chapter !== 'accueil') title = `${chapter.title} — ${fullName}`;
     if (route.chapter === 'projets' && route.sub) {
       const p = projectById(route.sub);
       if (p) title = `${p.title} — Projets — ${fullName}`;

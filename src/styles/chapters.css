@@ -9,10 +9,9 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-7);
-  min-height: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: clamp(2rem, 1rem + 3vw, 3.5rem) var(--page-pad-x) var(--space-8);
+  padding: clamp(2rem, 1rem + 3vw, 3.5rem) var(--page-pad-x) var(--space-6);
   overflow: hidden;
 }
 
@@ -21,7 +20,7 @@
   content: '';
   position: absolute;
   inset: -20% 40% 40% -20%;
-  background: radial-gradient(closest-side, rgba(102, 131, 255, 0.1), transparent);
+  background: radial-gradient(closest-side, var(--accent-soft), transparent);
   pointer-events: none;
 }
 
@@ -1630,4 +1629,14 @@
 .colophon .meta {
   display: block;
   margin-bottom: var(--space-1);
+}
+
+/* Accueil : la présentation suit directement la couverture */
+.frame--home {
+  min-height: 0;
+  padding-top: 0;
+}
+
+.frame--home .sec-head {
+  margin-top: var(--space-5);
 }
