@@ -22,6 +22,10 @@ npm run build      # génère le dossier dist/
 npm run preview    # sert dist/ → http://localhost:4173
 ```
 
+### Sans droits administrateur : la version autonome
+
+`npm run build:autonome` produit `dist-autonome/index.html` : un seul fichier qui contient le code, les styles et les polices. Il s'ouvre par double-clic dans n'importe quel navigateur, sans installation ni serveur. C'est la version à utiliser sur un poste où l'on ne peut rien installer.
+
 ## Vérifications
 
 ```bash

@@ -44,7 +44,14 @@ export function hrefFor(chapter: ChapterId, sub?: string | null, params?: Record
   return `#${path}${q ? `?${q}` : ''}`;
 }
 
-let current = parse(window.location.hash);
+/*
+ * Certains environnements (aperçu intégré, iframe isolée) refusent de modifier l'URL :
+ * la route est alors conservée en mémoire, et la navigation fonctionne quand même.
+ */
+let memoryHash: string | null = null;
+const readHash = () => memoryHash ?? window.location.hash;
+
+let current = parse(readHash());
 const listeners = new Set<() => void>();
 let navigations = 0;
 
@@ -52,7 +59,7 @@ let navigations = 0;
 export const hasNavigated = () => navigations > 0;
 
 function emit() {
-  const next = parse(window.location.hash);
+  const next = parse(readHash());
   // On ne recrée la route que si l'URL a réellement changé.
   if (next.path === current.path && next.params.toString() === current.params.toString()) return;
   navigations++;
@@ -60,16 +67,35 @@ function emit() {
   listeners.forEach((l) => l());
 }
 
-window.addEventListener('popstate', emit);
-window.addEventListener('hashchange', emit);
+const onHistory = () => {
+  memoryHash = null;
+  emit();
+};
+window.addEventListener('popstate', onHistory);
+window.addEventListener('hashchange', onHistory);
 
 export function navigate(href: string, opts: { replace?: boolean; state?: Record<string, unknown> } = {}) {
-  if (href === window.location.hash && !opts.replace) return;
   const url = href.startsWith('#') ? href : `#${href}`;
-  if (opts.replace) window.history.replaceState(opts.state ?? null, '', url);
-  else window.history.pushState(opts.state ?? null, '', url);
+  if (url === readHash() && !opts.replace) return;
+  try {
+    if (opts.replace) window.history.replaceState(opts.state ?? null, '', url);
+    else window.history.pushState(opts.state ?? null, '', url);
+    memoryHash = decodeURI(window.location.hash) === decodeURI(url) ? null : url;
+  } catch {
+    memoryHash = url;
+  }
   emit();
 }
+
+/* Les liens internes (#/…) passent par le routeur : clic simple uniquement,
+   les ouvertures dans un nouvel onglet gardent le comportement natif. */
+document.addEventListener('click', (e) => {
+  if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const a = (e.target as Element | null)?.closest?.('a[href^="#/"]');
+  if (!a || a.getAttribute('target')) return;
+  e.preventDefault();
+  navigate(a.getAttribute('href')!);
+});
 
 /** Met à jour un paramètre de l'URL sans créer d'entrée d'historique. */
 export function setParam(key: string, value: string | null) {

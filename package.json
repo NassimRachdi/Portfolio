@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:autonome": "tsc -b && vite build --config vite.single.config.ts",
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "test:e2e": "playwright test",
@@ -26,6 +27,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "typescript": "~5.9.3",
-    "vite": "^8.3.4"
+    "vite": "^8.3.4",
+    "vite-plugin-singlefile": "^2.3.3"
   }
 }
